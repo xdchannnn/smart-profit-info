@@ -8,6 +8,7 @@ import Home from './pages/home'
 import Login from './pages/login'
 import Dashboard from './pages/dashboard'
 import Activation from './pages/activation'
+import MyTeam from './pages/myTeam'
 
 function App() {
   return (
@@ -24,6 +25,9 @@ function App() {
         </Route>
         <Route exact path="/activation">
           <Activation />
+        </Route>
+        <Route exact path="/myteam">
+          <MyTeam />
         </Route>
       </Switch>
     </Router>

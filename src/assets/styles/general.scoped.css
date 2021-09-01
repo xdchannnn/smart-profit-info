@@ -76,11 +76,23 @@
 	align-items: center;
 }
 
+.table-responsive {
+    overflow: hidden !important;
+}
+
 
 .general_table {
 	overflow-y: hidden;
 	width: 100%;
 	margin-top: 50px;
+}
+
+.copy_input {
+	outline: 0;
+	color: #fff;
+	background-color: transparent;
+	border: 0;
+	width: 100px;
 }
 
 
@@ -361,6 +373,9 @@ tr:hover {
 	margin-top: 50px;
 }
 
+p {
+	margin: 0;
+}
 
 
 /* media screen */
