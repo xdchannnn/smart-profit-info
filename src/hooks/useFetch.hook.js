@@ -39,7 +39,7 @@ const useFetch = () => {
         setError(e);
       }
     },
-    []
+    [setToken]
   );
 
   return { request, loading, error };

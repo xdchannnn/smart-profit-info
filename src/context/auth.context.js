@@ -19,11 +19,12 @@ export const AuthContextProvider = ({ children }) => {
         const result = await request("/user/profile", "GET", null, {
           Authorization: `Bearer ${token}`,
         });
+        console.log(result);
         if (result) setUser(result.profile_info);
         else setToken(null);
       } else setUser(null);
     })();
-  }, [token]);
+  }, [token, request]);
 
   useEffect(() => {
     setToken(localStorage.getItem("token"));
