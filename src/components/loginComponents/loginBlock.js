@@ -1,8 +1,29 @@
-import '../../assets/styles/login.scoped.css'
-import logo from '../../assets/images/logo.svg';
+import { useContext, useState } from "react";
+import useFetch from "../../hooks/useFetch.hook";
+import AuthContext from "../../context/auth.context";
+
+import "../../assets/styles/login.scoped.css";
+import logo from "../../assets/images/logo.svg";
 
 function LoginBlock() {
-    return(
+  const { setToken } = useContext(AuthContext);
+  // Loader and error handler required
+  const { request, loading, error } = useFetch();
+
+  const [form, setForm] = useState({ login: "", password: "" });
+  const handleChange = (e) =>
+    setForm({ ...form, [e.target.name]: e.target.value });
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    const result = await request("/user/login", "POST", form);
+    if (result) {
+      localStorage.setItem("token", result.access_token);
+      setToken(result.access_token);
+    }
+  };
+
+  return (
     <section className="login_block">
       <div className="login_content">
         <div className="login_form_block">
@@ -18,6 +39,9 @@ function LoginBlock() {
                 Ваш логин, ID или TRON кошелек<span>*</span>
               </p>
               <input
+                name="login"
+                value={form.login}
+                onChange={handleChange}
                 type="text"
                 className="wallet_input"
                 id="wallet_input"
@@ -29,6 +53,9 @@ function LoginBlock() {
                 Пароль<span>*</span>
               </p>
               <input
+                name="password"
+                value={form.password}
+                onChange={handleChange}
                 type="text"
                 className="password_input"
                 id="password_input"
@@ -46,7 +73,8 @@ function LoginBlock() {
               </p>
               <p className="data_block">
                 <a
-                  href="https://smart-profit.info/dashboard.php"
+                  // href="https://smart-profit.info/dashboard.php"
+                  onClick={handleLogin}
                   className="login_button"
                 >
                   Войти
@@ -64,7 +92,7 @@ function LoginBlock() {
         </div>
       </div>
     </section>
-  )
+  );
 }
 
 export default LoginBlock;
