@@ -1,6 +1,9 @@
-import { useCallback, useState } from "react";
+import { useCallback, useContext, useState } from "react";
+import AuthContext from "../context/auth.context";
 
 const useFetch = () => {
+  const { setToken } = useContext(AuthContext);
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -21,6 +24,10 @@ const useFetch = () => {
         });
 
         const result = response.json();
+        if (response.status === 401) {
+          localStorage.removeItem("token");
+          setToken(null);
+        }
         if (!response.ok || result.error) throw new Error(result);
 
         setLoading(false);
