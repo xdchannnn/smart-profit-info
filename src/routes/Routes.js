@@ -6,7 +6,7 @@ import Public from "./Public";
 
 const Routes = () => {
   const { token } = useContext(AuthContext);
-  return <Router>{!!token ? <Private /> : <Public />}</Router>;
+  return <Router>{<Public />}</Router>;
 };
 
 export default Routes;
