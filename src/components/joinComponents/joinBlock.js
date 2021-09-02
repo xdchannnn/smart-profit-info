@@ -1,11 +1,42 @@
-import '../../assets/styles/login.scoped.css'
+import { useContext, useState } from "react";
+import { Link } from "react-router-dom";
+import "../../assets/styles/login.scoped.css";
+import AuthContext from "../../context/auth.context";
+import useFetch from "../../hooks/useFetch.hook";
 
 function JoinBlock() {
-    return(
+  const { setToken } = useContext(AuthContext);
+  const { request, loading, error } = useFetch();
+
+  const [form, setForm] = useState({
+    login: "",
+    email: "",
+    phone: "",
+    password: "",
+  });
+  const handleChange = (e) =>
+    setForm({ ...form, [e.target.name]: e.target.value });
+
+  const handleJoin = async (e) => {
+    e.preventDefault();
+    const result = await request("/registration", "POST", form);
+    if (result) {
+      const login = await request("/user/login", "POST", {
+        login: form.login,
+        password: form.password,
+      });
+      if (login) {
+        localStorage.setItem("token", login.access_token);
+        setToken(login.access_token);
+      }
+    }
+  };
+
+  return (
     <section className="login_block">
       <div className="login_content">
         <div className="login_form_block">
-          <form className="login_form">
+          <form className="login_form" onSubmit={handleJoin}>
             <div className="form_header">
               <p className="form_header_title">Станьте частью smart profit</p>
             </div>
@@ -18,9 +49,13 @@ function JoinBlock() {
                 Логин<span>*</span>
               </p>
               <input
+                name="login"
+                value={form.login}
+                onChange={handleChange}
                 type="text"
                 className="wallet_input"
                 placeholder="Введите идентификатор"
+                required
               />
             </div>
             <div className="password_input_block">
@@ -28,10 +63,14 @@ function JoinBlock() {
                 Электронная почта<span>*</span>
               </p>
               <input
-                type="text"
+                name="email"
+                value={form.email}
+                onChange={handleChange}
+                type="email"
                 className="password_input"
                 id="password_input"
                 placeholder="Введите почту"
+                required
               />
             </div>
             <div className="password_input_block">
@@ -39,10 +78,14 @@ function JoinBlock() {
                 Телефон<span>*</span>
               </p>
               <input
-                type="text"
+                name="phone"
+                value={form.phone}
+                onChange={handleChange}
+                type="tel"
                 className="password_input"
                 id="password_input"
                 placeholder="Введите номер"
+                required
               />
             </div>
             <div className="password_input_block">
@@ -50,34 +93,36 @@ function JoinBlock() {
                 Пароль<span>*</span>
               </p>
               <input
-                type="text"
+                name="password"
+                value={form.password}
+                onChange={handleChange}
+                type="password"
                 className="password_input"
                 id="password_input"
                 placeholder="Введите пароль"
+                required
               />
             </div>
             <div className="form_footer">
               <p className="data_block">
-                <a
-                  href="https://smart-profit.info/dashboard.php"
+                <button
+                  disabled={loading}
                   className="login_button"
+                  type="submit"
                 >
                   Присоединиться
-                </a>
+                </button>
               </p>
               <p className="account_prompt">У вас уже есть аккаунт?</p>
-              <a
-                href="https://smart-profit.info/login.php"
-                className="create_link"
-              >
+              <Link to="/login" className="create_link">
                 Войдите
-              </a>
+              </Link>
             </div>
           </form>
         </div>
       </div>
     </section>
-  )
-  }
+  );
+}
 
-export default JoinBlock
+export default JoinBlock;

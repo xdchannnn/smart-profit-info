@@ -80,7 +80,7 @@ function homeHeader() {
             </Link>
           </li>
           <li className="nav-item">
-            <a href="https://smart-profit.info/join.php">
+            <Link to="/join">
               <div className="register_button">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -99,7 +99,7 @@ function homeHeader() {
                 </svg>
                 <p className="register_text">Присоединится</p>
               </div>
-            </a>
+            </Link>
           </li>
         </ul>
       </nav>

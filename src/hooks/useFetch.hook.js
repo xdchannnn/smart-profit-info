@@ -23,12 +23,12 @@ const useFetch = () => {
           headers,
         });
 
-        const result = response.json();
+        const result = await response.json();
         if (response.status === 401) {
           localStorage.removeItem("token");
           setToken(null);
         }
-        if (!response.ok || result.error) throw new Error(result);
+        if (!response.ok || "error" in result) throw new Error(result.error);
 
         setLoading(false);
 

@@ -4,6 +4,7 @@ import AuthContext from "../../context/auth.context";
 
 import "../../assets/styles/login.scoped.css";
 import logo from "../../assets/images/logo.svg";
+import { Link } from "react-router-dom";
 
 function LoginBlock() {
   const { setToken } = useContext(AuthContext);
@@ -27,7 +28,7 @@ function LoginBlock() {
     <section className="login_block">
       <div className="login_content">
         <div className="login_form_block">
-          <form className="login_form">
+          <form className="login_form" onSubmit={handleLogin}>
             <div className="form_header">
               <p className="form_header_title">Доступ к вашей учетной записи</p>
             </div>
@@ -56,7 +57,7 @@ function LoginBlock() {
                 name="password"
                 value={form.password}
                 onChange={handleChange}
-                type="text"
+                type="password"
                 className="password_input"
                 id="password_input"
                 placeholder="Введите слово"
@@ -72,21 +73,18 @@ function LoginBlock() {
                 </a>
               </p>
               <p className="data_block">
-                <a
-                  // href="https://smart-profit.info/dashboard.php"
-                  onClick={handleLogin}
+                <button
+                  type="submit"
                   className="login_button"
+                  disabled={loading}
                 >
                   Войти
-                </a>
+                </button>
               </p>
               <p className="account_prompt">У вас нет аккаунта?</p>
-              <a
-                href="https://smart-profit.info/join.php"
-                className="create_link"
-              >
+              <Link to="/join" className="create_link">
                 Завести аккаунт
-              </a>
+              </Link>
             </div>
           </form>
         </div>
