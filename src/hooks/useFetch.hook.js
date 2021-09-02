@@ -42,7 +42,9 @@ const useFetch = () => {
     [setToken]
   );
 
-  return { request, loading, error };
+  const clearError = () => setError(null);
+
+  return { request, loading, error, clearError };
 };
 
 export default useFetch;

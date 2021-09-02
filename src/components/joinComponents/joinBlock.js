@@ -1,12 +1,13 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "../../assets/styles/login.scoped.css";
 import AuthContext from "../../context/auth.context";
 import useFetch from "../../hooks/useFetch.hook";
+import { toast } from "react-toastify";
 
 function JoinBlock() {
   const { setToken } = useContext(AuthContext);
-  const { request, loading, error } = useFetch();
+  const { request, loading, error, clearError } = useFetch();
 
   const [form, setForm] = useState({
     login: "",
@@ -31,6 +32,13 @@ function JoinBlock() {
       }
     }
   };
+
+  useEffect(() => {
+    if (error) {
+      toast(error.message, { type: "error" });
+      clearError();
+    }
+  }, [error]);
 
   return (
     <section className="login_block">
