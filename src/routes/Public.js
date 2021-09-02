@@ -19,6 +19,7 @@ const Public = () => {
       <Route exact path="/generalteam">
         <GeneralTeam />
       </Route>
+      <Route path="*">404 Not Found</Route>
     </Switch>
   );
 };
