@@ -11,7 +11,7 @@ function StatusBlock() {
                 <div className="border_decor_blue position-absolute top-0 end-0" />
                 <div className="status_card_content">
                 <p className="card_title_blue">Start Profit</p>
-                <p className="card_price_blue">500 TRX</p>
+                <p className="card_price_blue">500 BNB</p>
                 <p className="card_description_blue">
                     Активируете позицию на 60 дней, и получаете доход с 3 уровней. За
                     это время вы можете достичь более высоких статусов, и открыть для
@@ -24,7 +24,7 @@ function StatusBlock() {
                 <div className="border_decor_yellow position-absolute top-0 end-0" />
                 <div className="status_card_content">
                 <p className="card_title_yellow">Maxi Profit</p>
-                <p className="card_price_yellow">3 000 TRX</p>
+                <p className="card_price_yellow">3 000 BNB</p>
                 <p className="card_description_blue">
                     Активируете позицию на 360 дней, и получаете доход уже с 7
                     уровней. За это время вам нужно пригласить 5 друзей, и помочь им
@@ -40,7 +40,7 @@ function StatusBlock() {
                 <div className="border_decor_green position-absolute top-0 end-0" />
                 <div className="status_card_content">
                 <p className="card_title_green">Fixed Profit</p>
-                <p className="card_price_blue">1 500 TRX</p>
+                <p className="card_price_blue">1 500 BNB</p>
                 <p className="card_description_blue">
                     Активируете позицию на 180 дней, и получаете доход уже с 5
                     уровней. За это время вам нужно пригласить 5 друзей, и подтвердить
@@ -62,3 +62,4 @@ function StatusBlock() {
 }
 
 export default StatusBlock;
+

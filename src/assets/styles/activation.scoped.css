@@ -24,7 +24,6 @@
     justify-content: center;
     display: flex;
     align-items: center;
-    flex-grow: 1;
 }
 
 
@@ -37,33 +36,10 @@
     backdrop-filter: blur(20px);
 }
 
+
 .package_item:nth-child(2) {
-    margin: 0 25px;
+    margin: 0px 50px;
 }
-
-.package_item:nth-child(4) {
-    margin-left: 25px;
-}
-
-.angle_top_black {
-    width: 120px;
-    height: 120px;
-    top: 0;
-    background-image: url(../images/angle-top-black.svg);
-    background-size: 120px 120px;
-    background-repeat: no-repeat;
-}
-
-
-.angle_bottom_black {
-    width: 120px;
-    height: 120px;
-    top: 0;
-    background-image: url(../images/angle-bottom-black.svg);
-    background-size: 120px 120px;
-    background-repeat: no-repeat;
-}
-
 
 
 .angle_top_blue {
@@ -126,16 +102,14 @@
 
 
 
-.package_black_title, .package_blue_title, .package_green_title, .package_yellow_title {
+.package_blue_title, .package_green_title, .package_yellow_title {
     font-size: 32px;
     color: #fff;
     text-transform: uppercase;
     font-weight: 700;
 }
 
-.package_black_title span {
-    color: #3a3a3a;
-}
+
 
 .package_blue_title span {
     color: #54CDEF;
@@ -157,12 +131,6 @@
     padding: 50px 40px;
 }
 
-.rectangle_black {
-    width: 80px;
-    height: 6px;
-    background-color: #3a3a3a;
-    margin: 40px auto;
-}
 
 .rectangle_blue {
     width: 80px;
@@ -188,7 +156,7 @@
 }
 
 
-.package_black_text, .package_blue_text, .package_green_text, .package_yellow_text {
+.package_blue_text, .package_green_text, .package_yellow_text {
     margin-bottom: 104px;
     font-size: 26px;
     color: #fff;
@@ -198,11 +166,6 @@
 
 .package_green_text span {
     color: #5CD58E;
-    font-weight: bold;
-}
-
-.package_black_text span {
-    color: #3a3a3a;
     font-weight: bold;
 }
 
@@ -218,21 +181,6 @@
     font-weight: bold;
 }
 
-.package_black_button {
-    padding: 18px 60px;
-    border-radius: 5px;
-    border: 1px #3a3a3a solid;
-    font-weight: 700;
-    color: #3a3a3a;
-    transition: .1s;
-    transition-duration: .1s;
-}
-
-
-.package_black_button:hover {
-    color: #fff;
-    background-color: #3a3a3a;
-}
 
 .package_item_button {
     padding: 18px 60px;
@@ -431,12 +379,8 @@
     }
 
     .package_item:nth-child(2) {
-        margin: 50px 0px!important;
+    margin: 50px 0px!important;
     }
-
-    .package_item:nth-child(4) {
-        margin: 50px 0px!important;
-        }
 
     .system_button {
         padding: 16px 50px;

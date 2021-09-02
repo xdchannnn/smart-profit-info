@@ -8,25 +8,6 @@ function PackageBlock() {
         <p className="package_title">Активируйте один из пакетов</p>
       </div>
       <div className="packages_block">
-
-      <div className="package_item">
-          <div className="angle_top_black position-absolute top-0 end-0" />
-          <div className="package_content">
-            <p className="package_black_title">
-              <span>Start</span> Profit
-            </p>
-            <div className="rectangle_black" />
-            <p className="package_black_text">
-              Получайте доход с <span>3 уровней</span> на протяжении{" "}
-              <span>60 дней</span>. Откройте новые уровни для дохода
-            </p>
-            <a href="#" className="package_black_button">
-              500 BNB
-            </a>
-          </div>
-          <div className="angle_bottom_black" />
-        </div>
-        
         <div className="package_item">
           <div className="angle_top_blue position-absolute top-0 end-0" />
           <div className="package_content">
