@@ -3,6 +3,7 @@ import Dashboard from "../pages/dashboard";
 import Activation from "../pages/activation";
 import MyTeam from "../pages/myTeam";
 import GeneralTeam from "../pages/generalTeam";
+import Profile from "../pages/profile";
 
 import { Fragment, useContext } from "react";
 import AuthContext from "../context/auth.context";
@@ -19,6 +20,9 @@ const Private = () => {
       <Switch>
         <Route exact path="/">
           <Dashboard />
+        </Route>
+        <Route exact path="/profile">
+          <Profile />
         </Route>
         <Route path="/activation">
           <Activation />
