@@ -1,7 +1,11 @@
-import '../../assets/styles/activation.scoped.css'
+import { useContext } from "react";
+import "../../assets/styles/activation.scoped.css";
+import Web3Context from "../../context/web3.context";
 
 function PackageBlock() {
-    return(
+  const { sendTransaction } = useContext(Web3Context);
+
+  return (
     <div className="package_block">
       <div className="package_top_block">
         <img src="assets/images/web-icon.svg" />
@@ -19,13 +23,17 @@ function PackageBlock() {
               Получайте доход с <span>3 уровней</span> на протяжении{" "}
               <span>60 дней</span>. Откройте новые уровни для дохода
             </p>
-            <a href="#" className="package_item_button">
+            <a
+              onClick={sendTransaction}
+              href="#"
+              className="package_item_button"
+            >
               500 BNB
             </a>
           </div>
           <div className="angle_bottom_blue" />
         </div>
-        
+
         <div className="package_item">
           <div className="angle_top_green position-absolute top-0 end-0" />
           <div className="package_content">
@@ -43,7 +51,7 @@ function PackageBlock() {
           </div>
           <div className="angle_bottom_green" />
         </div>
-        
+
         <div className="package_item">
           <div className="angle_top_yellow position-absolute top-0 end-0" />
           <div className="package_content">
@@ -64,7 +72,7 @@ function PackageBlock() {
         </div>
       </div>
     </div>
-  )
-  }
+  );
+}
 
-export default PackageBlock
+export default PackageBlock;

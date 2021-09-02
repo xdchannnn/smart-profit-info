@@ -6,6 +6,7 @@ import GeneralTeam from "../pages/generalTeam";
 
 import { Fragment, useContext } from "react";
 import AuthContext from "../context/auth.context";
+import { Web3ContextProvider } from "../context/web3.context";
 
 const Private = () => {
   const { user } = useContext(AuthContext);
@@ -14,21 +15,23 @@ const Private = () => {
   if (!user) return <Fragment />;
 
   return (
-    <Switch>
-      <Route exact path="/">
-        <Dashboard />
-      </Route>
-      <Route path="/activation">
-        <Activation />
-      </Route>
-      <Route exact path="/my-team">
-        <MyTeam />
-      </Route>
-      <Route exact path="/general-team">
-        <GeneralTeam />
-      </Route>
-      <Route render={() => <Redirect to="/" />} />
-    </Switch>
+    <Web3ContextProvider>
+      <Switch>
+        <Route exact path="/">
+          <Dashboard />
+        </Route>
+        <Route path="/activation">
+          <Activation />
+        </Route>
+        <Route exact path="/my-team">
+          <MyTeam />
+        </Route>
+        <Route exact path="/general-team">
+          <GeneralTeam />
+        </Route>
+        <Route render={() => <Redirect to="/" />} />
+      </Switch>
+    </Web3ContextProvider>
   );
 };
 
