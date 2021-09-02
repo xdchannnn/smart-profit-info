@@ -15,7 +15,7 @@ const Private = () => {
       <Route exact path="/">
         <Dashboard />
       </Route>
-      <Route exact path="/activation">
+      <Route path="/activation">
         <Activation />
       </Route>
       <Route render={() => <Redirect to="/" />} />
