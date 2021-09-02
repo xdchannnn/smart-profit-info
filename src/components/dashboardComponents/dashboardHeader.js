@@ -4,6 +4,7 @@ import lang from "../../assets/images/lang.svg";
 import turnOff from "../../assets/images/turn-off.svg";
 import { useContext } from "react";
 import AuthContext from "../../context/auth.context";
+import { Link } from "react-router-dom";
 
 function Header() {
   const { setToken } = useContext(AuthContext);
@@ -54,22 +55,22 @@ function Header() {
                   </button>
                   <ul className="dropdown-menu">
                     <li>
-                      <a
+                      <Link
                         className="dropdown-item"
-                        href="https://smart-profit.info/my-team.php"
+                        to="/my-team"
                         style={{ paddingLeft: "15px", paddingRight: "0px" }}
                       >
                         Моя команда
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <a
+                      <Link
                         className="dropdown-item"
-                        href="https://smart-profit.info/general-team.php"
+                        to="/general-team"
                         style={{ paddingLeft: "15px", paddingRight: "0px" }}
                       >
                         Общая команда
-                      </a>
+                      </Link>
                     </li>
                   </ul>
                 </div>

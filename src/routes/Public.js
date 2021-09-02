@@ -1,8 +1,7 @@
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import Home from "../pages/home";
 import Login from "../pages/login";
 import Join from "../pages/join";
-import GeneralTeam from "../pages/generalTeam";
 
 const Public = () => {
   return (
@@ -15,9 +14,6 @@ const Public = () => {
       </Route>
       <Route exact path="/join">
         <Join />
-      </Route>
-      <Route exact path="/generalteam">
-        <GeneralTeam />
       </Route>
       <Route path="*">404 Not Found</Route>
     </Switch>
