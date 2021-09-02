@@ -15,7 +15,7 @@ const Public = () => {
       <Route exact path="/join">
         <Join />
       </Route>
-      
+      <Route render={() => <Redirect to="/" />} />
     </Switch>
   );
 };
