@@ -6,7 +6,7 @@ import useFetch from "../../hooks/useFetch.hook";
 
 function ProfileScreen() {
   const { request, loading, error } = useFetch();
-  const { user, settings } = useContext(AuthContext);
+  const { user, settings, token } = useContext(AuthContext);
 
   const [form, setForm] = useState({
     full_name: "",
@@ -15,25 +15,51 @@ function ProfileScreen() {
     telegram: "",
     skype: "",
     phone: "",
-    new_password: "",
+    new_password: undefined,
     repeat_password: "",
     old_password: "",
   });
 
   useEffect(() => {
-    setForm({
-      full_name: user.full_name,
-      country: settings.country,
-      email: settings.email,
-      telegram: settings.telegram,
-      skype: settings.skype,
-      phone: settings.phone,
-      old_password: settings.passwd,
-    });
+    if (user && settings)
+      setForm({
+        ...form,
+        user_id: user.id,
+        skype: settings.skype,
+        telegram: settings.telegram,
+        email: settings.email,
+        phone: settings.phone,
+        full_name: user.full_name,
+        country: settings.country,
+        old_password: settings.passwd,
+      });
   }, [user, settings]);
 
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
+
+  const handleSave = async (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+
+    for (let [key, value] of Object.entries(
+      (({ repeat_password, ...rest }) => rest)(form)
+    ))
+      formData.append(key, value);
+
+    for (let [key, value] of formData.entries())
+      console.log(key + ": " + value);
+
+    const result = await request(
+      "/settings",
+      "POST",
+      { formData },
+      {
+        Authorization: `Bearer ${token}`,
+      }
+    );
+    console.log(result);
+  };
 
   return (
     <div className="profile_screen">
@@ -75,7 +101,7 @@ function ProfileScreen() {
                 <div className="profile_user_item">
                   <p className="profile_user_text">Новый пароль</p>
                   <input
-                    type="text"
+                    type="password"
                     className="profile_user_input"
                     name="new_password"
                     value={form.new_password}
@@ -107,7 +133,7 @@ function ProfileScreen() {
                 <div className="profile_user_item">
                   <p className="profile_user_text">Повторите новый пароль</p>
                   <input
-                    type="text"
+                    type="password"
                     className="profile_user_input"
                     name="repeat_password"
                     value={form.repeat_password}
@@ -149,7 +175,13 @@ function ProfileScreen() {
                 </div>
               </div>
               <div className="profile_button_block">
-                <button className="profile_user_button">Сохранить</button>
+                <button
+                  onClick={handleSave}
+                  disabled={loading}
+                  className="profile_user_button"
+                >
+                  Сохранить
+                </button>
               </div>
             </div>
           </div>
