@@ -73,12 +73,9 @@ function LoginBlock() {
             </div>
             <div className="form_footer">
               <p>
-                <a
-                  href="https://smart-profit.info/forgot.php"
-                  className="forgot_link"
-                >
+                <Link to="/forgot" className="forgot_link">
                   Забыли пароль?
-                </a>
+                </Link>
               </p>
               <p className="data_block">
                 <button
