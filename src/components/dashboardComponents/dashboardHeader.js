@@ -20,9 +20,9 @@ function Header() {
     <header>
       <nav className="navbar navbar-expand-lg navbar-light">
         <div className="container-fluid">
-          <a className="navbar-brand" href="https://smart-profit.info/">
+          <Link className="navbar-brand" to="/">
             <img src={blueLogo} alt="logo" />
-          </a>
+          </Link>
           <button
             className="navbar-toggler"
             type="button"
@@ -37,12 +37,9 @@ function Header() {
           <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <a
-                  href="https://smart-profit.info/dashboard.php"
-                  className="nav-link"
-                >
+                <Link to="/dashboard" className="nav-link">
                   Главная
-                </a>
+                </Link>
                 <div className="rect_border" />
               </li>
               <li className="nav-item">
@@ -78,21 +75,15 @@ function Header() {
                 </div>
               </li>
               <li className="nav-item">
-                <a
-                  href="https://smart-profit.info/finance.php"
-                  className="nav-link"
-                >
+                <Link to="/finance" className="nav-link">
                   Финансы
-                </a>
+                </Link>
                 <div className="rect_border" />
               </li>
               <li className="nav-item">
-                <a
-                  href="https://smart-profit.info/FAQ.php"
-                  className="nav-link"
-                >
+                <Link to="/FAQ" className="nav-link">
                   FAQ
-                </a>
+                </Link>
                 <div className="rect_border" />
               </li>
               <li className="nav-item">

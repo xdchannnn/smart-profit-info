@@ -26,9 +26,9 @@ function LoginHeader() {
           <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <a href="#" className="nav-link">
+                <Link to="/FAQ" className="nav-link">
                   FAQ
-                </a>
+                </Link>
                 <div className="rect_border" />
               </li>
               <li className="nav-item">
