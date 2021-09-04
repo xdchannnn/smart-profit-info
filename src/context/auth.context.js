@@ -5,6 +5,7 @@ const AuthContext = createContext({
   token: null,
   setToken: () => {},
   user: null,
+  settings: null,
 });
 
 export const AuthContextProvider = ({ children }) => {
@@ -12,6 +13,7 @@ export const AuthContextProvider = ({ children }) => {
 
   const [token, setToken] = useState(null);
   const [user, setUser] = useState(null);
+  const [settings, setSettings] = useState(null);
 
   useEffect(() => {
     (async () => {
@@ -27,11 +29,24 @@ export const AuthContextProvider = ({ children }) => {
   }, [token, request]);
 
   useEffect(() => {
+    (async () => {
+      if (token) {
+        const result = await request("/settings", "GET", null, {
+          Authorization: `Bearer ${token}`,
+        });
+        console.log(result);
+        if (result) setSettings(result.data);
+        else setToken(null);
+      } else setSettings(null);
+    })();
+  }, [token, request]);
+
+  useEffect(() => {
     setToken(localStorage.getItem("token"));
   }, []);
 
   return (
-    <AuthContext.Provider value={{ token, setToken, user }}>
+    <AuthContext.Provider value={{ token, setToken, user, settings }}>
       {children}
     </AuthContext.Provider>
   );

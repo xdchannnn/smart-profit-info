@@ -1,15 +1,16 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import useFetch from "../../hooks/useFetch.hook";
 import AuthContext from "../../context/auth.context";
 
 import "../../assets/styles/login.scoped.css";
 import logo from "../../assets/images/logo.svg";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function LoginBlock() {
   const { setToken } = useContext(AuthContext);
   // Loader and error handler required
-  const { request, loading, error } = useFetch();
+  const { request, loading, error, clearError } = useFetch();
 
   const [form, setForm] = useState({ login: "", password: "" });
   const handleChange = (e) =>
@@ -23,6 +24,13 @@ function LoginBlock() {
       setToken(result.access_token);
     }
   };
+
+  useEffect(() => {
+    if (error) {
+      toast(error.message, { type: "error" });
+      clearError();
+    }
+  }, [error]);
 
   return (
     <section className="login_block">

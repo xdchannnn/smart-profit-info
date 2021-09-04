@@ -13,8 +13,13 @@ const useFetch = () => {
         setLoading(true);
 
         if (body) {
-          body = JSON.stringify(body);
-          headers["Content-Type"] = "application/json";
+          if ("formData" in body) {
+            headers["Content-Type"] = "multipart/form-data";
+            body = body.formData;
+          } else {
+            body = JSON.stringify(body);
+            headers["Content-Type"] = "application/json";
+          }
         }
 
         const response = await fetch(`http://topmail.net.ua:8081${url}`, {
@@ -42,7 +47,9 @@ const useFetch = () => {
     [setToken]
   );
 
-  return { request, loading, error };
+  const clearError = () => setError(null);
+
+  return { request, loading, error, clearError };
 };
 
 export default useFetch;

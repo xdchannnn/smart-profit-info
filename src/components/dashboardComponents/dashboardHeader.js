@@ -4,14 +4,16 @@ import lang from "../../assets/images/lang.svg";
 import turnOff from "../../assets/images/turn-off.svg";
 import { useContext } from "react";
 import AuthContext from "../../context/auth.context";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 function Header() {
   const { setToken } = useContext(AuthContext);
+  const history = useHistory();
 
   const logout = () => {
     localStorage.removeItem("token");
     setToken(null);
+    history.push("/");
   };
 
   return (
