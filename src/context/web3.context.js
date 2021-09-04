@@ -1,5 +1,5 @@
 import Web3 from "web3";
-import { createContext } from "react";
+import { createContext, useState } from "react";
 import { SmartProfit } from "../utils/contracts";
 
 const TEST_BINANCE =
@@ -10,13 +10,14 @@ const web3 = new Web3(
 );
 
 const Web3Context = createContext({
-  sendTransaction: () => {},
+  register: () => {},
+  connectMetamask: () => {},
 });
 
 export const Web3ContextProvider = ({ children }) => {
-  const contract = new web3.eth.Contract(SmartProfit.abi, SmartProfit.address);
+  const web3 = useState(null);
 
-  return <Web3Context.Provider value={{}}>{children}</Web3Context.Provider>;
+  return <Web3Context.Provider>{children}</Web3Context.Provider>;
 };
 
 export default Web3Context;

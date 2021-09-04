@@ -3,8 +3,6 @@ import "../../assets/styles/activation.scoped.css";
 import Web3Context from "../../context/web3.context";
 
 function PackageBlock() {
-  const { sendTransaction } = useContext(Web3Context);
-
   return (
     <div className="package_block">
       <div className="package_top_block">
@@ -23,11 +21,7 @@ function PackageBlock() {
               Получайте доход с <span>3 уровней</span> на протяжении{" "}
               <span>60 дней</span>. Откройте новые уровни для дохода
             </p>
-            <a
-              onClick={sendTransaction}
-              href="#"
-              className="package_item_button"
-            >
+            <a href="#" className="package_item_button">
               500 BNB
             </a>
           </div>
