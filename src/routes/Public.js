@@ -1,6 +1,7 @@
 import { Switch, Route } from "react-router-dom";
 import Home from "../pages/home";
 import Login from "../pages/login";
+import Forgot from "../pages/forgot";
 import Join from "../pages/join";
 
 const Public = () => {
@@ -11,6 +12,9 @@ const Public = () => {
       </Route>
       <Route exact path="/login">
         <Login />
+      </Route>
+      <Route exact path="/forgot">
+        <Forgot />
       </Route>
       <Route exact path="/join">
         <Join />
