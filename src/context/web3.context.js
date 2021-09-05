@@ -18,23 +18,26 @@ export const Web3ContextProvider = ({ children }) => {
   const [metamask, setMetamask] = useState(null);
   const [userAddress, setUserAddress] = useState(null);
 
-  const register = useCallback(() => {
-    if (metamask && userAddress) {
-      const contract = new metamask.eth.Contract(
-        SmartProfit.abi,
-        SmartProfit.address
-      );
-      contract.methods._register(1).send(
-        {
-          from: userAddress,
-          value: 500,
-        },
-        (err, res) => {
-          console.log(err, res);
-        }
-      );
-    } else toast("Подключитесь к кошельку!", { type: "error" });
-  }, [metamask, userAddress]);
+  const register = useCallback(
+    (value) => {
+      if (metamask && userAddress) {
+        const contract = new metamask.eth.Contract(
+          SmartProfit.abi,
+          SmartProfit.address
+        );
+        contract.methods._register(1).send(
+          {
+            from: userAddress,
+            value: metamask.utils.toWei(String(value)),
+          },
+          (err, res) => {
+            console.log(err, res);
+          }
+        );
+      } else toast("Подключитесь к кошельку!", { type: "error" });
+    },
+    [metamask, userAddress]
+  );
 
   const connectMetamask = () => {
     if (window.ethereum) {

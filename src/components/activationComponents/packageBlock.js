@@ -1,6 +1,24 @@
+import { useContext, useEffect } from "react";
 import "../../assets/styles/activation.scoped.css";
+import Web3Context from "../../context/web3.context";
 
 function PackageBlock() {
+  const { register, connectMetamask } = useContext(Web3Context);
+
+  useEffect(() => {
+    connectMetamask();
+  }, []);
+
+  const registrate = async (amount) => {
+    const price = await fetch(
+      "https://api.coingecko.com/api/v3/simple/price?ids=binancecoin&vs_currencies=usd"
+    );
+    const result = await price.json();
+    const value = amount / result.binancecoin.usd;
+    console.log(value);
+    register(value);
+  };
+
   return (
     <div className="package_block">
       <div className="package_top_block">
@@ -19,7 +37,11 @@ function PackageBlock() {
               Получайте доход с <span>3 уровней</span> на протяжении{" "}
               <span>60 дней</span>. Откройте новые уровни для дохода
             </p>
-            <a href="#" className="package_item_button">
+            <a
+              onClick={() => registrate(30)}
+              href="#"
+              className="package_item_button"
+            >
               500 BNB
             </a>
           </div>
@@ -37,7 +59,11 @@ function PackageBlock() {
               Получайте доход с <span>5 уровней</span> на протяжении{" "}
               <span>180 дней</span>. Откройте новые уровни для дохода
             </p>
-            <a href="#" className="package_green_button">
+            <a
+              onClick={() => registrate(90)}
+              href="#"
+              className="package_green_button"
+            >
               1 500 BNB
             </a>
           </div>
@@ -56,7 +82,11 @@ function PackageBlock() {
               <span>360 дней</span>. А так же <span>«Maxi Bonus»</span>{" "}
               подтвердите статус
             </p>
-            <a href="#" className="package_yellow_button">
+            <a
+              onClick={() => registrate(180)}
+              href="#"
+              className="package_yellow_button"
+            >
               3 000 BNB
             </a>
           </div>
