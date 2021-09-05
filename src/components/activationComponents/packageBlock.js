@@ -1,8 +1,9 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import "../../assets/styles/activation.scoped.css";
 import Web3Context from "../../context/web3.context";
 
 function PackageBlock() {
+  const [loading, setLoading] = useState(false);
   const { register, connectMetamask } = useContext(Web3Context);
 
   useEffect(() => {
@@ -10,13 +11,14 @@ function PackageBlock() {
   }, []);
 
   const registrate = async (amount) => {
+    setLoading(true);
     const price = await fetch(
       "https://api.coingecko.com/api/v3/simple/price?ids=binancecoin&vs_currencies=usd"
     );
     const result = await price.json();
     const value = amount / result.binancecoin.usd;
     console.log(value);
-    register(value);
+    register(value, (loaded) => setLoading(!loaded));
   };
 
   return (
@@ -37,13 +39,13 @@ function PackageBlock() {
               Получайте доход с <span>3 уровней</span> на протяжении{" "}
               <span>60 дней</span>. Откройте новые уровни для дохода
             </p>
-            <a
+            <button
+              disabled={loading}
               onClick={() => registrate(30)}
-              href="#"
               className="package_item_button"
             >
               500 BNB
-            </a>
+            </button>
           </div>
           <div className="angle_bottom_blue" />
         </div>
@@ -59,13 +61,13 @@ function PackageBlock() {
               Получайте доход с <span>5 уровней</span> на протяжении{" "}
               <span>180 дней</span>. Откройте новые уровни для дохода
             </p>
-            <a
+            <button
+              disabled={loading}
               onClick={() => registrate(90)}
-              href="#"
               className="package_green_button"
             >
               1 500 BNB
-            </a>
+            </button>
           </div>
           <div className="angle_bottom_green" />
         </div>
@@ -82,13 +84,13 @@ function PackageBlock() {
               <span>360 дней</span>. А так же <span>«Maxi Bonus»</span>{" "}
               подтвердите статус
             </p>
-            <a
+            <button
+              disabled={loading}
               onClick={() => registrate(180)}
-              href="#"
               className="package_yellow_button"
             >
               3 000 BNB
-            </a>
+            </button>
           </div>
           <div className="angle_bottom_yellow" />
         </div>

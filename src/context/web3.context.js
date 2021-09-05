@@ -1,7 +1,15 @@
 import Web3 from "web3";
-import { createContext, useCallback, useState } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { SmartProfit } from "../utils/contracts";
 import { toast } from "react-toastify";
+import useFetch from "../hooks/useFetch.hook";
+import AuthContext from "./auth.context";
 
 const TEST_BINANCE = "https://data-seed-prebsc-1-s1.binance.org:8545/";
 
@@ -15,28 +23,49 @@ const Web3Context = createContext({
 });
 
 export const Web3ContextProvider = ({ children }) => {
+  const { token, user } = useContext(AuthContext);
+  const { request, error, clearError } = useFetch();
+
   const [metamask, setMetamask] = useState(null);
   const [userAddress, setUserAddress] = useState(null);
 
   const register = useCallback(
-    (value) => {
+    (value, callback) => {
       if (metamask && userAddress) {
         const contract = new metamask.eth.Contract(
           SmartProfit.abi,
           SmartProfit.address
         );
-        contract.methods._register(1).send(
-          {
+        contract.methods
+          ._register(1)
+          .send({
             from: userAddress,
             value: metamask.utils.toWei(String(value)),
-          },
-          (err, res) => {
-            console.log(err, res);
-          }
-        );
+          })
+          .on("receipt", (receipt) => {
+            request(
+              "/save-tx",
+              "POST",
+              {
+                user_id: user.id,
+                tx_hash: receipt.transactionHash,
+              },
+              { Authorization: `Bearer ${token}` }
+            ).then((res) => {
+              if (res) {
+                callback(true);
+                toast("Success!", { type: "success" });
+              }
+            });
+          })
+          .on("error", (err) => {
+            console.log(err);
+            callback(true);
+            toast(err.message, { type: "error" });
+          });
       } else toast("Подключитесь к кошельку!", { type: "error" });
     },
-    [metamask, userAddress]
+    [metamask, userAddress, request, token, user]
   );
 
   const connectMetamask = () => {
@@ -99,6 +128,13 @@ export const Web3ContextProvider = ({ children }) => {
       );
     }
   };
+
+  useEffect(() => {
+    if (error) {
+      toast(error.message, { type: "error" });
+      clearError();
+    }
+  }, [error, clearError]);
 
   return (
     <Web3Context.Provider value={{ register, connectMetamask }}>
