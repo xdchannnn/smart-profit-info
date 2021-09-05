@@ -1,6 +1,4 @@
-import { useContext } from "react";
 import "../../assets/styles/activation.scoped.css";
-import Web3Context from "../../context/web3.context";
 
 function PackageBlock() {
   return (
