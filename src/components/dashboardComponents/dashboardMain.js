@@ -36,11 +36,11 @@ function DashboardMain() {
                 </div>
               </div>
             </div>
-            <a href="https://smart-profit.info/activation.php">
+            <Link to="/activation">
               <div className="activation_block">
                 <p className="activation_text">ЗАПИСЬ АКТИВНА</p>
               </div>
-            </a>
+            </Link>
             <div className="time_block">
               <div className="eTimer" />
             </div>
