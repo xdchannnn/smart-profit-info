@@ -4,6 +4,7 @@ import Activation from "../pages/activation";
 import MyTeam from "../pages/myTeam";
 import GeneralTeam from "../pages/generalTeam";
 import Profile from "../pages/profile";
+import Finance from '../pages/finance'
 
 import { Fragment, useContext } from "react";
 import AuthContext from "../context/auth.context";
@@ -32,6 +33,9 @@ const Private = () => {
         </Route>
         <Route exact path="/general-team">
           <GeneralTeam />
+        </Route>
+        <Route exact path="/finance">
+          <Finance />
         </Route>
         <Route render={() => <Redirect to="/" />} />
       </Switch>

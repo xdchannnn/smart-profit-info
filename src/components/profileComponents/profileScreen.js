@@ -98,16 +98,6 @@ function ProfileScreen() {
                     onChange={handleChange}
                   />
                 </div>
-                <div className="profile_user_item">
-                  <p className="profile_user_text">Новый пароль</p>
-                  <input
-                    type="password"
-                    className="profile_user_input"
-                    name="new_password"
-                    value={form.new_password}
-                    onChange={handleChange}
-                  />
-                </div>
               </div>
               <div className="profile_user_row">
                 <div className="profile_user_item">
@@ -127,6 +117,27 @@ function ProfileScreen() {
                     className="profile_user_input"
                     name="telegram"
                     value={form.telegram}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="profile_user_item">
+                  <p className="profile_user_text">Существующий пароль</p>
+                  <input
+                    type="text"
+                    className="profile_user_input"
+                    name="old_password"
+                    value={form.old_password}
+                    onChange={handleChange}
+                    disabled
+                  />
+                </div>
+                <div className="profile_user_item">
+                  <p className="profile_user_text">Новый пароль</p>
+                  <input
+                    type="password"
+                    className="profile_user_input"
+                    name="new_password"
+                    value={form.new_password}
                     onChange={handleChange}
                   />
                 </div>
@@ -160,17 +171,6 @@ function ProfileScreen() {
                     name="phone"
                     value={form.phone}
                     onChange={handleChange}
-                  />
-                </div>
-                <div className="profile_user_item">
-                  <p className="profile_user_text">Существующий пароль</p>
-                  <input
-                    type="text"
-                    className="profile_user_input"
-                    name="old_password"
-                    value={form.old_password}
-                    onChange={handleChange}
-                    disabled
                   />
                 </div>
               </div>
