@@ -1,8 +1,24 @@
-import "../../assets/styles/finance.scoped.css"
-import "../../assets/styles/general.scoped.css"
+import { useContext, useEffect } from "react";
+import "../../assets/styles/finance.scoped.css";
+import "../../assets/styles/general.scoped.css";
+import AuthContext from "../../context/auth.context";
+
+import useFetch from "../../hooks/useFetch.hook";
 
 function MyFinance() {
-    return(
+  const { token } = useContext(AuthContext);
+  const { request, error } = useFetch();
+
+  useEffect(() => {
+    (async () => {
+      const result = await request("/get-income", "GET", null, {
+        Authorization: `Bearer ${token}`,
+      });
+      console.log(result);
+    })();
+  }, [request]);
+
+  return (
     <div id="MyFinance" className="tabcontent">
       <table className="general_table">
         <tbody>
@@ -51,7 +67,7 @@ function MyFinance() {
         </tbody>
       </table>
     </div>
-  )
-  }
+  );
+}
 
 export default MyFinance;
