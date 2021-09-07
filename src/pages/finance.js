@@ -10,7 +10,7 @@ import LostFinance from '../components/financeComponents/lostFinance';
 
 
 
-function MyTeam() {
+function Finance() {
     
     const [tab, setTab] = React.useState('MyFinance')
 
@@ -28,4 +28,4 @@ function MyTeam() {
   );
 }
 
-export default MyTeam;
+export default Finance;
