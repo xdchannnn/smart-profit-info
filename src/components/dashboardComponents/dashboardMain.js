@@ -1,7 +1,11 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import "../../assets/styles/dashboard.scoped.css";
+import AuthContext from "../../context/auth.context";
 
 function DashboardMain() {
+  const { user, settings } = useContext(AuthContext);
+
   return (
     <div className="main_block">
       <div className="main_content">
@@ -20,18 +24,18 @@ function DashboardMain() {
                 <img src="assets/images/profile-img.jpg" />
               </div>
               <div className="profile_content_block">
-                <p className="username_text">Иван Иванов</p>
-                <p className="id_text">ID: 59608</p>
+                <p className="username_text">{user.full_name}</p>
+                <p className="id_text">ID: {user.id}</p>
                 <p className="status_text">
                   Текущий статус:
                   <a href="#" className="status_link">
-                    Start Profit
+                    {settings.status}
                   </a>
                 </p>
                 <div className="profile_link_block">
                   <img src="assets/images/copy-icon.svg" />
                   <a href="#" className="profile_link">
-                    http://smartprofit.com/ivan.ivanov
+                    http://smartprofit.com/{settings.contract_id}
                   </a>
                 </div>
               </div>
@@ -59,12 +63,9 @@ function DashboardMain() {
             </div>
             <div className="referal_block">
               <img src="assets/images/blue-copy.svg" />
-              <a
-                href="https://smart-profit.info/sponsor.php"
-                className="referal_text"
-              >
+              <Link to={`sponsor/${settings.ref_id}`} className="referal_text">
                 Ваш спонсор
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -125,15 +126,16 @@ function DashboardMain() {
                     <div className="item_content">
                       <p className="item_title">Партнерская прибыль:</p>
                       <p className="item_description">
-                        TRX: 3 450.15 | USD: 223.97
+                        BNB: {user.partner_income.BNB} | USD:{" "}
+                        {user.partner_income.USD}
                       </p>
                     </div>
                   </div>
                   <div className="item_link_block">
                     <p className="item_link_text">
-                      TRX:
+                      BNB:
                       <a href="#" className="item_link">
-                        TMmtUWW5ZvvEzJPiVxFUPdDzLef4bLzDWW
+                        {user.wallet}
                       </a>
                     </p>
                   </div>
@@ -164,15 +166,16 @@ function DashboardMain() {
                     <div className="item_content">
                       <p className="item_title">Прибыль с уровней:</p>
                       <p className="item_description">
-                        TRX: 69 732 | USD: 4527.00
+                        BNB: {user.level_income.BNB} | USD:{" "}
+                        {user.level_income.USD}
                       </p>
                     </div>
                   </div>
                   <div className="item_link_block">
                     <p className="item_link_text">
-                      TRX:
+                      BNB:
                       <a href="#" className="item_link">
-                        TMmtUWW5ZvvEzJPiVxFUPdDzLef4bLzDWW
+                        {user.wallet}
                       </a>
                     </p>
                   </div>
@@ -204,14 +207,16 @@ function DashboardMain() {
                     </div>
                     <div className="item_content">
                       <p className="item_title">Моя команда:</p>
-                      <p className="item_description">25 PARTNERS</p>
+                      <p className="item_description">
+                        {user.my_team.partners_count} PARTNERS
+                      </p>
                     </div>
                   </div>
                   <div className="item_link_block">
                     <p className="item_link_text">
                       Общая команда:
                       <a href="#" className="item_link">
-                        149
+                        {user.my_team.team_count}
                       </a>
                     </p>
                   </div>
@@ -246,9 +251,9 @@ function DashboardMain() {
                   </div>
                   <div className="item_link_block">
                     <p className="item_link_text">
-                      TRX:
+                      BNB:
                       <a href="#" className="item_link">
-                        TMmtUWW5ZvvEzJPiVxFUPdDzLef4bLzDWW
+                        {user.wallet}
                       </a>
                     </p>
                   </div>
@@ -264,76 +269,28 @@ function DashboardMain() {
                 <div className="level_content">
                   <p className="level_title">Уровень 1</p>
                   <div className="quantity_block">
-                    <p className="quantity_text">5</p>
+                    <p className="quantity_text">{user.levels[0].level_1}</p>
                   </div>
                 </div>
               </div>
             </a>
             <div className="bottom_levels_block">
-              <a href="#" style={{ width: "100%" }}>
-                <div className="level_item">
-                  <div className="level_top_child_border" />
-                  <div className="level_bottom_child_border" />
-                  <div className="level_content">
-                    <p className="level_title">Уровень 2</p>
-                    <div className="quantity_block">
-                      <p className="quantity_text">25</p>
+              {user.levels.slice(1).map((level, index) => (
+                <a key={index} href="#" style={{ width: "100%" }}>
+                  <div className="level_item">
+                    <div className="level_top_child_border" />
+                    <div className="level_bottom_child_border" />
+                    <div className="level_content">
+                      <p className="level_title">Уровень {index + 2}</p>
+                      <div className="quantity_block">
+                        <p className="quantity_text">
+                          {level[`level_${index + 2}`]}
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </a>
-              <a href="#" style={{ width: "100%" }}>
-                <div className="level_item">
-                  <div className="level_top_child_border" />
-                  <div className="level_bottom_child_border" />
-                  <div className="level_content">
-                    <p className="level_title">Уровень 3</p>
-                    <div className="quantity_block">
-                      <p className="quantity_text">125</p>
-                    </div>
-                  </div>
-                </div>
-              </a>
-              <a href="#" style={{ width: "100%" }}>
-                <div className="level_item">
-                  <div className="level_content">
-                    <p className="level_title">Уровень 4</p>
-                    <div className="quantity_block">
-                      <p className="quantity_text">1125</p>
-                    </div>
-                  </div>
-                </div>
-              </a>
-              <a href="#" style={{ width: "100%" }}>
-                <div className="level_item">
-                  <div className="level_content">
-                    <p className="level_title">Уровень 5</p>
-                    <div className="quantity_block">
-                      <p className="quantity_text">3125</p>
-                    </div>
-                  </div>
-                </div>
-              </a>
-              <a href="#" style={{ width: "100%" }}>
-                <div className="level_item">
-                  <div className="level_content">
-                    <p className="level_title">Уровень 6</p>
-                    <div className="quantity_block">
-                      <p className="quantity_text">115</p>
-                    </div>
-                  </div>
-                </div>
-              </a>
-              <a href="#" style={{ width: "100%" }}>
-                <div className="level_item">
-                  <div className="level_content">
-                    <p className="level_title">Уровень 7</p>
-                    <div className="quantity_block">
-                      <p className="quantity_text">1115</p>
-                    </div>
-                  </div>
-                </div>
-              </a>
+                </a>
+              ))}
             </div>
           </div>
           <div className="banner_block">

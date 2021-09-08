@@ -16,7 +16,7 @@ const useRegister = ({ metamask, userAddress }) => {
         return toast("Вы не подключенны к кошельку!", { type: "warning" });
       if (!userAddress)
         return toast("Вы не вошли в кошелек!", { type: "warning" });
-      if (settings.wallet && settings.wallet !== userAddress)
+      if (settings.wallet && settings.wallet.toLowerCase() !== userAddress)
         return toast("Не верный аккаунт кошелька!", { type: "warning" });
 
       setLoading(true);
@@ -26,7 +26,7 @@ const useRegister = ({ metamask, userAddress }) => {
         SmartProfit.address
       );
       contract.methods
-        ._register(settings.ref_id || 1)
+        ._register(7)
         .send({
           from: userAddress,
           value: metamask.utils.toWei(String(value)),
