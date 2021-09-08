@@ -1,25 +1,33 @@
-import { useContext, useEffect, useState } from "react";
+import { Fragment, useContext, useEffect, useState } from "react";
 import "../../assets/styles/activation.scoped.css";
 import Web3Context from "../../context/web3.context";
 
 function PackageBlock() {
-  const [loading, setLoading] = useState(false);
-  const { register, connectMetamask } = useContext(Web3Context);
+  const {
+    register,
+    connectMetamask,
+    loading,
+    priceLoading,
+    getPrice,
+  } = useContext(Web3Context);
+  const [prices, setPrices] = useState([]);
 
   useEffect(() => {
     connectMetamask();
   }, []);
 
-  const registrate = async (amount) => {
-    setLoading(true);
-    const price = await fetch(
-      "https://api.coingecko.com/api/v3/simple/price?ids=binancecoin&vs_currencies=usd"
-    );
-    const result = await price.json();
-    const value = amount / result.binancecoin.usd;
-    console.log(value);
-    register(value, (loaded) => setLoading(!loaded));
-  };
+  useEffect(() => {
+    (async () => {
+      const pricesArray = [
+        await getPrice(0),
+        await getPrice(1),
+        await getPrice(2),
+      ];
+      setPrices(pricesArray);
+    })();
+  }, []);
+
+  const handleRegister = (index) => prices[index] && register(prices[index]);
 
   return (
     <div className="package_block">
@@ -40,11 +48,11 @@ function PackageBlock() {
               <span>60 дней</span>. Откройте новые уровни для дохода
             </p>
             <button
+              onClick={() => handleRegister(0)}
               disabled={loading}
-              onClick={() => registrate(30)}
               className="package_item_button"
             >
-              500 BNB
+              {prices[0] && prices[0].toFixed(5)} BNB
             </button>
           </div>
           <div className="angle_bottom_blue" />
@@ -62,11 +70,11 @@ function PackageBlock() {
               <span>180 дней</span>. Откройте новые уровни для дохода
             </p>
             <button
+              onClick={() => handleRegister(1)}
               disabled={loading}
-              onClick={() => registrate(90)}
               className="package_green_button"
             >
-              1 500 BNB
+              {prices[1] && prices[1].toFixed(5)} BNB
             </button>
           </div>
           <div className="angle_bottom_green" />
@@ -85,11 +93,11 @@ function PackageBlock() {
               подтвердите статус
             </p>
             <button
+              onClick={() => handleRegister(2)}
               disabled={loading}
-              onClick={() => registrate(180)}
               className="package_yellow_button"
             >
-              3 000 BNB
+              {prices[2] && prices[2].toFixed(5)} BNB
             </button>
           </div>
           <div className="angle_bottom_yellow" />

@@ -1,3 +1,5 @@
+export const TEST_BINANCE = "https://data-seed-prebsc-1-s1.binance.org:8545/";
+
 export const SmartProfit = {
   address: "0x31d497982B29E68902Dc58CB7B5f5A4a293fC5c5",
   abi: [
