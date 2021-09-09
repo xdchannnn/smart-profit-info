@@ -1,7 +1,35 @@
-import '../../assets/styles/activation.scoped.css'
+import { Fragment, useContext, useEffect, useState } from "react";
+import "../../assets/styles/activation.scoped.css";
+import Web3Context from "../../context/web3.context";
 
 function PackageBlock() {
-    return(
+  const {
+    register,
+    connectMetamask,
+    loading,
+    priceLoading,
+    getPrice,
+  } = useContext(Web3Context);
+  const [prices, setPrices] = useState([]);
+
+  useEffect(() => {
+    connectMetamask();
+  }, []);
+
+  useEffect(() => {
+    (async () => {
+      const pricesArray = [
+        await getPrice(0),
+        await getPrice(1),
+        await getPrice(2),
+      ];
+      setPrices(pricesArray);
+    })();
+  }, []);
+
+  const handleRegister = (index) => prices[index] && register(prices[index]);
+
+  return (
     <div className="package_block">
       <div className="package_top_block">
         <img src="assets/images/web-icon.svg" />
@@ -19,13 +47,17 @@ function PackageBlock() {
               Получайте доход с <span>3 уровней</span> на протяжении{" "}
               <span>60 дней</span>. Откройте новые уровни для дохода
             </p>
-            <a href="#" className="package_item_button">
-              500 BNB
-            </a>
+            <button
+              onClick={() => handleRegister(0)}
+              disabled={loading}
+              className="package_item_button"
+            >
+              {prices[0] && prices[0].toFixed(5)} BNB
+            </button>
           </div>
           <div className="angle_bottom_blue" />
         </div>
-        
+
         <div className="package_item">
           <div className="angle_top_green position-absolute top-0 end-0" />
           <div className="package_content">
@@ -37,13 +69,17 @@ function PackageBlock() {
               Получайте доход с <span>5 уровней</span> на протяжении{" "}
               <span>180 дней</span>. Откройте новые уровни для дохода
             </p>
-            <a href="#" className="package_green_button">
-              1 500 BNB
-            </a>
+            <button
+              onClick={() => handleRegister(1)}
+              disabled={loading}
+              className="package_green_button"
+            >
+              {prices[1] && prices[1].toFixed(5)} BNB
+            </button>
           </div>
           <div className="angle_bottom_green" />
         </div>
-        
+
         <div className="package_item">
           <div className="angle_top_yellow position-absolute top-0 end-0" />
           <div className="package_content">
@@ -56,15 +92,19 @@ function PackageBlock() {
               <span>360 дней</span>. А так же <span>«Maxi Bonus»</span>{" "}
               подтвердите статус
             </p>
-            <a href="#" className="package_yellow_button">
-              3 000 BNB
-            </a>
+            <button
+              onClick={() => handleRegister(2)}
+              disabled={loading}
+              className="package_yellow_button"
+            >
+              {prices[2] && prices[2].toFixed(5)} BNB
+            </button>
           </div>
           <div className="angle_bottom_yellow" />
         </div>
       </div>
     </div>
-  )
-  }
+  );
+}
 
-export default PackageBlock
+export default PackageBlock;

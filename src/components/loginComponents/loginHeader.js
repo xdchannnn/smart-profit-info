@@ -1,17 +1,17 @@
-import '../../assets/styles/login.scoped.css'
-import logo from '../../assets/images/logo.svg';
+import "../../assets/styles/login.scoped.css";
+import logo from "../../assets/images/logo.svg";
 import lang from "../../assets/images/lang.svg";
 import newTurn from "../../assets/images/new-turn.svg";
-
+import { Link } from "react-router-dom";
 
 function LoginHeader() {
-    return (
+  return (
     <header>
       <nav className="navbar navbar-expand-lg navbar-light">
         <div className="container-fluid">
-          <a className="navbar-brand" href="https://smart-profit.info">
+          <Link className="navbar-brand" to="/">
             <img src={logo} alt="logo" />
-          </a>
+          </Link>
           <button
             className="navbar-toggler"
             type="button"
@@ -26,9 +26,9 @@ function LoginHeader() {
           <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <a href="#" className="nav-link">
+                <Link to="/FAQ" className="nav-link">
                   FAQ
-                </a>
+                </Link>
                 <div className="rect_border" />
               </li>
               <li className="nav-item">
@@ -64,7 +64,7 @@ function LoginHeader() {
         </div>
       </nav>
     </header>
-  )
-  }
+  );
+}
 
 export default LoginHeader;

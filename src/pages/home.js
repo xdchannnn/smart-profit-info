@@ -16,8 +16,8 @@ function Home() {
       <HomeHeader />
       <MainPage />
       <WorkPage />
-      <ValuesBlock />
       <TiredBlock />
+      <ValuesBlock />
       <StatusBlock />
       <TableBlock />
       <StartBlock />

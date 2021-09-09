@@ -1,13 +1,13 @@
 import '../assets/styles/login.scoped.css'
-import LoginHeader from '../components/loginComponents/loginHeader';
-import LoginBlock from '../components/loginComponents/loginBlock';
+import Header from '../components/dashboardComponents/dashboardHeader';
+import ProfileScreen from '../components/profileComponents/profileScreen';
 import Footer from '../components/dashboardComponents/footer';
 
 function Login() {
   return (
     <div className="background">
-      <LoginHeader />
-      <LoginBlock />
+      <Header />
+      <ProfileScreen />
       <Footer />
     </div>
   );

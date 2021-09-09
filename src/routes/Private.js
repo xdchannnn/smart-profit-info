@@ -1,8 +1,14 @@
 import { Switch, Route, Redirect } from "react-router-dom";
 import Dashboard from "../pages/dashboard";
 import Activation from "../pages/activation";
+import MyTeam from "../pages/myTeam";
+import GeneralTeam from "../pages/generalTeam";
+import Profile from "../pages/profile";
+import Finance from '../pages/finance'
+
 import { Fragment, useContext } from "react";
 import AuthContext from "../context/auth.context";
+import { Web3ContextProvider } from "../context/web3.context";
 
 const Private = () => {
   const { user } = useContext(AuthContext);
@@ -11,15 +17,29 @@ const Private = () => {
   if (!user) return <Fragment />;
 
   return (
-    <Switch>
-      <Route exact path="/">
-        <Dashboard />
-      </Route>
-      <Route exact path="/activation">
-        <Activation />
-      </Route>
-      <Route render={() => <Redirect to="/" />} />
-    </Switch>
+    <Web3ContextProvider>
+      <Switch>
+        <Route exact path="/">
+          <Dashboard />
+        </Route>
+        <Route exact path="/profile">
+          <Profile />
+        </Route>
+        <Route path="/activation">
+          <Activation />
+        </Route>
+        <Route exact path="/my-team">
+          <MyTeam />
+        </Route>
+        <Route exact path="/general-team">
+          <GeneralTeam />
+        </Route>
+        <Route exact path="/finance">
+          <Finance />
+        </Route>
+        <Route render={() => <Redirect to="/" />} />
+      </Switch>
+    </Web3ContextProvider>
   );
 };
 

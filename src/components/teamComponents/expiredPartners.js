@@ -1,8 +1,27 @@
-import '../../assets/styles/general.scoped.css'
-import '../../assets/styles/my-team.scoped.css'
+import "../../assets/styles/general.scoped.css";
+import "../../assets/styles/my-team.scoped.css";
+
+import { useContext, useState, useEffect } from "react";
+import useFetch from "../../hooks/useFetch.hook";
+import AuthContext from "../../context/auth.context";
 
 function ExpiredPartners() {
-    return(
+  const { token } = useContext(AuthContext);
+  const { request, loading, error } = useFetch();
+
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      const result = await request("/get-out-of-date-partners", "GET", null, {
+        Authorization: `Bearer ${token}`,
+      });
+      console.log(result);
+      if (result) setData(result.data);
+    })();
+  }, [request, token]);
+
+  return (
     <div id="ExpirePartner" className="tabcontent">
       <div className="table-responsive">
         <table className="general_table">
@@ -49,7 +68,8 @@ function ExpiredPartners() {
                       <p className="user_id">ID 56908</p>
                       <div className="user_information">
                         <p className="status_item">
-                          Статус: <span className="status_text">MaxiProfit</span>
+                          Статус:{" "}
+                          <span className="status_text">MaxiProfit</span>
                         </p>
                         <p className="sponsor_id">
                           ID спонсора:{" "}
@@ -113,7 +133,7 @@ function ExpiredPartners() {
         </table>
       </div>
     </div>
-  )
-  }
+  );
+}
 
-export default ExpiredPartners
+export default ExpiredPartners;

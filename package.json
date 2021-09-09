@@ -16,7 +16,9 @@
     "react-router-dom": "^5.2.1",
     "react-scoped-css": "^0.0.23",
     "react-scripts": "4.0.3",
-    "web-vitals": "^1.1.2"
+    "react-toastify": "^8.0.2",
+    "web-vitals": "^1.1.2",
+    "web3": "^1.5.2"
   },
   "scripts": {
     "start": "craco start",
