@@ -5,15 +5,19 @@ import landingTranslationEN from "../translations/en/landingTranslationEN.json";
 import landingTranslationRU from "../translations/ru/landingTranslationRU.json";
 import loginEN from "../translations/en/loginEN.json";
 import loginRU from "../translations/ru/loginRU.json";
+import joinEN from "../translations/en/joinEN.json";
+import joinRU from "../translations/ru/joinRU.json";
 
 const resources = {
   en: {
     landing: landingTranslationEN,
     login: loginEN,
+    join: joinEN,
   },
   ru: {
     landing: landingTranslationRU,
     login: loginRU,
+    join: joinRU,
   },
 };
 

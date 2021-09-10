@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 
 function LoginHeader() {
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
   const history = useHistory();
 
   const [currentLang, setCurrentLang] = useState(i18n.language);
