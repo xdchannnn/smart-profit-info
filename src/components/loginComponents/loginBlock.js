@@ -6,8 +6,11 @@ import "../../assets/styles/login.scoped.css";
 import logo from "../../assets/images/logo.svg";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
 
 function LoginBlock() {
+  const { t } = useTranslation();
+
   const { setToken } = useContext(AuthContext);
   // Loader and error handler required
   const { request, loading, error, clearError } = useFetch();
@@ -38,14 +41,15 @@ function LoginBlock() {
         <div className="login_form_block">
           <form className="login_form" onSubmit={handleLogin}>
             <div className="form_header">
-              <p className="form_header_title">Доступ к вашей учетной записи</p>
+              <p className="form_header_title">{t("login:TOP_TITLE")}</p>
             </div>
             <div className="top_block">
               <img src={logo} className="logo_form" />
             </div>
             <div className="wallet_input_block">
               <p>
-                Ваш логин, ID или TRON кошелек<span>*</span>
+                {t("login:TOP_DESCRIPTION_LOGIN")}
+                <span>*</span>
               </p>
               <input
                 name="login"
@@ -54,12 +58,13 @@ function LoginBlock() {
                 type="text"
                 className="wallet_input"
                 id="wallet_input"
-                placeholder="Введите идентификатор"
+                placeholder={t("login:TOP_DESCRIPTION_ENTER")}
               />
             </div>
             <div className="password_input_block">
               <p>
-                Пароль<span>*</span>
+                {t("login:TOP_DESCRIPTION_PASSWORD")}
+                <span>*</span>
               </p>
               <input
                 name="password"
@@ -68,13 +73,13 @@ function LoginBlock() {
                 type="password"
                 className="password_input"
                 id="password_input"
-                placeholder="Введите слово"
+                placeholder={t("login:TOP_DESCRIPTION_ENTERPASSWORD")}
               />
             </div>
             <div className="form_footer">
               <p>
                 <Link to="/forgot" className="forgot_link">
-                  Забыли пароль?
+                  {t("login:TOP_DESCRIPTION_FORGOT")}
                 </Link>
               </p>
               <p className="data_block">
@@ -83,12 +88,14 @@ function LoginBlock() {
                   className="login_button"
                   disabled={loading}
                 >
-                  Войти
+                  {t("login:TOP_DESCRIPTION_LOGIN1")}
                 </button>
               </p>
-              <p className="account_prompt">У вас нет аккаунта?</p>
+              <p className="account_prompt">
+                {t("login:TOP_DESCRIPTION_HAVE")}
+              </p>
               <Link to="/join" className="create_link">
-                Завести аккаунт
+                {t("login:TOP_DESCRIPTION_GREATE")}
               </Link>
             </div>
           </form>

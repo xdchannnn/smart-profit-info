@@ -3,13 +3,17 @@ import { initReactI18next } from "react-i18next";
 
 import landingTranslationEN from "../translations/en/landingTranslationEN.json";
 import landingTranslationRU from "../translations/ru/landingTranslationRU.json";
+import loginEN from "../translations/en/loginEN.json";
+import loginRU from "../translations/ru/loginRU.json";
 
 const resources = {
   en: {
     landing: landingTranslationEN,
+    login: loginEN,
   },
   ru: {
     landing: landingTranslationRU,
+    login: loginRU,
   },
 };
 
