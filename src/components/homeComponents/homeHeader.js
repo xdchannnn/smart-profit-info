@@ -5,9 +5,12 @@ import lang from "../../assets/images/lang.svg";
 import "../../assets/styles/styles.scoped.css";
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 
 function HomeHeader() {
   const { t, i18n } = useTranslation();
+
+  const history = useHistory();
 
   const [currentLang, setCurrentLang] = useState("ru");
 
@@ -18,8 +21,13 @@ function HomeHeader() {
   return (
     <header>
       <nav className="navbar navbar-expand-lg">
-        <a className="navbar-brand" href="#">
-          <img src={logo} alt="logo" />
+        <a className="navbar-brand">
+          <img
+            src={logo}
+            alt="logo"
+            style={{ cursor: "pointer" }}
+            onClick={() => history.push("/")}
+          />
         </a>
         <ul className="menu_list">
           <li className="nav-item">

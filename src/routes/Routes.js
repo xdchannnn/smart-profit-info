@@ -4,9 +4,15 @@ import AuthContext from "../context/auth.context";
 import Private from "./Private";
 import Public from "./Public";
 
+import { ContractContextProvider } from "../context/contract.context";
+
 const Routes = () => {
   const { token } = useContext(AuthContext);
-  return <Router>{!!token ? <Private /> : <Public />}</Router>;
+  return (
+    <ContractContextProvider>
+      <Router>{!!token ? <Private /> : <Public />}</Router>
+    </ContractContextProvider>
+  );
 };
 
 export default Routes;

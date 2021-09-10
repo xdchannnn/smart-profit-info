@@ -7,14 +7,11 @@ const Web3Context = createContext({
   register: () => {},
   loading: false,
   connectMetamask: () => {},
-  getPrice: async () => {},
-  priceLoading: false,
 });
 
 export const Web3ContextProvider = ({ children }) => {
   const { metamask, userAddress, connectMetamask } = useMetamask();
   const { loading, register } = useRegister({ metamask, userAddress });
-  const contract = useContract();
 
   return (
     <Web3Context.Provider
@@ -22,8 +19,6 @@ export const Web3ContextProvider = ({ children }) => {
         connectMetamask,
         register,
         loading,
-        getPrice: contract.getPrice,
-        priceLoading: contract.loading,
       }}
     >
       {children}

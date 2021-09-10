@@ -2,9 +2,26 @@ import { Link } from "react-router-dom";
 import decor from "../../assets/images/decor.png";
 import "../../assets/styles/styles.scoped.css";
 import { useTranslation } from "react-i18next";
+import { useContext, useState, useEffect } from "react";
+import ContractContext from "../../context/contract.context";
 
 function StatusBlock() {
   const { t } = useTranslation();
+
+  const { getPrice, loading } = useContext(ContractContext);
+
+  const [prices, setPrices] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      const pricesArray = [
+        await getPrice(0),
+        await getPrice(1),
+        await getPrice(2),
+      ];
+      setPrices(pricesArray);
+    })();
+  }, []);
 
   return (
     <section className="status_block">
@@ -20,7 +37,9 @@ function StatusBlock() {
                 {t("landing:TOP_DESCRIPTION_FROM_STATUS")}
               </p>
             </div>
-            <p className="card_price_blue">30$ BNB</p>
+            <p className="card_price_blue">
+              {prices[0] && prices[0].toFixed(5)} BNB
+            </p>
             <div className="border_decor_bottom_blue" />
           </div>
           <div className="status_yellow_card">
@@ -31,7 +50,9 @@ function StatusBlock() {
                 {t("landing:TOP_DESCRIPTION_DURING")}
               </p>
             </div>
-            <p className="card_price_yellow">180$ BNB</p>
+            <p className="card_price_yellow">
+              {prices[2] && prices[2].toFixed(5)} BNB
+            </p>
             <div className="border_decor_bottom_yellow" />
           </div>
           <div className="status_card">
@@ -42,7 +63,9 @@ function StatusBlock() {
                 {t("landing:TOP_DESCRIPTION_ACTIVATE")}
               </p>
             </div>
-            <p className="card_price_blue">90$ BNB</p>
+            <p className="card_price_green">
+              {prices[1] && prices[1].toFixed(5)} BNB
+            </p>
             <div className="border_decor_bottom_green" />
           </div>
         </div>
