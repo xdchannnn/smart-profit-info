@@ -1,6 +1,6 @@
 import '../../assets/styles/styles.scoped.css'
 import decor2 from '../../assets/images/decor2.svg';
-import table from '../../assets/images/Table.svg';
+import table from '../../assets/images/RU.svg';
 
 function TableBlock(){  
     
@@ -19,7 +19,7 @@ function TableBlock(){
             </div>
             </div>
             <p className="table_title">
-            ИЗМЕНИ СВОЮ ЖИЗНЬ ИМЕЯ ВСЕГО 500 TRX В КАРМАНЕ
+            ИЗМЕНИ СВОЮ ЖИЗНЬ ИМЕЯ ВСЕГО 30$ В КАРМАНЕ
             </p>
         </div>
         </section>

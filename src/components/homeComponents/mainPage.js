@@ -26,7 +26,7 @@ function mainPage() {
         <p className="main_banner_title">
           Присоединись и участвуй в распределении «Maxi Bonus»
         </p>
-        <p className="main_banner_description">32 540 TRX</p>
+        <p className="main_banner_description">32 540 BNB</p>
       </div>
     </div>
   </section>
