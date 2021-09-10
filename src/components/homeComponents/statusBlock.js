@@ -1,12 +1,32 @@
 import { Link } from "react-router-dom";
 import decor from "../../assets/images/decor.png";
 import "../../assets/styles/styles.scoped.css";
+import { useTranslation } from "react-i18next";
+import { useContext, useState, useEffect } from "react";
+import ContractContext from "../../context/contract.context";
 
 function StatusBlock() {
+  const { t } = useTranslation();
+
+  const { getPrice, loading } = useContext(ContractContext);
+
+  const [prices, setPrices] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      const pricesArray = [
+        await getPrice(0),
+        await getPrice(1),
+        await getPrice(2),
+      ];
+      setPrices(pricesArray);
+    })();
+  }, []);
+
   return (
     <section className="status_block">
       <div className="status_content">
-        <p className="status_title">СТАТУСЫ И ВОЗМОЖНОСТИ</p>
+        <p className="status_title">{t("landing:TOP_DESCRIPTION_STATUS")}</p>
         <img src={decor} alt="decor-icon" />
         <div className="cards_group">
           <div className="status_card">
@@ -14,13 +34,12 @@ function StatusBlock() {
             <div className="status_card_content">
               <p className="card_title_blue">Start Profit</p>
               <p className="card_description_blue">
-                Активируете позицию на 60 дней, и получаете доход с 3 уровней.
-                За это время вы можете достичь более высоких статусов, и открыть
-                для себя новые уровни. Более высокие статусы присваиваются
-                навсегда.
+                {t("landing:TOP_DESCRIPTION_FROM_STATUS")}
               </p>
             </div>
-            <p className="card_price_blue">30$ BNB</p>
+            <p className="card_price_blue">
+              {prices[0] && prices[0].toFixed(5)} BNB
+            </p>
             <div className="border_decor_bottom_blue" />
           </div>
           <div className="status_yellow_card">
@@ -28,15 +47,12 @@ function StatusBlock() {
             <div className="status_card_content">
               <p className="card_title_yellow">Maxi Profit</p>
               <p className="card_description_blue">
-                Активируете позицию на 360 дней, и получаете доход уже с 7
-                уровней. За это время вам нужно пригласить 5 друзей, и помочь им
-                сделать тоже самое, в свою очередь вы фактически подтверждаете
-                статус «MAXI PROFIT» навсегда. По мимо этого вы так же
-                участвуете в распределении бонуса «MAXI BONUS» - это 10% от
-                оборота всего проекта.
+                {t("landing:TOP_DESCRIPTION_DURING")}
               </p>
             </div>
-            <p className="card_price_yellow">180$ BNB</p>
+            <p className="card_price_yellow">
+              {prices[2] && prices[2].toFixed(5)} BNB
+            </p>
             <div className="border_decor_bottom_yellow" />
           </div>
           <div className="status_card">
@@ -44,20 +60,18 @@ function StatusBlock() {
             <div className="status_card_content">
               <p className="card_title_green">Fixed Profit</p>
               <p className="card_description_blue">
-                Активируете позицию на 180 дней, и получаете доход уже с 5
-                уровней. За это время вам нужно пригласить 5 друзей, и
-                подтвердить статус фактически ,статус «FIXED PROFIT»
-                присваивается
-                <br /> навсегда.
+                {t("landing:TOP_DESCRIPTION_ACTIVATE")}
               </p>
             </div>
-            <p className="card_price_blue">90$ BNB</p>
+            <p className="card_price_green">
+              {prices[1] && prices[1].toFixed(5)} BNB
+            </p>
             <div className="border_decor_bottom_green" />
           </div>
         </div>
         <div className="over_block">
           <Link to="/join" className="over_button">
-            Присоединиться
+            {t("landing:TOP_DESCRIPTION_JOIN")}
           </Link>
         </div>
       </div>
