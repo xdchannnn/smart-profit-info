@@ -95,6 +95,7 @@
   font-weight: 700;
   border-radius: 5px;
   transition-duration: .1s;
+  z-index: 99999999999 !important;
 }
 
 /* Change background color of buttons on hover */

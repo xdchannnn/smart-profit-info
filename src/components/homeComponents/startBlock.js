@@ -1,5 +1,5 @@
 import '../../assets/styles/styles.scoped.css'
-import decor from "../../assets/images/decor.png";
+import decor from "../../assets/images/decor2.svg";
 import edit from "../../assets/images/edit.svg";
 import partner from "../../assets/images/partner.svg";
 import support from "../../assets/images/support.svg"
@@ -23,7 +23,7 @@ function StartBlock() {
                 <p className="start_item_title">Зарегистрируйтесь</p>
                 <p className="start_item_description">
                     Зарегистрируйтесь в Smart Profit и активируйте свою позицию с
-                    помощью кошелька TRX, выбрав один из статусов, который вам больше
+                    помощью кошелька BNB, выбрав один из статусов, который вам больше
                     всего подходит.
                 </p>
                 </div>
