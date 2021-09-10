@@ -1,15 +1,20 @@
+
+import '../../assets/styles/styles.scoped.css'
+import telegram from '../../assets/images/telegram.svg'
+import contract from '../../assets/images/contract.svg'
+
 function Footer() { 
     return(
         <footer>
         <div className="social_media">
             <a href="https://t.me/SmartProfit_RU" target="_blank" rel="noreferrer">
             <div className="telegram_block">
-                <img src="assets/images/telegram.svg" alt="telegram" />
+                <img src={telegram} alt="telegram" />
                 <span>Smart-Profit_ru</span>
             </div>
             </a>
             <div className="contract_block">
-            <img src="assets/images/contract.svg" alt="contract" />
+            <img src={contract} alt="contract" />
             <span>Адрес контракта</span>
             </div>
         </div>

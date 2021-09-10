@@ -1,15 +1,21 @@
+import yellow_decor from '../../assets/images/yellow-decor.svg'
+import help_icon from '../../assets/images/help-icon.svg'
+import people_icon from '../../assets/images/people-icon.svg'
+import structure_icon from '../../assets/images/structure-icon.svg'
+import money_icon from '../../assets/images/money-icon.svg'
+import security_icon from '../../assets/images/security-icon.svg'
 import '../../assets/styles/styles.scoped.css'
 
 const valuesBlock = () => (
     <section className="values_block">
       <div className="values_content">
         <p className="values_title">ценности Smart Profit</p>
-        <img src="assets/images/yellow-decor.svg" alt="yellow-decor" />
+        <img src={yellow_decor} alt="yellow-decor" />
         <div className="form_content">
           <div className="one_row">
             <div className="value_item">
               <img
-                src="assets/images/help-icon.svg"
+                src={help_icon}
                 alt="help-icon"
                 className="help-icon"
               />
@@ -24,13 +30,13 @@ const valuesBlock = () => (
           <div className="two_row">
             <div className="value_item">
               <img
-                src="assets/images/people-icon.svg"
+                src={people_icon}
                 alt="people-icon"
                 className="help-icon"
               />
               <p className="value_title">Доступно каждому</p>
               <p className="value_description">
-                Участие составляет всего 500 TRX и, оплачивая более высокие
+                Участие составляет всего 30$ в BNB и, оплачивая более высокие
                 статусы, вы получаете дополнительные возможности от системы и
                 увеличиваете длительность активности вашей позиции, но не
                 переплачиваете.
@@ -39,7 +45,7 @@ const valuesBlock = () => (
             <div className="form_logo_block" />
             <div className="value_item">
               <img
-                src="assets/images/structure-icon.svg"
+                src={structure_icon}
                 alt="structure-icon"
                 className="help-icon"
               />
@@ -55,7 +61,7 @@ const valuesBlock = () => (
           <div className="three_row">
             <div className="value_item">
               <img
-                src="assets/images/money-icon.svg"
+                src={money_icon}
                 alt="help-icon"
                 className="net-icon"
               />
@@ -66,7 +72,7 @@ const valuesBlock = () => (
             </div>
             <div className="value_item">
               <img
-                src="assets/images/security-icon.svg"
+                src={security_icon}
                 alt="help-icon"
                 className="net-icon"
               />
