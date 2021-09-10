@@ -9,10 +9,8 @@ function MainPage() {
     <section className="main_page">
       <div className="main_content">
         <div className="top_text">
-          <p className="top_title">Первый в истории</p>
-          <p className="top_description">
-            Не имеющий аналогов, крипто - алгоритм!
-          </p>
+          <p className="top_title">{t("landing:TOP_TITLE")}</p>
+          <p className="top_description">{t("landing:TOP_DESCRIPTION")}</p>
         </div>
         <div className="color_delimiter" />
         <div className="main_center">
@@ -21,13 +19,15 @@ function MainPage() {
         <div className="color_delimiter" />
         <div className="bottom_text">
           <p className="bottom_description">
-            Обеспечит вам бесконечный источник дохода
+            {t("landing:TOP_DESCRIPTION_MANY")}
           </p>
-          <p className="bottom_title">на долгие годы</p>
+          <p className="bottom_title">
+            {t("landing:TOP_DESCRIPTION_MANY_YEARS")}
+          </p>
         </div>
         <div className="main_banner">
           <p className="main_banner_title">
-            Присоединись и участвуй в распределении «Maxi Bonus»
+            {t("landing:TOP_DESCRIPTION_MAXI")}
           </p>
           <p className="main_banner_description">32 540 BNB</p>
         </div>

@@ -1,16 +1,15 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 
+import landingTranslationEN from "../translations/en/landingTranslationEN.json";
+import landingTranslationRU from "../translations/ru/landingTranslationRU.json";
+
 const resources = {
   en: {
-    translation: {
-      "Welcome to React": "Welcome to React and react-i18next",
-    },
+    landing: landingTranslationEN,
   },
   ru: {
-    translation: {
-      "Welcome to React": "Добро пожаловать в React",
-    },
+    landing: landingTranslationRU,
   },
 };
 
