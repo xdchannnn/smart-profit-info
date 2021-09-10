@@ -4,15 +4,23 @@ import contract from "../../assets/images/contract.svg";
 import { useTranslation } from "react-i18next";
 
 function Footer() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   return (
     <footer>
       <div className="social_media">
-        <a href="https://t.me/SmartProfit_RU" target="_blank" rel="noreferrer">
+        <a
+          href={
+            i18n.language === "ru"
+              ? "https://t.me/SMART_PROFIT_RU"
+              : "https://t.me/SMART_PROFIT_ENG"
+          }
+          target="_blank"
+          rel="noreferrer"
+        >
           <div className="telegram_block">
             <img src={telegram} alt="telegram" />
-            <span>Smart-Profit_ru</span>
+            <span>Smart-Profit_{i18n.language}</span>
           </div>
         </a>
         <div className="contract_block">

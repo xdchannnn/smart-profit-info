@@ -3,8 +3,18 @@ import { Link } from "react-router-dom";
 import logo from "../../assets/images/logo.svg";
 import lang from "../../assets/images/lang.svg";
 import "../../assets/styles/styles.scoped.css";
+import { useTranslation } from "react-i18next";
+import { useEffect, useState } from "react";
 
-function homeHeader() {
+function HomeHeader() {
+  const { t, i18n } = useTranslation();
+
+  const [currentLang, setCurrentLang] = useState("ru");
+
+  useEffect(() => {
+    i18n.changeLanguage(currentLang);
+  }, [currentLang]);
+
   return (
     <header>
       <nav className="navbar navbar-expand-lg">
@@ -26,12 +36,20 @@ function homeHeader() {
                 aria-expanded="false"
               >
                 <img src={lang} alt="lang_icon" />
-                <p className="lang_text">Русский</p>
+                <p className="lang_text">
+                  {currentLang === "ru" ? "Русский" : "English"}
+                </p>
               </button>
               <ul className="dropdown-menu">
                 <li>
-                  <a className="dropdown-item" href="#">
-                    English
+                  <a
+                    className="dropdown-item"
+                    href="#"
+                    onClick={() =>
+                      setCurrentLang(currentLang === "ru" ? "en" : "ru")
+                    }
+                  >
+                    {currentLang === "en" ? "Русский" : "English"}
                   </a>
                 </li>
               </ul>
@@ -75,7 +93,9 @@ function homeHeader() {
                     fill="#fff"
                   />
                 </svg>
-                <p className="login_text">Войти</p>
+                <p className="login_text">
+                  {t("landing:TOP_DESCRIPTION_LOGIN")}
+                </p>
               </div>
             </Link>
           </li>
@@ -97,7 +117,9 @@ function homeHeader() {
                     className="register_icon"
                   />
                 </svg>
-                <p className="register_text">Присоединится</p>
+                <p className="register_text">
+                  {t("landing:TOP_DESCRIPTION_JOIN")}
+                </p>
               </div>
             </Link>
           </li>
@@ -107,4 +129,4 @@ function homeHeader() {
   );
 }
 
-export default homeHeader;
+export default HomeHeader;

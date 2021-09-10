@@ -3,7 +3,7 @@ import decor from "../../assets/images/decor.png";
 import { useTranslation } from "react-i18next";
 
 const WorkPage = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   return (
     <section className="work_page">
       <div className="work_content">
@@ -15,7 +15,11 @@ const WorkPage = () => {
           <iframe
             width={750}
             height={450}
-            src="https://www.youtube.com/embed/HDIQH7Ydf1M"
+            src={
+              i18n.language === "ru"
+                ? "https://www.youtube.com/embed/SkBx8ST0AbM"
+                : "https://www.youtube.com/embed/HDIQH7Ydf1M"
+            }
             title="YouTube video player"
             frameBorder={0}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
