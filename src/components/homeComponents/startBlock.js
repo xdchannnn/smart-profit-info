@@ -82,7 +82,7 @@ function StartBlock() {
           </div>
         </div>
         <div className="over_block">
-          <Link to="/join" className="over_button">
+          <Link to="/join" className="over_button yellow">
             Примите участие
           </Link>
         </div>
