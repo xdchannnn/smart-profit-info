@@ -5,6 +5,8 @@ import AuthContext from "../../context/auth.context";
 import useFetch from "../../hooks/useFetch.hook";
 import { toast } from "react-toastify";
 
+import Logo from "../../assets/images/logo.svg";
+
 function JoinBlock() {
   const { setToken } = useContext(AuthContext);
   const { request, loading, error, clearError } = useFetch();
@@ -49,7 +51,7 @@ function JoinBlock() {
               <p className="form_header_title">Станьте частью smart profit</p>
             </div>
             <div className="top_block">
-              <img src="assets/images/logo.svg" className="logo_form" />
+              <img src={Logo} className="logo_form" />
               <p className="top_text">Ваш спонсор: (server123)</p>
             </div>
             <div className="wallet_input_block">
