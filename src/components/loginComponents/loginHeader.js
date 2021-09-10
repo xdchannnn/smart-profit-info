@@ -3,8 +3,18 @@ import logo from "../../assets/images/logo.svg";
 import lang from "../../assets/images/lang.svg";
 import newTurn from "../../assets/images/new-turn.svg";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { useEffect, useState } from "react";
 
 function LoginHeader() {
+  const { t, i18n } = useTranslation();
+
+  const [currentLang, setCurrentLang] = useState(i18n.language);
+
+  useEffect(() => {
+    i18n.changeLanguage(currentLang);
+  }, [currentLang]);
+
   return (
     <header>
       <nav className="navbar navbar-expand-lg navbar-light">
@@ -40,12 +50,20 @@ function LoginHeader() {
                     aria-expanded="false"
                   >
                     <img src={lang} alt="lang_icon" />
-                    <p className="lang_text">Русский</p>
+                    <p className="lang_text">
+                      {currentLang === "ru" ? "Русский" : "English"}
+                    </p>
                   </button>
                   <ul className="dropdown-menu">
                     <li>
-                      <a className="dropdown-item" href="#">
-                        English
+                      <a
+                        className="dropdown-item"
+                        href="#"
+                        onClick={() =>
+                          setCurrentLang(currentLang === "ru" ? "en" : "ru")
+                        }
+                      >
+                        {currentLang === "en" ? "Русский" : "English"}
                       </a>
                     </li>
                   </ul>

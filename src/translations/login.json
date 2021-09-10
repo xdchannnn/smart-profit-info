@@ -1,0 +1,46 @@
+{
+  "TOP_TITLE": {
+    "en": "ACCESS TO YOUR ACCOUNT",
+    "ru": "ДОСТУП К ВАШЕЙ УЧЕТНОЙ ЗАПИСИ"
+  },
+  "TOP_DESCRIPTION_LOGIN": {
+    "en": "Your Login, ID or BNB wallet",
+    "ru": "Ваш логин, ID или BNB кошелек"
+  },
+  "TOP_DESCRIPTION_ENTER": {
+    "en": "Enter ID",
+    "ru": "Введите идентификатор"
+  },
+  "TOP_DESCRIPTION_PASSWORD": {
+    "en": "Password",
+    "ru": "Пароль"
+  },
+  "TOP_DESCRIPTION_ENTERPASSWORD": {
+    "en": "Enter password",
+    "ru": "Введите пароль"
+  },
+  "TOP_DESCRIPTION_FORGOT": {
+    "en": "Forgot your password?",
+    "ru": "Забыли пароль?"
+  },
+  "TOP_DESCRIPTION_LOGIN1": {
+    "en": "Login",
+    "ru": "Войти"
+  },
+  "TOP_DESCRIPTION_HAVE": {
+    "en": "Don't have an account?",
+    "ru": "У вас нет аккаунта?"
+  },
+  "TOP_DESCRIPTION_GREATE": {
+    "en": "Create an account",
+    "ru": "Завести аккаунт"
+  },
+  "TOP_DESCRIPTION_RESERVED": {
+    "en": "Smart Profit Rights Reserved 2021",
+    "ru": "Smart Profit Права защищены 2021"
+  },
+  "TOP_DESCRIPTION_RULES": {
+    "en": "Rules and agreements",
+    "ru": "Правила и соглашения"
+  }
+}

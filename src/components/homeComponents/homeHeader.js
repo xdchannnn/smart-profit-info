@@ -12,7 +12,7 @@ function HomeHeader() {
 
   const history = useHistory();
 
-  const [currentLang, setCurrentLang] = useState("ru");
+  const [currentLang, setCurrentLang] = useState(i18n.language);
 
   useEffect(() => {
     i18n.changeLanguage(currentLang);
@@ -72,12 +72,18 @@ function HomeHeader() {
                 aria-expanded="false"
               >
                 <img src={lang} alt="lang_icon" />
-                <p className="lang_text">RU</p>
+                <p className="lang_text">{currentLang.toUpperCase()}</p>
               </button>
               <ul className="dropdown-menu">
                 <li>
-                  <a className="dropdown-item" href="#">
-                    EN
+                  <a
+                    className="dropdown-item"
+                    href="#"
+                    onClick={() =>
+                      setCurrentLang(currentLang === "ru" ? "en" : "ru")
+                    }
+                  >
+                    {currentLang === "en" ? "RU" : "EN"}
                   </a>
                 </li>
               </ul>

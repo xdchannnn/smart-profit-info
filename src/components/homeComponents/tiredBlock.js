@@ -14,7 +14,6 @@ function TiredBlock() {
   return (
     <section className="tired_block">
       <div className="tired_content">
-        "TOP_DESCRIPTION_TIRED": "ВАМ НЕ НАДОЕЛО?",
         <p className="tired_title">{t("landing:TOP_DESCRIPTION_TIRED")}</p>
         <img src={decor2} alt="white-decor" className="white_decor" />
         <div className="one_items_row">
