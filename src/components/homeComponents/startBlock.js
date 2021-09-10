@@ -7,12 +7,15 @@ import settings from "../../assets/images/settings.svg";
 import bonus from "../../assets/images/bonus.svg";
 import medal from "../../assets/images/medal.svg";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 function StartBlock() {
+  const { t } = useTranslation();
+
   return (
     <section className="start_block">
       <div className="start_content">
-        <p className="start_title">С чего начать</p>
+        <p className="start_title">{t("landing:TOP_DESCRIPTION_STARTED")}</p>
         <img src={decor} alt="decor" />
         <div className="start_items_block">
           <div className="items_one_row">
@@ -20,31 +23,33 @@ function StartBlock() {
               <div className="item_icon">
                 <img src={edit} alt="edit" />
               </div>
-              <p className="start_item_title">Зарегистрируйтесь</p>
+              <p className="start_item_title">
+                {t("landing:TOP_DESCRIPTION_REGISTER")}
+              </p>
               <p className="start_item_description">
-                Зарегистрируйтесь в Smart Profit и активируйте свою позицию с
-                помощью кошелька BNB, выбрав один из статусов, который вам
-                больше всего подходит.
+                {t("landing:TOP_DESCRIPTION_SIGN")}
               </p>
             </div>
             <div className="start_two_item">
               <div className="item_icon">
                 <img src={partner} alt="edit" />
               </div>
-              <p className="start_item_title">Расскажите друзьям</p>
+              <p className="start_item_title">
+                {t("landing:TOP_DESCRIPTION_FRIENDS")}
+              </p>
               <p className="start_item_description">
-                Расскажите о системе Smart Profit как можно большему количеству
-                своих друзей и знакомых. Это даст вам 25% дохода от активации их
-                позиций.
+                {t("landing:TOP_DESCRIPTION_ABOUT")}
               </p>
             </div>
             <div className="start_three_item">
               <div className="item_icon">
                 <img src={support} alt="edit" />
               </div>
-              <p className="start_item_title">Поддерживайте партнеров </p>
+              <p className="start_item_title">
+                {t("landing:TOP_DESCRIPTION_SUPPORT")}
+              </p>
               <p className="start_item_description">
-                Помогите вашим партнерам так же рассказать об этой возможности.
+                {t("landing:TOP_DESCRIPTION_HELP")}
               </p>
             </div>
           </div>
@@ -53,37 +58,40 @@ function StartBlock() {
               <div className="item_icon">
                 <img src={settings} alt="edit" />
               </div>
-              <p className="start_item_title">Возьмите от системы максимум</p>
+              <p className="start_item_title">
+                {t("landing:TOP_DESCRIPTION_SYSTEM")}
+              </p>
               <p className="start_item_description">
-                Достигайте статусов сами и помогайте своим партнерам - это
-                позволит вам максимально получать доход от системы.
+                {t("landing:TOP_DESCRIPTION_MAXIMIZE")}
               </p>
             </div>
             <div className="start_five_item">
               <div className="item_icon">
                 <img src={bonus} alt="edit" />
               </div>
-              <p className="start_item_title">Получайте бонусы</p>
+              <p className="start_item_title">
+                {t("landing:TOP_DESCRIPTION_BONUSES")}
+              </p>
               <p className="start_item_description">
-                Достигните максимального статуса и получайте бонус от оборота
-                всей системы.
+                {t("landing:TOP_DESCRIPTION_REACH")}
               </p>
             </div>
             <div className="start_six_item">
               <div className="item_icon">
                 <img src={medal} alt="edit" />
               </div>
-              <p className="start_item_title">Следите за своей позицией</p>
+              <p className="start_item_title">
+                {t("landing:TOP_DESCRIPTION_WATCH")}
+              </p>
               <p className="start_item_description">
-                Не забывайте вовремя активировать свою позицию, чтобы не
-                пропускать доход и не потерять место в системе.
+                {t("landing:TOP_DESCRIPTION_FORGET")}
               </p>
             </div>
           </div>
         </div>
         <div className="over_block">
           <Link to="/join" className="over_button yellow">
-            Примите участие
+            {t("landing:TOP_DESCRIPTION_PARTICIPATE")}
           </Link>
         </div>
       </div>

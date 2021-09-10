@@ -1,37 +1,41 @@
+import "../../assets/styles/styles.scoped.css";
+import telegram from "../../assets/images/telegram.svg";
+import contract from "../../assets/images/contract.svg";
+import { useTranslation } from "react-i18next";
 
-import '../../assets/styles/styles.scoped.css'
-import telegram from '../../assets/images/telegram.svg'
-import contract from '../../assets/images/contract.svg'
+function Footer() {
+  const { t } = useTranslation();
 
-function Footer() { 
-    return(
-        <footer>
-        <div className="social_media">
-            <a href="https://t.me/SmartProfit_RU" target="_blank" rel="noreferrer">
-            <div className="telegram_block">
-                <img src={telegram} alt="telegram" />
-                <span>Smart-Profit_ru</span>
-            </div>
-            </a>
-            <div className="contract_block">
-            <img src={contract} alt="contract" />
-            <span>Адрес контракта</span>
-            </div>
+  return (
+    <footer>
+      <div className="social_media">
+        <a href="https://t.me/SmartProfit_RU" target="_blank" rel="noreferrer">
+          <div className="telegram_block">
+            <img src={telegram} alt="telegram" />
+            <span>Smart-Profit_ru</span>
+          </div>
+        </a>
+        <div className="contract_block">
+          <img src={contract} alt="contract" />
+          <span>{t("landing:TOP_DESCRIPTION_ADDRESS")}</span>
         </div>
-        <hr />
-        <div className="copyright_block">
-            <p className="copyright_text">Smart Profit Права защищены 2021 |</p>
-            <a
-            href="#"
-            className="copyright_link"
-            data-bs-toggle="modal"
-            data-bs-target="#copyright_modal"
-            >
-            &nbsp;Правила и соглашения
-            </a>
-        </div>
-        </footer>
-    )
+      </div>
+      <hr />
+      <div className="copyright_block">
+        <p className="copyright_text">
+          {t("landing:TOP_DESCRIPTION_RIGHTS")} |
+        </p>
+        <a
+          href="#"
+          className="copyright_link"
+          data-bs-toggle="modal"
+          data-bs-target="#copyright_modal"
+        >
+          &nbsp;{t("landing:TOP_DESCRIPTION_RULES")}
+        </a>
+      </div>
+    </footer>
+  );
 }
 
 export default Footer;
