@@ -4,8 +4,11 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import useFetch from "../../hooks/useFetch.hook";
 import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
 
 function Forgot() {
+  const { t } = useTranslation();
+
   const { request, loading, error, clearError } = useFetch();
 
   const [email, setEmail] = useState("");
@@ -30,14 +33,15 @@ function Forgot() {
         <div className="forgot_form_block">
           <form className="forgot_form" onSubmit={handleSend}>
             <div className="form_header">
-              <p className="form_header_title">Восстановить пароль</p>
+              <p className="form_header_title">{t("forgot:TOP_TITLE")}</p>
             </div>
             <div className="top_block">
               <img src={logo} className="logo_form" />
             </div>
             <div className="email_input_block">
               <p>
-                Введите ваш Email<span>*</span>
+                {t("forgot:TOP_DESCRIPTION_EMAIL")}
+                <span>*</span>
               </p>
               <input
                 value={email}
@@ -45,7 +49,7 @@ function Forgot() {
                 type="email"
                 className="email_input"
                 id="email_input"
-                placeholder="Введите данные"
+                placeholder={t("forgot:TOP_DESCRIPTION_DATA")}
                 required
               />
             </div>
@@ -56,14 +60,16 @@ function Forgot() {
                   type="submit"
                   className="forgot_button"
                 >
-                  Отправить
+                  {t("forgot:TOP_DESCRIPTION_SEND")}
                 </button>
               </p>
             </div>
             <div className="forgot_footer">
-              <p className="forgot_footer_title">Есть аккаунт?</p>
+              <p className="forgot_footer_title">
+                {t("forgot:TOP_DESCRIPTION_ACCOUNT")}
+              </p>
               <Link to="/login" className="forgot_footer_link">
-                Войти
+                {t("forgot:TOP_DESCRIPTION_SIGNIN")}
               </Link>
             </div>
           </form>
