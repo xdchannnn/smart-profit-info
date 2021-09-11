@@ -10,7 +10,7 @@ function MainPage() {
       <div className="main_content">
         <div className="top_text">
           <p className="top_title">{t("landing:TOP_TITLE")}</p>
-          <p className="top_description">{t("landing:TOP_DESCRIPTION")}</p>
+          <p className="top_description">{t("landing:TOP_DESCRIPTION")} </p>
         </div>
         <div className="color_delimiter" />
         <div className="main_center">
