@@ -20,7 +20,7 @@ function StatusBlock() {
             <div className="border_decor_blue position-absolute top-0 end-0" />
             <div className="status_card_content">
               <p className="card_title_blue">Start Profit</p>
-              <p className="card_description_blue" style={{ height: 180 }}>
+              <p className="card_description_blue" style={{ height: 230 }}>
                 {t("landing:TOP_DESCRIPTION_FROM_STATUS")}
               </p>
             </div>
@@ -39,7 +39,7 @@ function StatusBlock() {
             <div className="border_decor_yellow position-absolute top-0 end-0" />
             <div className="status_card_content">
               <p className="card_title_yellow">Maxi Profit</p>
-              <p className="card_description_blue" style={{ minHeight: 200 }}>
+              <p className="card_description_blue" style={{ minHeight: 250 }}>
                 {t("landing:TOP_DESCRIPTION_DURING")}
               </p>
             </div>
@@ -58,7 +58,7 @@ function StatusBlock() {
             <div className="border_decor_green position-absolute top-0 end-0" />
             <div className="status_card_content">
               <p className="card_title_green">Fixed Profit</p>
-              <p className="card_description_blue" style={{ height: 180 }}>
+              <p className="card_description_blue" style={{ height: 230 }}>
                 {t("landing:TOP_DESCRIPTION_ACTIVATE")}
               </p>
             </div>
