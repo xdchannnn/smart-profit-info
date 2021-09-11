@@ -8,6 +8,7 @@ import StatusBlock from '../components/homeComponents/statusBlock';
 import TableBlock from '../components/homeComponents/tableBlock';
 import StartBlock from '../components/homeComponents/startBlock';
 import Footer from '../components/homeComponents/footer';
+import Modal from '../components/homeComponents/copyrightModal';
 
 
 function Home() {
@@ -21,6 +22,7 @@ function Home() {
       <StatusBlock />
       <TableBlock />
       <StartBlock />
+      <Modal />
       <Footer />
     </div>
   );
