@@ -13,15 +13,15 @@ const WorkPage = () => {
         <p className="work_text">{t("landing:TOP_DESCRIPTION_SMART")}</p>
         <div className="work_video_block">
           <iframe
-            width="750"
-            height="450"
+            width={745}
+            height={420}
+            style={{ border: 0 }}
             src={
               i18n.language === "ru"
                 ? "https://www.youtube.com/embed/SkBx8ST0AbM"
                 : "https://www.youtube.com/embed/HDIQH7Ydf1M"
             }
             title="YouTube video player"
-            frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
           />
