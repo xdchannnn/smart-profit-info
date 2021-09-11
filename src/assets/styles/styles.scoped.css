@@ -517,7 +517,7 @@ header {
 .bottom_tired_title {
   text-align: center;
   margin: 0 auto;
-  margin-top: 140px;
+  margin-top: 50px;
   width: 900px;
   line-height: 60px;
   text-transform: uppercase;
@@ -1767,6 +1767,10 @@ hr {
 @media (max-width: 500px) {
   .login_button {
     width: 100px;
+  }
+
+  .tired_bottom_block {
+    padding-top: 50px;
   }
 
   .card_price_green,

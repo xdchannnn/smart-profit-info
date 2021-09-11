@@ -1,12 +1,14 @@
 import "../../assets/styles/styles.scoped.css";
 import mainLogo from "../../assets/images/main-logo.svg";
 import { useTranslation } from "react-i18next";
+import Particles from "react-particles-js";
 
 function MainPage() {
   const { t } = useTranslation();
 
   return (
     <section className="main_page">
+      <Particles style={{ position: "absolute" }} />
       <div className="main_content">
         <div className="top_text">
           <p className="top_title">{t("landing:TOP_TITLE")}</p>
