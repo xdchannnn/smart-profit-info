@@ -1,45 +1,40 @@
-import yellow_decor from '../../assets/images/yellow-decor.svg'
-import help_icon from '../../assets/images/help-icon.svg'
-import people_icon from '../../assets/images/people-icon.svg'
-import structure_icon from '../../assets/images/structure-icon.svg'
-import money_icon from '../../assets/images/money-icon.svg'
-import security_icon from '../../assets/images/security-icon.svg'
-import '../../assets/styles/styles.scoped.css'
+import yellow_decor from "../../assets/images/yellow-decor.svg";
+import help_icon from "../../assets/images/help-icon.svg";
+import people_icon from "../../assets/images/people-icon.svg";
+import structure_icon from "../../assets/images/structure-icon.svg";
+import money_icon from "../../assets/images/money-icon.svg";
+import security_icon from "../../assets/images/security-icon.svg";
+import "../../assets/styles/styles.scoped.css";
+import { useTranslation } from "react-i18next";
 
-const valuesBlock = () => (
+const ValuesBlock = () => {
+  const { t } = useTranslation();
+
+  return (
     <section className="values_block">
       <div className="values_content">
-        <p className="values_title">ценности Smart Profit</p>
+        <p className="values_title">{t("landing:TOP_DESCRIPTION_VALUES")}</p>
         <img src={yellow_decor} alt="yellow-decor" />
         <div className="form_content">
           <div className="one_row">
             <div className="value_item">
-              <img
-                src={help_icon}
-                alt="help-icon"
-                className="help-icon"
-              />
-              <p className="value_title">Точечный перелив</p>
+              <img src={help_icon} alt="help-icon" className="help-icon" />
+              <p className="value_title">
+                {t("landing:TOP_DESCRIPTION_OVERFLOW")}
+              </p>
               <p className="value_description">
-                Вы всегда можете помочь своим менее активным участникам в развитии
-                команды и получении дохода, используя точечный перелив, при этом
-                не теряя реферальной связи и реферального вознаграждения.
+                {t("landing:TOP_DESCRIPTION_HELP_DOT")}
               </p>
             </div>
           </div>
           <div className="two_row">
             <div className="value_item">
-              <img
-                src={people_icon}
-                alt="people-icon"
-                className="help-icon"
-              />
-              <p className="value_title">Доступно каждому</p>
+              <img src={people_icon} alt="people-icon" className="help-icon" />
+              <p className="value_title">
+                {t("landing:TOP_DESCRIPTION_AVAILABLE")}
+              </p>
               <p className="value_description">
-                Участие составляет всего 30$ в BNB и, оплачивая более высокие
-                статусы, вы получаете дополнительные возможности от системы и
-                увеличиваете длительность активности вашей позиции, но не
-                переплачиваете.
+                {t("landing:TOP_DESCRIPTION_GET")}
               </p>
             </div>
             <div className="form_logo_block" />
@@ -49,49 +44,43 @@ const valuesBlock = () => (
                 alt="structure-icon"
                 className="help-icon"
               />
-              <p className="value_title">Глобальная структура</p>
+              <p className="value_title">
+                {t("landing:TOP_DESCRIPTION_GLOBAL")}
+              </p>
               <p className="value_description">
-                Принимая участие в SMART PROFIT, вы занимаете место в глобальной
-                структуре, в которой находятся участники со всего мира, а это
-                значит, что ваша команда будет расти в геометрической прогрессии и
-                ваш доход - соответственно.
+                {t("landing:TOP_DESCRIPTION_OCCUPY")}
               </p>
             </div>
           </div>
           <div className="three_row">
             <div className="value_item">
-              <img
-                src={money_icon}
-                alt="help-icon"
-                className="net-icon"
-              />
-              <p className="value_title">100 % Сеть</p>
+              <img src={money_icon} alt="help-icon" className="net-icon" />
+              <p className="value_title">
+                {t("landing:TOP_DESCRIPTION_ONLINE")}
+              </p>
               <p className="value_description">
-                Автоматическое распределение всех денег между счетами участников.
+                {t("landing:TOP_DESCRIPTION_MONEY")}
               </p>
             </div>
             <div className="value_item">
-              <img
-                src={security_icon}
-                alt="help-icon"
-                className="net-icon"
-              />
-              <p className="value_title">Безопастность</p>
+              <img src={security_icon} alt="help-icon" className="net-icon" />
+              <p className="value_title">
+                {t("landing:TOP_DESCRIPTION_SAFETY")}
+              </p>
               <p className="value_description">
-                Никто не может повлиять на работу и алгоритм смарт-контракта SMART
-                PROFIT, его не возможно ни удалить, ни изменить.
+                {t("landing:TOP_DESCRIPTION_CONTRACT")}
               </p>
             </div>
           </div>
           <div className="values_bottom_block">
             <p className="bottom_block_title">
-              именно это будет способствовать вашему успеху и поможет вам обрести
-              финансовую независимость!
+              {t("landing:TOP_DESCRIPTION_EXACTLY")}
             </p>
           </div>
         </div>
       </div>
     </section>
-  )
+  );
+};
 
-export default valuesBlock;
+export default ValuesBlock;

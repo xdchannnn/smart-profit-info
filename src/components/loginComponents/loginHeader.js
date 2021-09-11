@@ -2,16 +2,32 @@ import "../../assets/styles/login.scoped.css";
 import logo from "../../assets/images/logo.svg";
 import lang from "../../assets/images/lang.svg";
 import newTurn from "../../assets/images/new-turn.svg";
-import { Link } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { useEffect, useState } from "react";
 
 function LoginHeader() {
+  const { i18n } = useTranslation();
+  const history = useHistory();
+
+  const [currentLang, setCurrentLang] = useState(i18n.language);
+
+  useEffect(() => {
+    i18n.changeLanguage(currentLang);
+  }, [currentLang]);
+
   return (
     <header>
       <nav className="navbar navbar-expand-lg navbar-light">
         <div className="container-fluid">
-          <Link className="navbar-brand" to="/">
-            <img src={logo} alt="logo" />
-          </Link>
+          <a className="navbar-brand">
+            <img
+              src={logo}
+              alt="logo"
+              style={{ cursor: "pointer" }}
+              onClick={() => history.push("/")}
+            />
+          </a>
           <button
             className="navbar-toggler"
             type="button"
@@ -40,24 +56,29 @@ function LoginHeader() {
                     aria-expanded="false"
                   >
                     <img src={lang} alt="lang_icon" />
-                    <p className="lang_text">Русский</p>
+                    <p className="lang_text">
+                      {currentLang === "ru" ? "Русский" : "English"}
+                    </p>
                   </button>
                   <ul className="dropdown-menu">
                     <li>
-                      <a className="dropdown-item" href="#">
-                        English
+                      <a
+                        className="dropdown-item"
+                        href="#"
+                        onClick={() =>
+                          setCurrentLang(currentLang === "ru" ? "en" : "ru")
+                        }
+                      >
+                        {currentLang === "en" ? "Русский" : "English"}
                       </a>
                     </li>
                   </ul>
                 </div>
               </li>
               <li className="nav-item">
-                <a
-                  href="https://smart-profit.info/login.php"
-                  className="nav-link"
-                >
+                <Link to="/login" className="nav-link">
                   <img src={newTurn} alt="turn-off" />
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

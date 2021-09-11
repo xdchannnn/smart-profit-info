@@ -7,8 +7,8 @@ const Web3Context = createContext({
   register: () => {},
   loading: false,
   connectMetamask: () => {},
-  getPrice: async () => {},
   priceLoading: false,
+  getPrice: async () => {},
 });
 
 export const Web3ContextProvider = ({ children }) => {
@@ -23,7 +23,7 @@ export const Web3ContextProvider = ({ children }) => {
         register,
         loading,
         getPrice: contract.getPrice,
-        priceLoading: contract.loading,
+        loading: contract.loading,
       }}
     >
       {children}

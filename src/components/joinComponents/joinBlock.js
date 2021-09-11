@@ -4,8 +4,13 @@ import "../../assets/styles/login.scoped.css";
 import AuthContext from "../../context/auth.context";
 import useFetch from "../../hooks/useFetch.hook";
 import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
+
+import Logo from "../../assets/images/logo.svg";
 
 function JoinBlock() {
+  const { t } = useTranslation();
+
   const { setToken } = useContext(AuthContext);
   const { request, loading, error, clearError } = useFetch();
 
@@ -46,15 +51,18 @@ function JoinBlock() {
         <div className="login_form_block">
           <form className="login_form" onSubmit={handleJoin}>
             <div className="form_header">
-              <p className="form_header_title">Станьте частью smart profit</p>
+              <p className="form_header_title">{t("join:TOP_TITLE")}</p>
             </div>
             <div className="top_block">
-              <img src="assets/images/logo.svg" className="logo_form" />
-              <p className="top_text">Ваш спонсор: (server123)</p>
+              <img src={Logo} className="logo_form" />
+              <p className="top_text">
+                {t("join:TOP_DESCRIPTION_SPONSOR")} (server123)
+              </p>
             </div>
             <div className="wallet_input_block">
               <p>
-                Логин<span>*</span>
+                {t("join:TOP_DESCRIPTION_LOGIN")}
+                <span>*</span>
               </p>
               <input
                 name="login"
@@ -62,13 +70,14 @@ function JoinBlock() {
                 onChange={handleChange}
                 type="text"
                 className="wallet_input"
-                placeholder="Введите идентификатор"
+                placeholder={t("join:TOP_DESCRIPTION_ENTER")}
                 required
               />
             </div>
             <div className="password_input_block">
               <p>
-                Электронная почта<span>*</span>
+                {t("join:TOP_DESCRIPTION_EMAIL")}
+                <span>*</span>
               </p>
               <input
                 name="email"
@@ -77,13 +86,14 @@ function JoinBlock() {
                 type="email"
                 className="password_input"
                 id="password_input"
-                placeholder="Введите почту"
+                placeholder={t("join:TOP_DESCRIPTION_ENTERMAIL")}
                 required
               />
             </div>
             <div className="password_input_block">
               <p>
-                Телефон<span>*</span>
+                {t("join:TOP_DESCRIPTION_PHONE")}
+                <span>*</span>
               </p>
               <input
                 name="phone"
@@ -92,13 +102,14 @@ function JoinBlock() {
                 type="tel"
                 className="password_input"
                 id="password_input"
-                placeholder="Введите номер"
+                placeholder={t("join:TOP_DESCRIPTION_PHONE1")}
                 required
               />
             </div>
             <div className="password_input_block">
               <p>
-                Пароль<span>*</span>
+                {t("join:TOP_DESCRIPTION_PASSWORD")}
+                <span>*</span>
               </p>
               <input
                 name="password"
@@ -107,7 +118,7 @@ function JoinBlock() {
                 type="password"
                 className="password_input"
                 id="password_input"
-                placeholder="Введите пароль"
+                placeholder={t("join:TOP_DESCRIPTION_ENTERPASSWORD")}
                 required
               />
             </div>
@@ -118,12 +129,14 @@ function JoinBlock() {
                   className="login_button"
                   type="submit"
                 >
-                  Присоединиться
+                  {t("join:TOP_DESCRIPTION_JOIN")}
                 </button>
               </p>
-              <p className="account_prompt">У вас уже есть аккаунт?</p>
+              <p className="account_prompt">
+                {t("join:TOP_DESCRIPTION_ALREADY")}
+              </p>
               <Link to="/login" className="create_link">
-                Войдите
+                {t("join:TOP_DESCRIPTION_LOGIN1")}
               </Link>
             </div>
           </form>
