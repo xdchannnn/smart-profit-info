@@ -22,7 +22,10 @@ const ValuesBlock = () => {
               <p className="value_title">
                 {t("landing:TOP_DESCRIPTION_OVERFLOW")}
               </p>
-              <p className="value_description">
+              <p
+                className="value_description"
+                style={{ paddingLeft: 10, paddingRight: 10 }}
+              >
                 {t("landing:TOP_DESCRIPTION_HELP_DOT")}
               </p>
             </div>
@@ -33,7 +36,10 @@ const ValuesBlock = () => {
               <p className="value_title">
                 {t("landing:TOP_DESCRIPTION_AVAILABLE")}
               </p>
-              <p className="value_description">
+              <p
+                className="value_description"
+                style={{ paddingLeft: 10, paddingRight: 10 }}
+              >
                 {t("landing:TOP_DESCRIPTION_GET")}
               </p>
             </div>
@@ -47,7 +53,10 @@ const ValuesBlock = () => {
               <p className="value_title">
                 {t("landing:TOP_DESCRIPTION_GLOBAL")}
               </p>
-              <p className="value_description">
+              <p
+                className="value_description"
+                style={{ paddingLeft: 15, paddingRight: 15 }}
+              >
                 {t("landing:TOP_DESCRIPTION_OCCUPY")}
               </p>
             </div>
@@ -58,7 +67,10 @@ const ValuesBlock = () => {
               <p className="value_title">
                 {t("landing:TOP_DESCRIPTION_ONLINE")}
               </p>
-              <p className="value_description">
+              <p
+                className="value_description"
+                style={{ paddingLeft: 10, paddingRight: 10 }}
+              >
                 {t("landing:TOP_DESCRIPTION_MONEY")}
               </p>
             </div>
@@ -67,7 +79,10 @@ const ValuesBlock = () => {
               <p className="value_title">
                 {t("landing:TOP_DESCRIPTION_SAFETY")}
               </p>
-              <p className="value_description">
+              <p
+                className="value_description"
+                style={{ paddingLeft: 10, paddingRight: 10 }}
+              >
                 {t("landing:TOP_DESCRIPTION_CONTRACT")}
               </p>
             </div>
