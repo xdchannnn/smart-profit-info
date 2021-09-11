@@ -93,9 +93,9 @@ function TiredBlock() {
         </Fade>
         <div className="tired_bottom_block">
           <p className="bottom_tired_title">
-            {t("landing:TOP_DESCRIPTION_RECOGNIZED")}
+            {t("landing:TOP_DESCRIPTION_RECOGNIZED_TITLE")}
             <br />
-            {t("landing:TOP_DESCRIPTION_STATUS")}
+            {t("landing:TOP_DESCRIPTION_RECOGNIZED_DESC")}
           </p>
         </div>
       </div>
