@@ -478,7 +478,7 @@ header {
 }
 
 .tired_content {
-	padding: 100px;
+	padding: 100px 40px;
 }
 
 .item_img {
@@ -531,7 +531,7 @@ header {
 
 .item_content_two {
 	margin-right: -65px;
-	padding: 50px 120px;
+	padding: 50px 100px;
 	width: 60%;
 	height: 280px;
 	background: rgba(255,255,255,0.2);
@@ -821,7 +821,7 @@ header {
 	width: 100%;
 	height: auto;
 	padding-bottom: 100px;
-	background-image: url("../../assets/images/work_back.jpg");
+	background-image: url("../../assets/images/start_back.jpg");
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;
@@ -1507,10 +1507,7 @@ hr {
 	}
      
 
-    .tired_item_two {
-    	margin-top: 30px;
-    	position: relative;
-    }
+    
 
 	.item_content {
 		padding: 250px 20px 50px 20px;
@@ -1527,7 +1524,7 @@ hr {
     	transform: translate(-50%, -50%);
     	padding: 250px 20px 50px 20px;
     	border-radius: 0px;
-    	height: 100%;
+    	height: auto;
     	width: 70%;
 	 }
     
@@ -1652,6 +1649,7 @@ hr {
 
 	.work_content {
 		padding: 100px 30px;
+
 	}
 
 	.value_item {
