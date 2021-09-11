@@ -3,6 +3,10 @@ import decor from "../../assets/images/decor.png";
 import "../../assets/styles/styles.scoped.css";
 import { useTranslation } from "react-i18next";
 
+import SP from "../../assets/images/SP.png";
+import MP from "../../assets/images/MP.png";
+import FP from "../../assets/images/FP.png";
+
 function StatusBlock() {
   const { t } = useTranslation();
 
@@ -20,7 +24,15 @@ function StatusBlock() {
                 {t("landing:TOP_DESCRIPTION_FROM_STATUS")}
               </p>
             </div>
-            <p className="card_price_blue">30$ BNB</p>
+            <div className="card_price_info">
+              <img src={SP} height={65} />
+              <p
+                className="card_price_blue"
+                style={{ position: "absolute", margin: 0 }}
+              >
+                30$ BNB
+              </p>
+            </div>
             <div className="border_decor_bottom_blue" />
           </div>
           <div className="status_yellow_card">
@@ -31,7 +43,15 @@ function StatusBlock() {
                 {t("landing:TOP_DESCRIPTION_DURING")}
               </p>
             </div>
-            <p className="card_price_yellow">180$ BNB</p>
+            <div className="card_price_info">
+              <img src={MP} height={65} />
+              <p
+                className="card_price_yellow"
+                style={{ position: "absolute", margin: 0 }}
+              >
+                180$ BNB
+              </p>
+            </div>
             <div className="border_decor_bottom_yellow" />
           </div>
           <div className="status_card">
@@ -42,7 +62,15 @@ function StatusBlock() {
                 {t("landing:TOP_DESCRIPTION_ACTIVATE")}
               </p>
             </div>
-            <p className="card_price_green">90$ BNB</p>
+            <div className="card_price_info">
+              <img src={FP} height={65} />
+              <p
+                className="card_price_green"
+                style={{ position: "absolute", margin: 0 }}
+              >
+                90$ BNB
+              </p>
+            </div>
             <div className="border_decor_bottom_green" />
           </div>
         </div>

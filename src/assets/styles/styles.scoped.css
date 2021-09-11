@@ -699,10 +699,19 @@ header {
   color: #5cd58e;
 }
 
+.card_price_info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin-bottom: -50px;
+  margin-top: 50px;
+}
+
 .card_price_green {
   margin-top: 20px;
   font-weight: 700;
-  font-size: 38px;
+  font-size: 32px;
   color: #5cd58e;
 }
 
@@ -1758,6 +1767,12 @@ hr {
 @media (max-width: 500px) {
   .login_button {
     width: 100px;
+  }
+
+  .card_price_green,
+  .card_price_yellow,
+  .card_price_blue {
+    font-size: 18px;
   }
 
   .register_button {
