@@ -92,10 +92,7 @@ function StatusBlock() {
                 90$ BNB
               </p>
             </div>
-            <div
-              className="border_decor_bottom_green"
-              style={{ position: "absolute", bottom: 0 }}
-            />
+            <div className="border_decor_bottom_green" />
           </div>
         </div>
         <div className="over_block">
