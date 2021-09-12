@@ -1,7 +1,10 @@
-import '../../assets/styles/styles.scoped.css'
+import "../../assets/styles/styles.scoped.css";
+import { useTranslation } from "react-i18next";
 
 function CopyrightModal() {
-    return(
+  const { t } = useTranslation();
+
+  return (
     <div
       className="modal fade"
       id="copyright_modal"
@@ -11,112 +14,69 @@ function CopyrightModal() {
     >
       <div className="modal-dialog modal-dialog-scrollable">
         <div className="modal-content">
-          <div className="modal-header">
+          <div className="modal-header" style={{ backgroundColor: "#f2ca6b" }}>
             <h5 className="modal-title" id="copyright_modalLabel">
-              Правила и соглашения
+              {t("footer:TOP_DESCRIPTION_RULESANDAGREEMENTS")}
             </h5>
             <button
-                type="button"
-                className="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
+              type="button"
+              className="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
             />
           </div>
           <div className="modal-body">
             <div className="modal_item">
               <p className="modal_text_title">
-                Описание работы сайта Smart Profit
+                {t("footer:TOP_DESCRIPTION_WEBSITEWORKS")}
               </p>
               <p className="modal_text">
-                Данный сайт является бесплатным сервисом для прямой работы со
-                смарт-контрактом сообщества Smart Profit, помогающий
-                взаимодействовать с ним. Сайт носит исключительно информационный
-                характер. Сайт не собирает и не хранит средства. Сайт не является
-                центром управления Smart Profit, не управляет смарт-контрактом
-                сообщества Smart Profit. На сайте представлена вся информация о
-                сообществе Smart Profit, о том, как работает смарт-контракт, его
-                алгоритмах, правилах взаимодействия участников. Сайт создан для
-                удобства понимания и взаимодействия со смарт-контрактом, помощи
-                действия через смарт-контракт. Любое лицо вправе взаимодействовать
-                со смарт-контрактом сообщества Smart Profit напрямую, без
-                использования данного сайта. Алгоритм смарт-контракта
-                децентрализован, не управляется кем-либо. Все движения средств с
-                использованием смарт-контракта происходят p2p. Отсутствуют лица,
-                собирающие денежные средства.
-              </p>
-            </div>
-            <div className="modal_item">
-              <p className="modal_text_title">Доступность сайта</p>
-              <p className="modal_text">
-                Несмотря на то, что сообщество Smart Profit стремится делать сайт
-                доступным в любой момент для наличия руководства и помощи
-                взаимодействия со смарт-контрактом, мы не несем ответственности за
-                недоступность сайта в течение какого-то периода времени. Доступ к
-                сайту может быть прекращен без предварительного письменного
-                уведомления пользователей.
-              </p>
-            </div>
-            <div className="modal_item">
-              <p className="modal_text_title">Изменения</p>
-              <p className="modal_text">
-                Сообщество Smart Profit оставляет за собой право в любой момент
-                пересмотреть изложенные на сайте условия и положения путем их
-                обновления. Любые такие изменения распространяют свое действие на
-                пользователей.
-              </p>
-            </div>
-            <div className="modal_item">
-              <p className="modal_text_title">Ответственность</p>
-              <p className="modal_text">
-                Сообщество Smart Profit не несет ответственности за какие-либо
-                убытки, возникающие в связи с использованием материалов,
-                информации на сайте, последствия действий или решений,
-                предпринимаемых как результат доступа к сайту или использования
-                сайта. Хотя сообщество Smart Profit принимает разумные меры для
-                обеспечения точности и актуальности содержимого, оно не принимает
-                на себя ответственности за действия лиц или организаций, прямо или
-                иным образом осуществленные на основании информации, имеющейся на
-                сайте или полученной через него.
-                <br />
-                <br />
-                Сайт и его содержимое предоставляются по принципу «как есть», без
-                каких либо гарантий, выраженных или подразумеваемых, и сообщество
-                Smart Profit не дает каких-либо заверений или гарантий в отношении
-                сайта и его содержимого, в том числе, без ограничения, в отношении
-                своевременности, актуальности, точности, полноты, достоверности,
-                доступности или соответствия для какой-либо конкретной цели сайта
-                и его содержимого, в отношении того, что при использовании сайта
-                не возникнет ошибок, оно будет безопасным и бесперебойным, в
-                отношении того, что сообщество Smart Profit будет исправлять
-                какие-либо ошибки, или, что на сайте не будет вирусов или иных
-                вредоносных кодов, и в отношении того, что сайт и его содержимое
-                не нарушают прав третьих лиц.
-                <br />
-                <br />
-                Сообщество Smart Profit отказывается от каких-либо заверений и
-                гарантий, предоставление которых может иным образом
-                подразумеваться, и отказывается от ответственности в отношении
-                сайта, его содержимого и использования. Информация, материалы на
-                сайте представляют собой мнения и опыт сообщества Smart Profit,
-                они не предоставляют финансовую или правовую консультацию. Доступ
-                к сайту, а также использование его содержимого осуществляются
-                исключительно на усмотрение пользователя.
+                {t("footer:TOP_DESCRIPTION_AGREEMENT1")}
               </p>
             </div>
             <div className="modal_item">
               <p className="modal_text_title">
-                Согласие с условиями и положениями
+                {t("footer:TOP_DESCRIPTION_AVAILABILITY")}
               </p>
               <p className="modal_text">
-                Используя данный сайт, вы соглашаетесь с изложенными здесь
-                условиями и положениями.
+                {t("footer:TOP_DESCRIPTION_AGREEMENT2")}
+              </p>
+            </div>
+            <div className="modal_item">
+              <p className="modal_text_title">
+                {t("footer:TOP_DESCRIPTION_CHANGES")}
+              </p>
+              <p className="modal_text">
+                {t("footer:TOP_DESCRIPTION_AGREEMENT3")}
+              </p>
+            </div>
+            <div className="modal_item">
+              <p className="modal_text_title">
+                {t("footer:TOP_DESCRIPTION_RESPONSIBILITY")}
+              </p>
+              <p className="modal_text">
+                {t("footer:TOP_DESCRIPTION_AGREEMENT4_1")}
+                <br />
+                <br />
+                {t("footer:TOP_DESCRIPTION_AGREEMENT4_2")}
+                <br />
+                <br />
+                {t("footer:TOP_DESCRIPTION_AGREEMENT4_3")}
+              </p>
+            </div>
+            <div className="modal_item">
+              <p className="modal_text_title">
+                {t("footer:TOP_DESCRIPTION_CONDITIONS")}
+              </p>
+              <p className="modal_text">
+                {t("footer:TOP_DESCRIPTION_CONDITIONS2")}
               </p>
             </div>
           </div>
         </div>
       </div>
     </div>
-  )
-  }
+  );
+}
 
-export default CopyrightModal
+export default CopyrightModal;
