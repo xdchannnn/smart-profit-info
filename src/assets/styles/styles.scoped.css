@@ -1115,6 +1115,7 @@ hr {
 	color: #fff;
 	font-size: 24px;
 	font-weight: 700;
+	margin: 0 auto;
 }
 
 
@@ -1499,21 +1500,40 @@ hr {
 	padding: 160px 30px;
 	}
 
+	.one_items_row {
+		margin-top: 200px;
+	}
+
+	.fade {
+		height: 630px !important;
+	}
+
 	.tired_item, .tired_item_two {
 		display: block;
 		margin: 0 auto;
     	text-align: center;
-    	margin-bottom: 330px;
+    	margin-bottom: 430px;
 	}
+
+	.item_img {
+		width: 400px;
+		margin-top:-145px;
+		margin-bottom: 10vh;
+	}
+	
+	.item_content {
+		padding: 0px 15px;
+	}
+	
      
 
     
 
 	.item_content {
-		padding: 250px 20px 50px 20px;
+		padding: 200px 20px 50px 20px;
 		margin: 0 auto;
 		border-radius: 0px;
-		margin: -230px auto;
+		margin: -250px auto;
 		height: auto;
 	}
 

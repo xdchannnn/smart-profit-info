@@ -17,7 +17,7 @@ function TiredBlock() {
         <p className="tired_title">{t("landing:TOP_DESCRIPTION_TIRED")}</p>
         <img src={decor2} alt="white-decor" className="white_decor" />
         <div className="one_items_row">
-          <Fade direction="left">
+          <Fade direction="left" triggerOnce="true">
             <div className="tired_item">
               <img src={img_block} alt="img_block" className="item_img" />
               <div className="item_content">
@@ -35,10 +35,10 @@ function TiredBlock() {
               </div>
             </div>
           </Fade>
-
-          <Fade direction="right">
-            <div className="tired_item_two">
-              <div className="item_content_two">
+          <Fade direction="right" triggerOnce="true">
+            <div className="tired_item">
+            <img src={img_block2} alt="img_block" className="item_img" />
+              <div className="item_content">
                 <p className="item_title">
                   {t("landing:TOP_DESCRIPTION_LOSING")}
                 </p>
@@ -51,11 +51,12 @@ function TiredBlock() {
                   {t("landing:TOP_DESCRIPTION_FROM")}
                 </p>
               </div>
-              <img src={img_block2} alt="img_block" className="item_img" />
+              
             </div>
           </Fade>
         </div>
-        <Fade direction="left">
+        <div className="one_items_row">
+        <Fade direction="left" triggerOnce="true">
           <div className="tired_item">
             <img src={img_block3} alt="img_block" className="item_img" />
             <div className="item_content">
@@ -73,7 +74,7 @@ function TiredBlock() {
             </div>
           </div>
         </Fade>
-        <Fade direction="right">
+        <Fade direction="right" triggerOnce="true">
           <div className="tired_item_two">
             <div className="item_content_two">
               <p className="item_title">
@@ -91,6 +92,7 @@ function TiredBlock() {
             <img src={img_block4} alt="img_block" className="item_img" />
           </div>
         </Fade>
+        </div>
         <div className="tired_bottom_block">
           <p className="bottom_tired_title">
             {t("landing:TOP_DESCRIPTION_RECOGNIZED_TITLE")}

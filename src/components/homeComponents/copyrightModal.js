@@ -15,6 +15,12 @@ function CopyrightModal() {
             <h5 className="modal-title" id="copyright_modalLabel">
               Правила и соглашения
             </h5>
+            <button
+                type="button"
+                className="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+            />
           </div>
           <div className="modal-body">
             <div className="modal_item">
