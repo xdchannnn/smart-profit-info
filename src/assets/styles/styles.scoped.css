@@ -1501,39 +1501,40 @@ hr {
 	}
 
 	.one_items_row {
-		margin-top: 200px;
-	}
-
-	.fade {
-		height: 630px !important;
-	}
+    margin-top: 200px;
+}
 
 	.tired_item, .tired_item_two {
 		display: block;
 		margin: 0 auto;
     	text-align: center;
-    	margin-bottom: 430px;
+    	margin-bottom: 330px;
 	}
 
 	.item_img {
 		width: 400px;
 		margin-top:-145px;
-		margin-bottom: 10vh;
 	}
 	
 	.item_content {
 		padding: 0px 15px;
 	}
 	
+	.tired_item {
+		width: 400px;
+		height: 550px;
+		background-color: rgba(255,255,255,0.2);
+		backdrop-filter: blur(20px);
+	}
      
 
     
 
 	.item_content {
-		padding: 200px 20px 50px 20px;
+		padding: 250px 20px 50px 20px;
 		margin: 0 auto;
 		border-radius: 0px;
-		margin: -250px auto;
+		margin: -230px auto;
 		height: auto;
 	}
 
