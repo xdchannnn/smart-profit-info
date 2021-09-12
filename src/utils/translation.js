@@ -11,6 +11,8 @@ import resetPasswordEN from "../translations/en/resetPasswordEN.json";
 import resetPasswordRU from "../translations/ru/resetPasswordRU.json";
 import forgotEN from "../translations/en/forgotEN.json";
 import forgotRU from "../translations/ru/forgotRU.json";
+import footerEN from "../translations/en/footerEN.json";
+import footerRU from "../translations/ru/footerRU.json";
 
 const resources = {
   en: {
@@ -19,6 +21,7 @@ const resources = {
     join: joinEN,
     resetPassword: resetPasswordEN,
     forgot: forgotEN,
+    footer: footerEN,
   },
   ru: {
     landing: landingTranslationRU,
@@ -26,6 +29,7 @@ const resources = {
     join: joinRU,
     resetPassword: resetPasswordRU,
     forgot: forgotRU,
+    footer: footerRU,
   },
 };
 
