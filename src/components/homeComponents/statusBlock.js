@@ -18,13 +18,20 @@ function StatusBlock() {
         <div className="cards_group">
           <div className="status_card">
             <div className="border_decor_blue position-absolute top-0 end-0" />
-            <div className="status_card_content">
+            <div className="status_card_content" style={{ height: 350 }}>
               <p className="card_title_blue">Start Profit</p>
-              <p className="card_description_blue" style={{ height: 230 }}>
+              <p className="card_description_blue">
                 {t("landing:TOP_DESCRIPTION_FROM_STATUS")}
               </p>
             </div>
-            <div className="card_price_info">
+            <div
+              className="card_price_info"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
               <img src={SP} height={65} />
               <p
                 className="card_price_blue"
@@ -39,11 +46,18 @@ function StatusBlock() {
             <div className="border_decor_yellow position-absolute top-0 end-0" />
             <div className="status_card_content">
               <p className="card_title_yellow">Maxi Profit</p>
-              <p className="card_description_blue" style={{ minHeight: 250 }}>
+              <p className="card_description_blue">
                 {t("landing:TOP_DESCRIPTION_DURING")}
               </p>
             </div>
-            <div className="card_price_info">
+            <div
+              className="card_price_info"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
               <img src={MP} height={65} />
               <p
                 className="card_price_yellow"
@@ -56,13 +70,20 @@ function StatusBlock() {
           </div>
           <div className="status_card">
             <div className="border_decor_green position-absolute top-0 end-0" />
-            <div className="status_card_content">
+            <div className="status_card_content" style={{ height: 350 }}>
               <p className="card_title_green">Fixed Profit</p>
-              <p className="card_description_blue" style={{ height: 230 }}>
+              <p className="card_description_blue">
                 {t("landing:TOP_DESCRIPTION_ACTIVATE")}
               </p>
             </div>
-            <div className="card_price_info">
+            <div
+              className="card_price_info"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
               <img src={FP} height={65} />
               <p
                 className="card_price_green"
@@ -71,7 +92,10 @@ function StatusBlock() {
                 90$ BNB
               </p>
             </div>
-            <div className="border_decor_bottom_green" />
+            <div
+              className="border_decor_bottom_green"
+              style={{ position: "absolute", bottom: 0 }}
+            />
           </div>
         </div>
         <div className="over_block">
