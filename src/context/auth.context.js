@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState, Fragment } from "react";
 import useFetch from "../hooks/useFetch.hook";
 
 const AuthContext = createContext({
@@ -9,7 +9,7 @@ const AuthContext = createContext({
 });
 
 export const AuthContextProvider = ({ children }) => {
-  const { request } = useFetch();
+  const { request, loading } = useFetch();
 
   const [token, setToken] = useState(null);
   const [user, setUser] = useState(null);
@@ -44,6 +44,8 @@ export const AuthContextProvider = ({ children }) => {
   useEffect(() => {
     setToken(localStorage.getItem("token"));
   }, []);
+
+  if (loading) return <Fragment />;
 
   return (
     <AuthContext.Provider value={{ token, setToken, user, settings }}>
