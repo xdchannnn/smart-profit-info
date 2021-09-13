@@ -2,11 +2,14 @@ import "../../assets/styles/dashboard.scoped.css";
 import blueLogo from "../../assets/images/blue-logo.svg";
 import lang from "../../assets/images/lang.svg";
 import turnOff from "../../assets/images/turn-off.svg";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import AuthContext from "../../context/auth.context";
 import { Link, useHistory } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 function Header() {
+  const { t, i18n } = useTranslation();
+
   const { setToken } = useContext(AuthContext);
   const history = useHistory();
 
@@ -15,6 +18,12 @@ function Header() {
     setToken(null);
     history.push("/");
   };
+
+  const [currentLang, setCurrentLang] = useState(i18n.language);
+
+  useEffect(() => {
+    i18n.changeLanguage(currentLang);
+  }, [currentLang]);
 
   return (
     <header>
@@ -43,7 +52,7 @@ function Header() {
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
                 <Link to="/dashboard" className="nav-link">
-                  Главная
+                  {t("header:TOP_TITLE")}
                 </Link>
                 <div className="rect_border" />
               </li>
@@ -55,7 +64,7 @@ function Header() {
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                   >
-                    Команда
+                    {t("header:TOP_DESCRIPTION_TEAM")}
                   </button>
                   <ul className="dropdown-menu">
                     <li>
@@ -64,7 +73,7 @@ function Header() {
                         to="/my-team"
                         style={{ paddingLeft: "15px", paddingRight: "0px" }}
                       >
-                        Моя команда
+                        {t("header:TOP_DESCRIPTION_MYTEAM")}
                       </Link>
                     </li>
                     <li>
@@ -73,7 +82,7 @@ function Header() {
                         to="/general-team"
                         style={{ paddingLeft: "15px", paddingRight: "0px" }}
                       >
-                        Общая команда
+                        {t("header:TOP_DESCRIPTION_GENERALTEAM")}
                       </Link>
                     </li>
                   </ul>
@@ -81,13 +90,13 @@ function Header() {
               </li>
               <li className="nav-item">
                 <Link to="/finance" className="nav-link">
-                  Финансы
+                  {t("header:TOP_DESCRIPTION_FINANCE")}
                 </Link>
                 <div className="rect_border" />
               </li>
               <li className="nav-item">
                 <Link to="/FAQ" className="nav-link">
-                  FAQ
+                  {t("header:TOP_DESCRIPTION_FAQ")}
                 </Link>
                 <div className="rect_border" />
               </li>
@@ -100,12 +109,20 @@ function Header() {
                     aria-expanded="false"
                   >
                     <img src={lang} alt="lang_icon" />
-                    <p className="lang_text">Русский</p>
+                    <p className="lang_text">
+                      {currentLang === "ru" ? "Русский" : "English"}
+                    </p>
                   </button>
                   <ul className="dropdown-menu">
                     <li>
-                      <a className="dropdown-item" href="#">
-                        English
+                      <a
+                        className="dropdown-item"
+                        href="#"
+                        onClick={() =>
+                          setCurrentLang(currentLang === "ru" ? "en" : "ru")
+                        }
+                      >
+                        {currentLang === "en" ? "Русский" : "English"}
                       </a>
                     </li>
                   </ul>
