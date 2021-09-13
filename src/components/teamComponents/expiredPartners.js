@@ -11,6 +11,14 @@ function ExpiredPartners() {
 
   const [data, setData] = useState([]);
 
+  const numRows = [];
+
+  if(data.length < 15) {
+    for(let i = 0; i < 15-data.length; i++) {
+      numRows.push(i)
+    }
+  }
+
   useEffect(() => {
     (async () => {
       const result = await request("/get-out-of-date-partners", "GET", null, {
@@ -46,9 +54,40 @@ function ExpiredPartners() {
                 <p>Передать запись</p>
               </td>
             </tr>
-            <tr className="child_one">
+            {
+              data.map((row) =>
+                <Table 
+                  name={row.name} 
+                  id={row.id} 
+                  status={row.status}
+                  sponsor_id={row.sponsor_id}
+                  country={row.country}
+                  skype={row.skype}
+                  telegram={row.telegram}
+                  phone={row.phone}
+                  email={row.email}
+                  team_count={row.team_count}
+                  register_date={row.register_date}
+                />
+              )
+            }
+            {
+              numRows.map((num) =>
+                <Table />
+              )
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+}
+
+function Table(props) {
+  return(
+    <tr className="child_one">
               <td className="child_row">
-                <p>Иван Иванов</p>
+                <p>{props.name}</p>
               </td>
               <td className="child_row">
                 <div className="child_content">
@@ -129,11 +168,7 @@ function ExpiredPartners() {
                 </button>
               </td>
             </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  );
+  )
 }
 
 export default ExpiredPartners;

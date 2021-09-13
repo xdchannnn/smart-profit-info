@@ -29,7 +29,7 @@ function DashboardMain() {
                 <p className="status_text">
                   Текущий статус:
                   <a href="#" className="status_link">
-                    {settings.status}
+                    {settings.status ? settings.status : null}
                   </a>
                 </p>
                 <div className="profile_link_block">
