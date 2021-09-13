@@ -14,8 +14,11 @@ import WalletIcon from "../../assets/images/wallet-icon.svg";
 import TeamIcon from "../../assets/images/team-icon.svg";
 import LostIcon from "../../assets/images/lost-icon.svg";
 
+import { useTranslation } from "react-i18next";
+
 function DashboardMain() {
   const { user, settings } = useContext(AuthContext);
+  const { t } = useTranslation();
 
   return (
     <div className="main_block">
@@ -27,7 +30,7 @@ function DashboardMain() {
             <Link to="/profile">
               <div className="settings_item">
                 <img src={SettingsIcon} />
-                <p className="settings_text">Настройка вашего профиля</p>
+                <p className="settings_text">{t("dashboard:TOP_TITLE")}</p>
               </div>
             </Link>
             <div className="profile_settings">
@@ -38,7 +41,7 @@ function DashboardMain() {
                 <p className="username_text">{user.full_name}</p>
                 <p className="id_text">ID: {settings.contract_id}</p>
                 <p className="status_text">
-                  Текущий статус:
+                  {t("dashboard:TOP_DESCRIPTION_CURRENT")}
                   <a href="#" className="status_link">
                     {settings.status ? settings.status : null}
                   </a>
@@ -53,7 +56,9 @@ function DashboardMain() {
             </div>
             <Link to="/activation">
               <div className="activation_block">
-                <p className="activation_text">ЗАПИСЬ АКТИВНА</p>
+                <p className="activation_text">
+                  {t("dashboard:TOP_DESCRIPTION_ACTIVE")}
+                </p>
               </div>
             </Link>
             <div className="time_block">
@@ -63,19 +68,21 @@ function DashboardMain() {
               <input
                 type="text"
                 className="partner_input"
-                placeholder="Помочь партнеру"
+                placeholder={t("dashboard:TOP_DESCRIPTION_HELP")}
               />
               <a href="#">
                 <div className="save_button_block">
                   <div className="save_icon" />
-                  <p className="save_text">Сохранить</p>
+                  <p className="save_text">
+                    {t("dashboard:TOP_DESCRIPTION_SAVE")}
+                  </p>
                 </div>
               </a>
             </div>
             <div className="referal_block">
               <img src={BlueCopy} />
               <Link to={`sponsor/${settings.ref_id}`} className="referal_text">
-                Ваш спонсор
+                {t("dashboard:TOP_DESCRIPTION_YOURSPONSOR")}
               </Link>
             </div>
           </div>
@@ -135,7 +142,9 @@ function DashboardMain() {
                       <img src={PartnerScore} />
                     </div>
                     <div className="item_content">
-                      <p className="item_title">Партнерская прибыль:</p>
+                      <p className="item_title">
+                        {t("dashboard:TOP_DESCRIPTION_AFFILIATEPROFIT")}
+                      </p>
                       <p className="item_description">
                         BNB: {user.partner_income.BNB} | USD:{" "}
                         {user.partner_income.USD}
@@ -175,7 +184,9 @@ function DashboardMain() {
                       <img src={WalletIcon} />
                     </div>
                     <div className="item_content">
-                      <p className="item_title">Прибыль с уровней:</p>
+                      <p className="item_title">
+                        {t("dashboard:TOP_DESCRIPTION_PROFITLEVELS")}
+                      </p>
                       <p className="item_description">
                         BNB: {user.level_income.BNB} | USD:{" "}
                         {user.level_income.USD}
@@ -217,7 +228,9 @@ function DashboardMain() {
                       <img src={TeamIcon} />
                     </div>
                     <div className="item_content">
-                      <p className="item_title">Моя команда:</p>
+                      <p className="item_title">
+                        {t("dashboard:TOP_DESCRIPTION_MYTEAM")}
+                      </p>
                       <p className="item_description">
                         {user.my_team.partners_count} PARTNERS
                       </p>
@@ -225,7 +238,7 @@ function DashboardMain() {
                   </div>
                   <div className="item_link_block">
                     <p className="item_link_text">
-                      Общая команда:
+                      {t("dashboard:TOP_DESCRIPTION_GENERALTEAM1")}
                       <a href="#" className="item_link">
                         {user.my_team.team_count}
                       </a>
@@ -256,7 +269,9 @@ function DashboardMain() {
                       <img src={LostIcon} />
                     </div>
                     <div className="item_content">
-                      <p className="item_title">Упущенная прибыль:</p>
+                      <p className="item_title">
+                        {t("dashboard:TOP_DESCRIPTION_LOSTPROFIT")}
+                      </p>
                       <p className="item_description">TRX: 452 | USD: 29.21</p>
                     </div>
                   </div>
@@ -278,7 +293,9 @@ function DashboardMain() {
                 <div className="level_top_child_border" />
                 <div className="level_bottom_child_border" />
                 <div className="level_content">
-                  <p className="level_title">Уровень 1</p>
+                  <p className="level_title">
+                    {t("dashboard:TOP_DESCRIPTION_LEVEL")} 1
+                  </p>
                   <div className="quantity_block">
                     <p className="quantity_text">{user.levels[0].level_1}</p>
                   </div>
@@ -292,7 +309,9 @@ function DashboardMain() {
                     <div className="level_top_child_border" />
                     <div className="level_bottom_child_border" />
                     <div className="level_content">
-                      <p className="level_title">Уровень {index + 2}</p>
+                      <p className="level_title">
+                        {t("dashboard:TOP_DESCRIPTION_LEVEL")} {index + 2}
+                      </p>
                       <div className="quantity_block">
                         <p className="quantity_text">
                           {level[`level_${index + 2}`]}
