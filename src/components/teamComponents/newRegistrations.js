@@ -11,6 +11,14 @@ function NewRegistrations() {
 
   const [data, setData] = useState([]);
 
+  const numRows = [];
+
+  if(data.length < 15) {
+    for(let i = 0; i < 15-data.length; i++) {
+      numRows.push(i)
+    }
+  }
+
   useEffect(() => {
     (async () => {
       const result = await request("/get-new-partners", "GET", null, {

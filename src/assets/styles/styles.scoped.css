@@ -1218,6 +1218,15 @@ hr {
     padding: 150px 100px;
   }
 
+  .card_price_info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin-bottom: -50px;
+    margin-top: 50px;
+  }
+
   .card_title_blue,
   .card_title_yellow,
   .card_title_green,

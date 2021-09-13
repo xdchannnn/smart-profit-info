@@ -1,5 +1,6 @@
 import "../../assets/styles/general.scoped.css";
 import "../../assets/styles/my-team.scoped.css";
+import info_icon from "../../assets/images/info-icon.svg"
 
 import { useContext, useState, useEffect } from "react";
 import useFetch from "../../hooks/useFetch.hook";
@@ -9,11 +10,37 @@ function ExpiredPartners() {
   const { token } = useContext(AuthContext);
   const { request, loading, error } = useFetch();
 
-  const [data, setData] = useState([]);
+  const [data, setData] = useState([{
+    name:'1',
+    id:'2',
+    status:'3',
+    sponsor_id:'4',
+    country: "5",
+    skype:'6',
+    telegram:'7',
+    phone:'8',
+    email:'9',
+    team_count:'10',
+    pay_date:'11',
+    wallet_address:'12'
+  },{
+    name:'1',
+    id:'2',
+    status:'3',
+    sponsor_id:'4',
+    country: "5",
+    skype:'6',
+    telegram:'7',
+    phone:'8',
+    email:'9',
+    team_count:'10',
+    pay_date:'11',
+    wallet_address:'12'
+  }]);
 
   const numRows = [];
 
-  if(data.length < 15) {
+  if(data.length < 25) {
     for(let i = 0; i < 15-data.length; i++) {
       numRows.push(i)
     }
@@ -25,7 +52,7 @@ function ExpiredPartners() {
         Authorization: `Bearer ${token}`,
       });
       console.log(result);
-      if (result) setData(result.data);
+      //if (result) setData(result.data);
     })();
   }, [request, token]);
 
@@ -42,7 +69,7 @@ function ExpiredPartners() {
                 <p>ID</p>
               </td>
               <td className="main_row">
-                <p>Номер кошелька</p>
+                <p>Спонсор</p>
               </td>
               <td className="main_row">
                 <p>Команда</p>
@@ -67,7 +94,8 @@ function ExpiredPartners() {
                   phone={row.phone}
                   email={row.email}
                   team_count={row.team_count}
-                  register_date={row.register_date}
+                  pay_date={row.pay_date}
+                  wallet_address={row.wallet_address}
                 />
               )
             }
@@ -92,30 +120,26 @@ function Table(props) {
               <td className="child_row">
                 <div className="child_content">
                   <p>
-                    <span className="yellow_text">MP:</span> ID 56908
+                    <span className="yellow_text">{props.status}:</span> ID {props.id}
                   </p>
                   <div className="popover__wrapper">
                     <a href="#">
                       <p className="popover__title">
                         <img
-                          src="assets/images/info-icon.svg"
+                          src={info_icon}
                           className="info_popover_icon"
                         />
                       </p>
                     </a>
                     <div className="popover__content">
-                      <p className="user_id">ID 56908</p>
+                      <p className="user_id">ID {props.id}</p>
                       <div className="user_information">
                         <p className="status_item">
                           Статус:{" "}
-                          <span className="status_text">MaxiProfit</span>
-                        </p>
-                        <p className="sponsor_id">
-                          ID спонсора:{" "}
-                          <span className="sponsor_text">ID 67890</span>
+                          <span className="status_text">{props.status}</span>
                         </p>
                         <p className="country_id">
-                          Страна: <span className="country_text">Россия</span>
+                          Страна: <span className="country_text">{props.country}</span>
                         </p>
                         <p className="country_id">
                           Л/Команда: <span className="country_text">17</span>
@@ -124,15 +148,15 @@ function Table(props) {
                       <div className="social_media_user">
                         <div className="social_item">
                           <img src="assets/images/skype.svg" />
-                          <p className="social_text">@sanekk000</p>
+                          <p className="social_text">{props.skype}</p>
                         </div>
                         <div className="social_item">
                           <img src="assets/images/whatsapp.svg" />
-                          <p className="social_text">+380996938560</p>
+                          <p className="social_text">{props.phone}</p>
                         </div>
                         <div className="social_item">
                           <img src="assets/images/telegram-user.svg" />
-                          <p className="social_text">strannik0004</p>
+                          <p className="social_text">{props.telegram}</p>
                         </div>
                       </div>
                     </div>
@@ -140,20 +164,13 @@ function Table(props) {
                 </div>
               </td>
               <td className="child_row">
-                <input
-                  type="text"
-                  defaultValue="TMmtUWW5ZvvEzJPiVxFUPdDzLef4…"
-                  id="copyInput"
-                />
-                <button onclick="copyFunction()" className="copy_button">
-                  <img src="assets/images/copy-icon-link.svg" />
-                </button>
+              <p className="user_id">ID {props.sponsor_id}</p>
               </td>
               <td className="child_row">
-                <p>7</p>
+                <p>{props.team_count}</p>
               </td>
               <td className="child_row">
-                <p>02.07.2021</p>
+                <p>{props.pay_date}</p>
               </td>
               <td className="child_row">
                 <input
