@@ -13,6 +13,10 @@ import forgotEN from "../translations/en/forgotEN.json";
 import forgotRU from "../translations/ru/forgotRU.json";
 import footerEN from "../translations/en/footerEN.json";
 import footerRU from "../translations/ru/footerRU.json";
+import headerEN from "../translations/en/headerEN.json";
+import headerRU from "../translations/ru/headerRU.json";
+import dashboardEN from "../translations/en/dashboardEN.json";
+import dashboardRU from "../translations/ru/dashboardRU.json";
 
 const resources = {
   en: {
@@ -22,6 +26,8 @@ const resources = {
     resetPassword: resetPasswordEN,
     forgot: forgotEN,
     footer: footerEN,
+    header: headerEN,
+    dashboard: dashboardEN,
   },
   ru: {
     landing: landingTranslationRU,
@@ -30,6 +36,8 @@ const resources = {
     resetPassword: resetPasswordRU,
     forgot: forgotRU,
     footer: footerRU,
+    header: headerRU,
+    dashboard: dashboardRU,
   },
 };
 
