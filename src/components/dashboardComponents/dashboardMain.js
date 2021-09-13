@@ -3,6 +3,17 @@ import { Link } from "react-router-dom";
 import "../../assets/styles/dashboard.scoped.css";
 import AuthContext from "../../context/auth.context";
 
+import SettingsIcon from "../../assets/images/settings-icon.svg";
+import ProfileImg from "../../assets/images/profile-img.jpg";
+import CopyIcon from "../../assets/images/copy-icon.svg";
+import BlueCopy from "../../assets/images/blue-copy.svg";
+import BonusBlue from "../../assets/images/bonus-blue.svg";
+import InfoIcon from "../../assets/images/info-icon.svg";
+import PartnerScore from "../../assets/images/partner_score.svg";
+import WalletIcon from "../../assets/images/wallet-icon.svg";
+import TeamIcon from "../../assets/images/team-icon.svg";
+import LostIcon from "../../assets/images/lost-icon.svg";
+
 function DashboardMain() {
   const { user, settings } = useContext(AuthContext);
 
@@ -15,17 +26,17 @@ function DashboardMain() {
             <div className="border_end_blue" />
             <Link to="/profile">
               <div className="settings_item">
-                <img src="assets/images/settings-icon.svg" />
+                <img src={SettingsIcon} />
                 <p className="settings_text">Настройка вашего профиля</p>
               </div>
             </Link>
             <div className="profile_settings">
               <div className="profile_image_block">
-                <img src="assets/images/profile-img.jpg" />
+                <img src={ProfileImg} />
               </div>
               <div className="profile_content_block">
                 <p className="username_text">{user.full_name}</p>
-                <p className="id_text">ID: {user.id}</p>
+                <p className="id_text">ID: {settings.contract_id}</p>
                 <p className="status_text">
                   Текущий статус:
                   <a href="#" className="status_link">
@@ -33,7 +44,7 @@ function DashboardMain() {
                   </a>
                 </p>
                 <div className="profile_link_block">
-                  <img src="assets/images/copy-icon.svg" />
+                  <img src={CopyIcon} />
                   <a href="#" className="profile_link">
                     http://smartprofit.com/{settings.contract_id}
                   </a>
@@ -62,7 +73,7 @@ function DashboardMain() {
               </a>
             </div>
             <div className="referal_block">
-              <img src="assets/images/blue-copy.svg" />
+              <img src={BlueCopy} />
               <Link to={`sponsor/${settings.ref_id}`} className="referal_text">
                 Ваш спонсор
               </Link>
@@ -83,11 +94,11 @@ function DashboardMain() {
                 data-bs-content="
                           Распределяется между участниками, достигшими, или активировавшими статус «Maxi Profit». Позволяет получать доход на первых этапах развития."
               >
-                <img src="assets/images/info-icon.svg" />
+                <img src={InfoIcon} />
               </button>
               <div className="item_block">
                 <div className="item_icon">
-                  <img src="assets/images/bonus-blue.svg" />
+                  <img src={BonusBlue} />
                 </div>
                 <div className="item_content">
                   <p className="item_title">Maxi Bonus:</p>
@@ -116,12 +127,12 @@ function DashboardMain() {
                   data-bs-content="
                           Это статистика ваших доходов за личное привлечение партнеров в вашу команду."
                 >
-                  <img src="assets/images/info-icon.svg" />
+                  <img src={InfoIcon} />
                 </button>
                 <div className="two_item_block">
                   <div className="two_item_content">
                     <div className="item_icon">
-                      <img src="assets/images/partner_score.svg" />
+                      <img src={PartnerScore} />
                     </div>
                     <div className="item_content">
                       <p className="item_title">Партнерская прибыль:</p>
@@ -156,12 +167,12 @@ function DashboardMain() {
                   data-bs-content="
                           Это статистика ваших доходов с уровней , от вашей, и общей команды."
                 >
-                  <img src="assets/images/info-icon.svg" />
+                  <img src={InfoIcon} />
                 </button>
                 <div className="two_item_block">
                   <div className="two_item_content">
                     <div className="item_icon">
-                      <img src="assets/images/wallet-icon.svg" />
+                      <img src={WalletIcon} />
                     </div>
                     <div className="item_content">
                       <p className="item_title">Прибыль с уровней:</p>
@@ -198,12 +209,12 @@ function DashboardMain() {
                   data-bs-content="
                          Количество  привлеченных вами партнеров. А  так же статистика общей команды."
                 >
-                  <img src="assets/images/info-icon.svg" />
+                  <img src={InfoIcon} />
                 </button>
                 <div className="two_item_block">
                   <div className="two_item_content">
                     <div className="item_icon">
-                      <img src="assets/images/team-icon.svg" />
+                      <img src={TeamIcon} />
                     </div>
                     <div className="item_content">
                       <p className="item_title">Моя команда:</p>
@@ -237,12 +248,12 @@ function DashboardMain() {
                   data-bs-content="
                           Статистика упущенной прибыли с уровней, за счет не вовремя выполненной квалификации."
                 >
-                  <img src="assets/images/info-icon.svg" />
+                  <img src={InfoIcon} />
                 </button>
                 <div className="two_item_block">
                   <div className="two_item_content">
                     <div className="item_icon">
-                      <img src="assets/images/lost-icon.svg" />
+                      <img src={LostIcon} />
                     </div>
                     <div className="item_content">
                       <p className="item_title">Упущенная прибыль:</p>

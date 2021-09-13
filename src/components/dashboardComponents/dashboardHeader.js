@@ -20,9 +20,14 @@ function Header() {
     <header>
       <nav className="navbar navbar-expand-lg navbar-light">
         <div className="container-fluid">
-          <Link className="navbar-brand" to="/">
-            <img src={blueLogo} alt="logo" />
-          </Link>
+          <a className="navbar-brand">
+            <img
+              src={blueLogo}
+              alt="logo"
+              style={{ cursor: "pointer" }}
+              onClick={() => history.push("/")}
+            />
+          </a>
           <button
             className="navbar-toggler"
             type="button"
