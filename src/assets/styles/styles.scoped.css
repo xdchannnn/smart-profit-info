@@ -1479,35 +1479,45 @@ hr {
 
 	.one_items_row {
     margin-top: 200px;
+    margin-bottom: 130px;
 }
 
 	.tired_item, .tired_item_two {
 		display: block;
 		margin: 0 auto;
-    	text-align: center;
-    	margin-bottom: 330px;
+    text-align: center;
+    margin-bottom: 330px;
+    width: 400px;
+		height: 550px;
 	}
 
+  .tired_item_two {
+    transform: translate(0px, 30%);
+  }
+
+  .item_img_two {
+    transform: translate(0px, -335px);
+    width: 70%;
+    position: relative;
+  }
+
+  .item_img_three {
+    transform: translate(0px, -385px);
+    width: 70%;
+    position: relative;
+  }
+
 	.item_img {
-		width: 400px;
-		margin-top:-145px;
+		width: 70%;
+    position: relative;
 	}
 	
 	.item_content {
 		padding: 0px 15px;
 	}
-	
-	.tired_item {
-		width: 400px;
-		height: 550px;
-		background-color: rgba(255,255,255,0.2);
-		backdrop-filter: blur(20px);
-	}
      
 
-    
-
-	.item_content {
+	.item_content, .item_content_two {
 		padding: 250px 20px 50px 20px;
 		margin: 0 auto;
 		border-radius: 0px;
@@ -1515,17 +1525,11 @@ hr {
 		height: auto;
 	}
 
-	 .item_content_two {
-    	top: 100%;
-    	position: absolute;
-    	left: 50%;
-    	transform: translate(-50%, -50%);
-    	padding: 250px 20px 50px 20px;
-    	border-radius: 0px;
-    	height: auto;
-    	width: 70%;
-	 }
-    
+  .item_content_two {
+    width: 70%;
+  }
+
+	 
     .item_img {
     	width: 70%;
     	position: relative;
@@ -1583,6 +1587,10 @@ hr {
     margin-top: 200px;
   }
 
+  .two_items_row {
+    margin-top: 320px;
+  }
+
   .fade {
     height: 630px !important;
   }
@@ -1592,8 +1600,10 @@ hr {
     display: block;
     margin: 0 auto;
     text-align: center;
-    margin-bottom: 430px;
+    margin-bottom: 130px;
   }
+
+  
 
   .item_img {
     width: 400px;
@@ -1605,23 +1615,12 @@ hr {
     padding: 0px 15px;
   }
 
-  .item_content {
+  .item_content, .item_content_two {
     padding: 200px 20px 50px 20px;
     margin: 0 auto;
     border-radius: 0px;
     margin: -250px auto;
     height: auto;
-  }
-
-  .item_content_two {
-    top: 100%;
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 250px 20px 50px 20px;
-    border-radius: 0px;
-    height: auto;
-    width: 70%;
   }
 
   .item_img {
