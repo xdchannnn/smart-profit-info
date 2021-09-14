@@ -1,6 +1,5 @@
 import "../../assets/styles/styles.scoped.css";
 import mainLogo from "../../assets/images/main-logo.svg";
-import mainLogoText from "../../assets/images/mainLogoText.svg";
 import { useTranslation } from "react-i18next";
 import Particles from "react-particles-js";
 
@@ -18,14 +17,11 @@ function MainPage() {
           <p className="top_description">{t("landing:TOP_DESCRIPTION")} </p>
         </div>
         <div className="color_delimiter" />
-        <div className="main_center" style={{ marginTop: 28 }}>
+        <div
+          className="main_center"
+          style={{ marginTop: 10, marginBottom: 26 }}
+        >
           <img src={mainLogo} alt="main-logo" className="main_logo" />
-          <br />
-          <img
-            src={mainLogoText}
-            alt="main-logo-text"
-            className="main_logo_text"
-          />
         </div>
         <div className="color_delimiter" />
         <div className="bottom_text">
