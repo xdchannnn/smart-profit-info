@@ -232,6 +232,10 @@ header {
   height: auto;
 }
 
+.main_logo {
+  margin-bottom: -20px;
+}
+
 .bottom_text {
   margin-bottom: 50px;
   margin-top: 50px;
@@ -326,7 +330,7 @@ header {
 .work_video_block iframe {
   position: absolute;
   width: 100%;
-  height: 100%;
+  height: 97%;
   left: 0;
   top: 0;
 }
