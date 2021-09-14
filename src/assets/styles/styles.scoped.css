@@ -186,7 +186,7 @@ header {
 
 .main_content {
   color: #fff;
-  padding-top: 180px;
+  padding-top: 120px;
 }
 
 .top_text {
@@ -232,7 +232,7 @@ header {
 }
 
 .bottom_text {
-  margin-bottom: 50px;
+  margin-bottom: 110px;
   margin-top: 50px;
   text-align: center;
 }
@@ -1262,7 +1262,8 @@ hr {
   .card_description {
     font-size: 16px;
     line-height: 28px;
-    margin-bottom: 70px;
+    margin-top: 80px;
+    margin-bottom: 100px;
   }
 
   .card_price_info {
