@@ -17,82 +17,46 @@ function StatusBlock() {
         <img src={decor} alt="decor-icon" />
         <div className="cards_group">
           <div className="status_card">
-            <div className="border_decor_blue position-absolute top-0 end-0" />
-            <div className="status_card_content" style={{ height: 350 }}>
-              <p className="card_title_blue">Start Profit</p>
-              <p className="card_description_blue">
-                {t("landing:TOP_DESCRIPTION_FROM_STATUS")}
-              </p>
+            <div className="border_decor_blue" />
+            <div className="card_title_blue">Start Profit</div>
+            <div className="card_description">
+              {t("landing:TOP_DESCRIPTION_FROM_STATUS")}
             </div>
-            <div
-              className="card_price_info"
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <img src={SP} height={65} />
-              <p
-                className="card_price_blue"
-                style={{ position: "absolute", margin: 0 }}
-              >
-                30$ BNB
-              </p>
+            <div style={{ position: "relative" }}>
+              <div className="border_decor_bottom_blue" />
+              <div className="card_price_info">
+                <img src={SP} alt="sp" height={65} />
+                <p className="card_price_blue">30$ BNB</p>
+              </div>
             </div>
-            <div className="border_decor_bottom_blue" />
           </div>
           <div className="status_yellow_card">
-            <div className="border_decor_yellow position-absolute top-0 end-0" />
-            <div className="status_card_content">
-              <p className="card_title_yellow">Maxi Profit</p>
-              <p className="card_description_blue">
-                {t("landing:TOP_DESCRIPTION_DURING")}
-              </p>
+            <div className="border_decor_yellow" />
+            <div className="card_title_yellow">Maxi Profit</div>
+            <div className="card_description">
+              {t("landing:TOP_DESCRIPTION_DURING")}
             </div>
-            <div
-              className="card_price_info"
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <img src={MP} height={65} />
-              <p
-                className="card_price_yellow"
-                style={{ position: "absolute", margin: 0 }}
-              >
-                180$ BNB
-              </p>
+            <div style={{ position: "relative" }}>
+              <div className="border_decor_bottom_yellow" />
+              <div className="card_price_info">
+                <img src={MP} alt="Mp" height={65} />
+                <p className="card_price_yellow">180$ BNB</p>
+              </div>
             </div>
-            <div className="border_decor_bottom_yellow" />
           </div>
           <div className="status_card">
-            <div className="border_decor_green position-absolute top-0 end-0" />
-            <div className="status_card_content" style={{ height: 350 }}>
-              <p className="card_title_green">Fixed Profit</p>
-              <p className="card_description_blue">
-                {t("landing:TOP_DESCRIPTION_ACTIVATE")}
-              </p>
+            <div className="border_decor_green" />
+            <div className="card_title_green">Fixed Profit</div>
+            <div className="card_description">
+              {t("landing:TOP_DESCRIPTION_ACTIVATE")}
             </div>
-            <div
-              className="card_price_info"
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <img src={FP} height={65} />
-              <p
-                className="card_price_green"
-                style={{ position: "absolute", margin: 0 }}
-              >
-                90$ BNB
-              </p>
+            <div style={{ position: "relative" }}>
+              <div className="border_decor_bottom_green" />
+              <div className="card_price_info">
+                <img src={FP} alt="fp" height={65} />
+                <p className="card_price_green">90$ BNB</p>
+              </div>
             </div>
-            <div className="border_decor_bottom_green" />
           </div>
         </div>
         <div className="over_block">
