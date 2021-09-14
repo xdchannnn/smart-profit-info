@@ -17,10 +17,7 @@ function MainPage() {
           <p className="top_description">{t("landing:TOP_DESCRIPTION")} </p>
         </div>
         <div className="color_delimiter" />
-        <div
-          className="main_center"
-          style={{ marginTop: 10, marginBottom: 26 }}
-        >
+        <div className="main_center">
           <img src={mainLogo} alt="main-logo" className="main_logo" />
         </div>
         <div className="color_delimiter" />

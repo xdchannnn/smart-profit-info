@@ -222,14 +222,9 @@ header {
 }
 
 .main_center {
-  margin-bottom: 20px;
-  margin-top: 50px;
+  margin-bottom: 35px;
+  margin-top: 20px;
   text-align: center;
-}
-
-.main_center .main_logo_text {
-  width: 20%;
-  height: auto;
 }
 
 .main_logo {
@@ -1169,6 +1164,10 @@ hr {
     font-size: 16px;
   }
 
+  .main_center {
+    margin-bottom: 30px;
+  }
+
   .main_center .main_logo {
     width: 80%;
     height: auto;
@@ -1804,6 +1803,10 @@ hr {
 }
 
 @media (max-width: 500px) {
+  .main_center {
+    margin-bottom: 35px;
+  }
+
   .main_center .main_logo_text {
     width: 50%;
     height: auto;
