@@ -325,7 +325,7 @@ tr:hover {
 	margin-top: 50px;
 }
 
-#copyInput {
+.copyInput {
 	outline: 0;
 	color: #fff;
 	background-color: transparent;
@@ -382,7 +382,7 @@ p {
 
 
 @media (max-width: 1601px) {
-	.child_row p, #copyInput {
+	.child_row p, .copyInput {
 		font-size: 15px;
 	}
 

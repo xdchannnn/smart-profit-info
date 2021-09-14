@@ -36,9 +36,8 @@ function TiredBlock() {
             </div>
           </Fade>
           <Fade direction="right" triggerOnce="true">
-            <div className="tired_item">
-            <img src={img_block2} alt="img_block" className="item_img" />
-              <div className="item_content">
+            <div className="tired_item_two">
+              <div className="item_content_two">
                 <p className="item_title">
                   {t("landing:TOP_DESCRIPTION_LOSING")}
                 </p>
@@ -51,11 +50,11 @@ function TiredBlock() {
                   {t("landing:TOP_DESCRIPTION_FROM")}
                 </p>
               </div>
-              
+              <img src={img_block2} alt="img_block" className="item_img_two" />
             </div>
           </Fade>
         </div>
-        <div className="one_items_row">
+        <div className="two_items_row">
         <Fade direction="left" triggerOnce="true">
           <div className="tired_item">
             <img src={img_block3} alt="img_block" className="item_img" />
@@ -89,7 +88,7 @@ function TiredBlock() {
                 {t("landing:TOP_DESCRIPTION_IMPOSE")}
               </p>
             </div>
-            <img src={img_block4} alt="img_block" className="item_img" />
+            <img src={img_block4} alt="img_block" className="item_img_three" />
           </div>
         </Fade>
         </div>
