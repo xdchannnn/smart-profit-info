@@ -1,6 +1,6 @@
-import { useContext } from "react";
-import { Link } from "react-router-dom";
 import "../../assets/styles/dashboard.scoped.css";
+import { useContext, useEffect } from "react";
+import { Link } from "react-router-dom";
 import AuthContext from "../../context/auth.context";
 
 import SettingsIcon from "../../assets/images/settings-icon.svg";
@@ -14,11 +14,18 @@ import WalletIcon from "../../assets/images/wallet-icon.svg";
 import TeamIcon from "../../assets/images/team-icon.svg";
 import LostIcon from "../../assets/images/lost-icon.svg";
 
+import { Popover } from 'bootstrap/dist/js/bootstrap.esm.min.js'
+
 import { useTranslation } from "react-i18next";
 
 function DashboardMain() {
   const { user, settings } = useContext(AuthContext);
   const { t } = useTranslation();
+  
+  useEffect(() => {
+    Array.from(document.querySelectorAll('button[data-bs-toggle="popover"]'))
+    .forEach(tooltipNode => new Popover(tooltipNode))
+    });
 
   return (
     <div className="main_block">
@@ -97,6 +104,7 @@ function DashboardMain() {
                 data-bs-container="body"
                 data-bs-toggle="popover"
                 data-bs-placement="left"
+                data-bs-trigger="hover"
                 title="Maxi Bonus"
                 data-bs-content="
                           Распределяется между участниками, достигшими, или активировавшими статус «Maxi Profit». Позволяет получать доход на первых этапах развития."
@@ -130,10 +138,11 @@ function DashboardMain() {
                   data-bs-container="body"
                   data-bs-toggle="popover"
                   data-bs-placement="left"
+                  data-bs-trigger="hover"
                   title="Партнерская прибыль"
                   data-bs-content="
                           Это статистика ваших доходов за личное привлечение партнеров в вашу команду."
-                >
+                > 
                   <img src={InfoIcon} />
                 </button>
                 <div className="two_item_block">
@@ -172,6 +181,7 @@ function DashboardMain() {
                   data-bs-container="body"
                   data-bs-toggle="popover"
                   data-bs-placement="left"
+                  data-bs-trigger="hover"
                   title="Прибыль с уровней"
                   data-bs-content="
                           Это статистика ваших доходов с уровней , от вашей, и общей команды."
@@ -216,6 +226,7 @@ function DashboardMain() {
                   data-bs-container="body"
                   data-bs-toggle="popover"
                   data-bs-placement="left"
+                  data-bs-trigger="hover"
                   title="Моя команда"
                   data-bs-content="
                          Количество  привлеченных вами партнеров. А  так же статистика общей команды."
@@ -258,6 +269,7 @@ function DashboardMain() {
                   data-bs-toggle="popover"
                   data-bs-placement="left"
                   title="Упущенная прибыль"
+                  data-bs-trigger="hover"
                   data-bs-content="
                           Статистика упущенной прибыли с уровней, за счет не вовремя выполненной квалификации."
                 >
