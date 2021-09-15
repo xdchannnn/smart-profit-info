@@ -1263,6 +1263,10 @@ hr {
     font-size: 20px;
   }
 
+  .over_button.yellow:hover {
+    background-color: #f2ca6b;
+  }
+
   .card_description {
     font-size: 16px;
     line-height: 28px;

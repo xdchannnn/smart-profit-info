@@ -31,10 +31,6 @@ function CopyrightModal() {
   }, []);
 
   useEffect(() => {
-    console.log(orientation, height);
-  }, [orientation, height]);
-
-  useEffect(() => {
     if (orientation === "landscape-primary") {
       if (height <= 320) setModalHeight(300);
       else if (height <= 360) setModalHeight(340);
