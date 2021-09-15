@@ -16,7 +16,79 @@ function TiredBlock() {
       <div className="tired_content">
         <p className="tired_title">{t("landing:TOP_DESCRIPTION_TIRED")}</p>
         <img src={decor2} alt="white-decor" className="white_decor" />
-        <div className="one_items_row">
+        <Fade direction="left" triggerOnce>
+          <div className="fade-item">
+            <img src={img_block} alt="img_block" />
+            <div className="fade-item-text">
+              <p className="fade-item-title">
+                {t("landing:TOP_DESCRIPTION_MATRICES")}
+              </p>
+              <img
+                src={decor2}
+                alt="white-decor"
+                className="white_item_decor"
+              />
+              <p className="fade-item-desc">
+                {t("landing:TOP_DESCRIPTION_SELL")}
+              </p>
+            </div>
+          </div>
+        </Fade>
+        <Fade direction="right" triggerOnce>
+          <div className="fade-item reverse">
+            <img src={img_block2} alt="img_block" />
+            <div className="fade-item-text">
+              <p className="fade-item-title">
+                {t("landing:TOP_DESCRIPTION_LOSING")}
+              </p>
+              <img
+                src={decor2}
+                alt="white-decor"
+                className="white_item_decor"
+              />
+              <p className="fade-item-desc">
+                {t("landing:TOP_DESCRIPTION_FROM")}
+              </p>
+            </div>
+          </div>
+        </Fade>
+        <Fade direction="left" triggerOnce>
+          <div className="fade-item">
+            <img src={img_block3} alt="img_block" />
+            <div className="fade-item-text">
+              <p className="fade-item-title">
+                {t("landing:TOP_DESCRIPTION_INVEST")}
+              </p>
+              <img
+                src={decor2}
+                alt="white-decor"
+                className="white_item_decor"
+              />
+              <p className="fade-item-desc">
+                {t("landing:TOP_DESCRIPTION_BRING")}
+              </p>
+            </div>
+          </div>
+        </Fade>
+        <Fade direction="right" triggerOnce>
+          <div className="fade-item reverse">
+            <img src={img_block4} alt="img_block" />
+            <div className="fade-item-text">
+              <p className="fade-item-title">
+                {t("landing:TOP_DESCRIPTION_PRODUCTS")}
+              </p>
+              <img
+                src={decor2}
+                alt="white-decor"
+                className="white_item_decor"
+              />
+              <p className="fade-item-desc">
+                {t("landing:TOP_DESCRIPTION_IMPOSE")}
+              </p>
+            </div>
+          </div>
+        </Fade>
+        {/* <div className="one_items_row">
           <Fade direction="left" triggerOnce="true">
             <div className="tired_item">
               <img src={img_block} alt="img_block" className="item_img" />
@@ -91,7 +163,7 @@ function TiredBlock() {
             <img src={img_block4} alt="img_block" className="item_img_three" />
           </div>
         </Fade>
-        </div>
+        </div> */}
         <div className="tired_bottom_block">
           <p className="bottom_tired_title">
             {t("landing:TOP_DESCRIPTION_RECOGNIZED_TITLE")}
