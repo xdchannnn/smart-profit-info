@@ -2,6 +2,7 @@ import "../../assets/styles/dashboard.scoped.css";
 import { Fragment, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import AuthContext from "../../context/auth.context";
+import { toast } from "react-toastify";
 
 import SettingsIcon from "../../assets/images/settings-icon.svg";
 import ProfileImg from "../../assets/images/profile-img.jpg";
@@ -20,6 +21,8 @@ import { useTranslation } from "react-i18next";
 
 import Timer from "react-compound-timer";
 
+import Banner from "../../assets/images/banner.svg";
+
 function DashboardMain() {
   const { user, settings } = useContext(AuthContext);
   const { t } = useTranslation();
@@ -29,6 +32,12 @@ function DashboardMain() {
       document.querySelectorAll('button[data-bs-toggle="popover"]')
     ).forEach((tooltipNode) => new Popover(tooltipNode));
   });
+
+  const copyToClipBoard = (text) =>
+    navigator.clipboard
+      .writeText(text)
+      .then(() => toast("Copied to clipboard!", { type: "success" }))
+      .catch(() => toast("Could not copy text.", { type: "error" }));
 
   return (
     <div className="main_block">
@@ -53,12 +62,20 @@ function DashboardMain() {
                 <p className="status_text">
                   {t("dashboard:TOP_DESCRIPTION_CURRENT")}
                   <a href="#" className="status_link">
-                    {settings.status ? settings.status : null}
+                    {settings.status ? settings.status.toUpperCase() : null}
                   </a>
                 </p>
                 <div className="profile_link_block">
                   <img src={CopyIcon} />
-                  <a href="#" className="profile_link">
+                  <a
+                    href="#"
+                    className="profile_link"
+                    onClick={() =>
+                      copyToClipBoard(
+                        `http://smartprofit.com/${settings.contract_id}`
+                      )
+                    }
+                  >
                     http://smartprofit.com/{settings.contract_id}
                   </a>
                 </div>
@@ -85,22 +102,30 @@ function DashboardMain() {
                       >
                         <div style={{ paddingLeft: 10, paddingRight: 10 }}>
                           <Timer.Days />
-                          <p style={{ fontSize: 12 }}>дней</p>
+                          <p style={{ fontSize: 12 }}>
+                            {t("dashboard:TOP_DESCRIPTION_DAYS")}
+                          </p>
                         </div>
                         {" : "}
                         <div style={{ paddingLeft: 10, paddingRight: 10 }}>
                           <Timer.Hours />
-                          <p style={{ fontSize: 12 }}>часов</p>
+                          <p style={{ fontSize: 12 }}>
+                            {t("dashboard:TOP_DESCRIPTION_HOURS")}
+                          </p>
                         </div>
                         {" : "}
                         <div style={{ paddingLeft: 10, paddingRight: 10 }}>
                           <Timer.Minutes />
-                          <p style={{ fontSize: 12 }}>минут</p>
+                          <p style={{ fontSize: 12 }}>
+                            {t("dashboard:TOP_DESCRIPTION_MINUTES")}
+                          </p>
                         </div>
                         {" : "}
                         <div style={{ paddingLeft: 10, paddingRight: 10 }}>
                           <Timer.Seconds />
-                          <p style={{ fontSize: 12 }}>секунд</p>
+                          <p style={{ fontSize: 12 }}>
+                            {t("dashboard:TOP_DESCRIPTION_SECONDS")}
+                          </p>
                         </div>
                       </div>
                     </Fragment>
@@ -385,9 +410,7 @@ function DashboardMain() {
             </div>
           </div>
           <div className="banner_block">
-            <div className="border_start_amount_blue" />
-            <div className="border_end_amount_blue" />
-            {/* content or image */}
+            <img src={Banner} alt="banner" width="100%" />
           </div>
         </div>
       </div>
