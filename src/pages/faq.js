@@ -10,12 +10,12 @@ import ForPartners from "../components/FAQ/forPartners";
 import FinanceQuestions from "../components/FAQ/financeQuestions";
 import Footer from "../components/dashboardComponents/footer";
 
-function Activation() {
+function Activation({ header = () => <Header /> }) {
   const [open, setOpen] = useState("General");
 
   return (
     <div className="background">
-      <Header />
+      {header()}
       <div className="faq_screen">
         <Tablinks open={open} setOpen={setOpen} />
         {open === "General" ? (
