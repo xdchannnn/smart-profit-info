@@ -1,5 +1,5 @@
 import "../../assets/styles/dashboard.scoped.css";
-import { useContext, useEffect } from "react";
+import { Fragment, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import AuthContext from "../../context/auth.context";
 
@@ -17,6 +17,8 @@ import LostIcon from "../../assets/images/lost-icon.svg";
 import { Popover } from "bootstrap/dist/js/bootstrap.esm.min.js";
 
 import { useTranslation } from "react-i18next";
+
+import Timer from "react-compound-timer";
 
 function DashboardMain() {
   const { user, settings } = useContext(AuthContext);
@@ -70,7 +72,41 @@ function DashboardMain() {
               </div>
             </Link>
             <div className="time_block">
-              <div className="eTimer" />
+              <div className="eTimer">
+                <Timer initialTime={"30000000000"} direction="backward">
+                  {() => (
+                    <Fragment>
+                      <div
+                        style={{
+                          color: "white",
+                          paddingTop: 20,
+                          display: "flex",
+                        }}
+                      >
+                        <div style={{ paddingLeft: 10, paddingRight: 10 }}>
+                          <Timer.Days />
+                          <p style={{ fontSize: 12 }}>дней</p>
+                        </div>
+                        {" : "}
+                        <div style={{ paddingLeft: 10, paddingRight: 10 }}>
+                          <Timer.Hours />
+                          <p style={{ fontSize: 12 }}>часов</p>
+                        </div>
+                        {" : "}
+                        <div style={{ paddingLeft: 10, paddingRight: 10 }}>
+                          <Timer.Minutes />
+                          <p style={{ fontSize: 12 }}>минут</p>
+                        </div>
+                        {" : "}
+                        <div style={{ paddingLeft: 10, paddingRight: 10 }}>
+                          <Timer.Seconds />
+                          <p style={{ fontSize: 12 }}>секунд</p>
+                        </div>
+                      </div>
+                    </Fragment>
+                  )}
+                </Timer>
+              </div>
             </div>
             <div className="partner_block">
               <input
