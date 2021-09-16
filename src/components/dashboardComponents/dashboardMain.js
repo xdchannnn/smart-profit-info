@@ -98,32 +98,57 @@ function DashboardMain() {
                           color: "white",
                           paddingTop: 20,
                           display: "flex",
+                          fontSize: 24,
                         }}
                       >
-                        <div style={{ paddingLeft: 10, paddingRight: 10 }}>
+                        <div
+                          style={{
+                            paddingLeft: 10,
+                            paddingRight: 10,
+                            fontSize: 24,
+                          }}
+                        >
                           <Timer.Days />
-                          <p style={{ fontSize: 12 }}>
+                          <p style={{ fontSize: 14 }}>
                             {t("dashboard:TOP_DESCRIPTION_DAYS")}
                           </p>
                         </div>
                         {" : "}
-                        <div style={{ paddingLeft: 10, paddingRight: 10 }}>
+                        <div
+                          style={{
+                            paddingLeft: 10,
+                            paddingRight: 10,
+                            fontSize: 24,
+                          }}
+                        >
                           <Timer.Hours />
-                          <p style={{ fontSize: 12 }}>
+                          <p style={{ fontSize: 14 }}>
                             {t("dashboard:TOP_DESCRIPTION_HOURS")}
                           </p>
                         </div>
                         {" : "}
-                        <div style={{ paddingLeft: 10, paddingRight: 10 }}>
+                        <div
+                          style={{
+                            paddingLeft: 10,
+                            paddingRight: 10,
+                            fontSize: 24,
+                          }}
+                        >
                           <Timer.Minutes />
-                          <p style={{ fontSize: 12 }}>
+                          <p style={{ fontSize: 14 }}>
                             {t("dashboard:TOP_DESCRIPTION_MINUTES")}
                           </p>
                         </div>
                         {" : "}
-                        <div style={{ paddingLeft: 10, paddingRight: 10 }}>
+                        <div
+                          style={{
+                            paddingLeft: 10,
+                            paddingRight: 10,
+                            fontSize: 24,
+                          }}
+                        >
                           <Timer.Seconds />
-                          <p style={{ fontSize: 12 }}>
+                          <p style={{ fontSize: 14 }}>
                             {t("dashboard:TOP_DESCRIPTION_SECONDS")}
                           </p>
                         </div>
@@ -134,6 +159,20 @@ function DashboardMain() {
               </div>
             </div>
             <div className="partner_block">
+              <button
+                style={{ marginBottom: 0, marginLeft: 5 }}
+                className="info_icon partner_info_mob"
+                type="button"
+                data-bs-container="body"
+                data-bs-toggle="popover"
+                data-bs-placement="left"
+                data-bs-trigger="hover"
+                title={t("dashboard:TOP_DESCRIPTION_ENTERID_TITLE")}
+                data-bs-content={t("dashboard:TOP_DESCRIPTION_ENTERID")}
+              >
+                <img src={InfoIcon} style={{ width: 15, height: 15 }} />
+              </button>
+
               <input
                 type="text"
                 className="partner_input"
@@ -142,7 +181,7 @@ function DashboardMain() {
 
               <button
                 style={{ marginBottom: 30, marginLeft: 5 }}
-                className="info_icon"
+                className="info_icon partner_info"
                 type="button"
                 data-bs-container="body"
                 data-bs-toggle="popover"
