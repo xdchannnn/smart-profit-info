@@ -1,7 +1,10 @@
-import '../../assets/styles/faq.scoped.css'
+import "../../assets/styles/faq.scoped.css";
+import { useTranslation } from "react-i18next";
 
 export default function GeneralIssues() {
-    return(
+  const { t } = useTranslation();
+
+  return (
     <div id="GeneralIssues" className="tabcontent">
       <div className="accordion" id="accordionExample">
         <div className="accordion-item">
@@ -14,7 +17,7 @@ export default function GeneralIssues() {
               aria-expanded="false"
               aria-controls="collapseOne"
             >
-              ЧТО ТАКОЕ SMART PROFIT?
+              {t("faq:TOP_DESCRIPTION_WHATIS")}
             </button>
           </h2>
           <div
@@ -24,15 +27,7 @@ export default function GeneralIssues() {
             data-bs-parent="#accordionExample"
           >
             <div className="accordion-body">
-              <p>
-                SMART PROFIT — это децентрализованное, краудфандинговое онлайн
-                сообщество с широкими возможностями, основано на базе
-                смарт-контракта TRON, которое предлагает сотрудничество и
-                взаимодействие между пользователями для достижения общей цели, это
-                благо – состояние участников. SMART PROFIT предлагает уникальную
-                систему для заработка, в которой возможности каждого пользователя
-                не просто заявлены на сайте, но и регулируются смарт-контрактом.
-              </p>
+              <p>{t("faq:TOP_DESCRIPTION_FAQ1")}</p>
             </div>
           </div>
         </div>
@@ -46,7 +41,7 @@ export default function GeneralIssues() {
               aria-expanded="false"
               aria-controls="collapseTwo"
             >
-              КАК СТАТЬ УЧАСТНИКОМ СООБЩЕСТВА SMART PROFIT?
+              {t("faq:TOP_DESCRIPTION_HOWDOIBECOME")}
             </button>
           </h2>
           <div
@@ -56,12 +51,7 @@ export default function GeneralIssues() {
             data-bs-parent="#accordionExample"
           >
             <div className="accordion-body">
-              <p>
-                Пройдите не сложную регистрацию на сайте SMART PROFIT, и выберите
-                для себя один из доступных пакетов для участия в системе. Как
-                только ваша позиция активируется, вы автоматически станете
-                участником сообщества SMART PROFIT.
-              </p>
+              <p>{t("faq:TOP_DESCRIPTION_FAQ2")}</p>
             </div>
           </div>
         </div>
@@ -75,7 +65,7 @@ export default function GeneralIssues() {
               aria-expanded="false"
               aria-controls="collapseThree"
             >
-              КАК ПОЛУЧИТЬ ДОСТУП К УЧЕТНОЙ ЗАПИСИ?
+              {t("faq:TOP_DESCRIPTION_MYACCOUNT")}
             </button>
           </h2>
           <div
@@ -85,11 +75,7 @@ export default function GeneralIssues() {
             data-bs-parent="#accordionExample"
           >
             <div className="accordion-body">
-              <p>
-                Чтобы получить доступ к вашей учетной записи необходимо войти в
-                личный кабинет, указав логин и пароль, полученные вами при
-                регистрации.
-              </p>
+              <p>{t("faq:TOP_DESCRIPTION_FAQ3")}</p>
             </div>
           </div>
         </div>
@@ -103,7 +89,7 @@ export default function GeneralIssues() {
               aria-expanded="false"
               aria-controls="collapseFour"
             >
-              МОГУ ЛИ Я ИЗМЕНИТЬ ДАННЫЕ В СВОЕМ АККАУНТЕ?
+              {t("faq:TOP_DESCRIPTION_CHANGETHEDATA")}
             </button>
           </h2>
           <div
@@ -113,11 +99,7 @@ export default function GeneralIssues() {
             data-bs-parent="#accordionExample"
           >
             <div className="accordion-body">
-              <p>
-                Да. Для этого войдите в ваш личный кабинет и выберите раздел «Мой
-                профиль». Сохраните новые данные. Если что-то изменить не удается,
-                обратитесь в нашу службу поддержки.
-              </p>
+              <p>{t("faq:TOP_DESCRIPTION_FAQ4")}</p>
             </div>
           </div>
         </div>
@@ -131,7 +113,7 @@ export default function GeneralIssues() {
               aria-expanded="false"
               aria-controls="collapseFive"
             >
-              СКОЛЬКО Я МОГУ ИМЕТЬ УЧЕТНЫХ ЗАПИСЕЙ?
+              <p>{t("faq:TOP_DESCRIPTION_HOWMANYACCOUNTS")}</p>
             </button>
           </h2>
           <div
@@ -141,7 +123,9 @@ export default function GeneralIssues() {
             data-bs-parent="#accordionExample"
           >
             <div className="accordion-body">
-              <p>Ограничений по количеству учетных записей нет.</p>
+              <p>
+                <p>{t("faq:TOP_DESCRIPTION_FAQ5")}</p>
+              </p>
             </div>
           </div>
         </div>
@@ -155,7 +139,7 @@ export default function GeneralIssues() {
               aria-expanded="false"
               aria-controls="collapseSix"
             >
-              ГДЕ Я МОГУ ОЗНАКОМИТЬСЯ С МАРКЕТИНГ-ПЛАНОМ?
+              {t("faq:TOP_DESCRIPTION_WHERECANIGET")}
             </button>
           </h2>
           <div
@@ -165,12 +149,7 @@ export default function GeneralIssues() {
             data-bs-parent="#accordionExample"
           >
             <div className="accordion-body">
-              <p>
-                Вы можете ознакомиться с маркетинг-планом на главной странице
-                сайта SMART PROFIT, и загрузить файл PDF. Если у вас остались
-                вопросы, вы можете связаться с человеком, который поделился с вами
-                данной возможностью или обратиться в службу поддержки.
-              </p>
+              <p>{t("faq:TOP_DESCRIPTION_FAQ6")}</p>
             </div>
           </div>
         </div>
@@ -184,7 +163,7 @@ export default function GeneralIssues() {
               aria-expanded="false"
               aria-controls="collapseSix"
             >
-              ЧТО ДЕЛАТЬ, ЕСЛИ Я НЕ МОГУ ВОЙТИ В СВОЙ ЛИЧНЫЙ КАБИНЕТ?
+              {t("faq:TOP_DESCRIPTION_WHATSHOULDI")}
             </button>
           </h2>
           <div
@@ -194,15 +173,11 @@ export default function GeneralIssues() {
             data-bs-parent="#accordionExample"
           >
             <div className="accordion-body">
-              <p>
-                В подобном случае проверьте, правильно ли вы ввели данные. Если
-                данные введены верно, почистите кэш и попробуйте еще раз. Если
-                проблема не решилась, напишите в службу поддержки.
-              </p>
+              <p>{t("faq:TOP_DESCRIPTION_FAQ7")}</p>
             </div>
           </div>
         </div>
       </div>
     </div>
-  )
-  }
+  );
+}

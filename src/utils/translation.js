@@ -17,6 +17,8 @@ import headerEN from "../translations/en/headerEN.json";
 import headerRU from "../translations/ru/headerRU.json";
 import dashboardEN from "../translations/en/dashboardEN.json";
 import dashboardRU from "../translations/ru/dashboardRU.json";
+import faqEN from "../translations/en/faqEN.json";
+import faqRU from "../translations/ru/faqRU.json";
 
 const resources = {
   en: {
@@ -28,6 +30,7 @@ const resources = {
     footer: footerEN,
     header: headerEN,
     dashboard: dashboardEN,
+    faq: faqEN,
   },
   ru: {
     landing: landingTranslationRU,
@@ -38,6 +41,7 @@ const resources = {
     footer: footerRU,
     header: headerRU,
     dashboard: dashboardRU,
+    faq: faqRU,
   },
 };
 

@@ -1,7 +1,10 @@
-import '../../assets/styles/faq.scoped.css'
+import "../../assets/styles/faq.scoped.css";
+import { useTranslation } from "react-i18next";
 
 export default function ForPartners() {
-    return(
+  const { t } = useTranslation();
+
+  return (
     <div id="ForPartners" className="tabcontent">
       <div className="accordion" id="accordionExample1">
         <div className="accordion-item">
@@ -14,7 +17,7 @@ export default function ForPartners() {
               aria-expanded="false"
               aria-controls="collapseEight"
             >
-              В ЧЕМ ПРЕИМУЩЕСТВА УЧАСТИЯ В SMART PROFIT?
+              {t("faq:TOP_DESCRIPTION_WHATARETHEADVANTAGES")}
             </button>
           </h2>
           <div
@@ -24,34 +27,7 @@ export default function ForPartners() {
             data-bs-parent="#accordionExample1"
           >
             <div className="accordion-body">
-              <p>
-                SMART PROFIT - это отличная возможность для каждого участника,
-                желающего получать дополнительную прибыль и ежемесячный пассивный
-                доход, развивая партнерскую сеть. С помощью SMART PROFIT, вам
-                больше не нужно выкупать более дорогие уровни, чтобы оставаться в
-                системе и зарабатывать, вы всегда можете начать с минимальной
-                суммы 500TRX, но стоит отметить, когда вы активируете более
-                высокие статусы - вы не переплачиваете ни копейки, а всего лишь
-                активируете вашу позицию на более длительный период действия, но
-                при этом для вас открыты дополнительные уровни, для получения
-                дохода. Давайте рассмотрим пример: Вы активировали статус "Maxi
-                Profit" стоимостью 3000 TRX, в этом случае ваша учетная запись
-                будет активна 360 дней, и акамулировать доход сразу с 7 уровней -
-                но мало того, ваша запись так же участвует в распределении "Maxi
-                Bonus", который акамулирует в себе 10% оборота всей системы, и
-                распределяется между участниками в статусе "Maxi Profit" это
-                позволяет вернуть стоимость статуса "Maxi Profit" в считанные дни.
-                Точечный перелив: Это уникальная возможность развивать вашу
-                команду так, как хотите именно вы, а не система, вы сами решаете
-                кому из ваших партнеров нужна помощь с переливами больше всего, и
-                поставить под их партнеров – но при этом не терять реферального
-                вознаграждения, и самого реферала – и вы больше не будете терять
-                свою команду. Все выше указанные преимущества разработаны в самом
-                смарт контракте, а не на сайте, тем самым гарантируют безопасность
-                и надежность системы, с помощью которой участники имеют
-                возможность построить пассивный источник дохода, который обеспечит
-                им беезаботную жизнь на долгие годы.
-              </p>
+              <p>{t("faq:TOP_DESCRIPTION_FAQ8")}</p>
             </div>
           </div>
         </div>
@@ -65,7 +41,7 @@ export default function ForPartners() {
               aria-expanded="false"
               aria-controls="collapseNine"
             >
-              ГДЕ МНЕ НАЙТИ ПАРТНЕРСКУЮ ССЫЛКУ?
+              {t("faq:TOP_DESCRIPTION_WHERECANIFINDAN")}
             </button>
           </h2>
           <div
@@ -75,7 +51,7 @@ export default function ForPartners() {
             data-bs-parent="#accordionExample1"
           >
             <div className="accordion-body">
-              <p>Вы можете найти вашу партнерскую ссылку в личном кабинете.</p>
+              <p>{t("faq:TOP_DESCRIPTION_FAQ9")}</p>
             </div>
           </div>
         </div>
@@ -89,7 +65,7 @@ export default function ForPartners() {
               aria-expanded="false"
               aria-controls="collapseTen"
             >
-              ЗАЧЕМ НУЖНА ПАРТНЕРСКАЯ ССЫЛКА?
+              {t("faq:TOP_DESCRIPTION_WHYDOINEED")}
             </button>
           </h2>
           <div
@@ -99,11 +75,7 @@ export default function ForPartners() {
             data-bs-parent="#accordionExample1"
           >
             <div className="accordion-body">
-              <p>
-                Партнерская ссылка нужна для того, чтобы с ее помощью вы
-                приглашали новых участников в систему, а она в свою очередь
-                автоматически определяла, что они пришли именно от вас.
-              </p>
+              <p>{t("faq:TOP_DESCRIPTION_FAQ10")}</p>
             </div>
           </div>
         </div>
@@ -117,7 +89,7 @@ export default function ForPartners() {
               aria-expanded="false"
               aria-controls="collapseThree"
             >
-              КАК ОТСЛЕЖИВАТЬ РЕЗУЛЬТАТЫ ПРИВЛЕЧЕНИЯ?
+              {t("faq:TOP_DESCRIPTION_HOWTOTRACKTHE")}
             </button>
           </h2>
           <div
@@ -127,10 +99,7 @@ export default function ForPartners() {
             data-bs-parent="#accordionExample1"
           >
             <div className="accordion-body">
-              <p>
-                Посмотреть информацию о вашей команде вы можете в разделе «Личный
-                кабинет», в разделах «Моя команда», и «Общая команда».
-              </p>
+              <p>{t("faq:TOP_DESCRIPTION_FAQ11")}</p>
             </div>
           </div>
         </div>
@@ -144,7 +113,7 @@ export default function ForPartners() {
               aria-expanded="false"
               aria-controls="collapseTwelve"
             >
-              ЧТО ТАКОЕ ТОЧЕЧНЫЙ ПЕРЕЛИВ?
+              {t("faq:TOP_DESCRIPTION_SPOTOVERFLOW")}
             </button>
           </h2>
           <div
@@ -154,13 +123,7 @@ export default function ForPartners() {
             data-bs-parent="#accordionExample1"
           >
             <div className="accordion-body">
-              <p>
-                В обычном режиме ваша структура заполняется сверху вниз, слева
-                направо. Но, используя функцию «Помощь партнеру», вы сами
-                управляете заполнением своего реферального дерева и направляете
-                новых участников туда, куда вам нужно, при этом не теряете
-                реферального вознаграждения и спонсорской связи.
-              </p>
+              <p>{t("faq:TOP_DESCRIPTION_FAQ12")}</p>
             </div>
           </div>
         </div>
@@ -174,7 +137,7 @@ export default function ForPartners() {
               aria-expanded="false"
               aria-controls="collapseFourteen"
             >
-              ЧТО ТАКОЕ ПЕРЕДАТЬ ЗАПИСЬ?
+              <p>{t("faq:TOP_DESCRIPTION_LOCATIONTRANSFER")}</p>
             </button>
           </h2>
           <div
@@ -185,16 +148,12 @@ export default function ForPartners() {
           >
             <div className="accordion-body">
               <p>
-                Участники, которые по каким-то причинам решили больше не
-                активировать свою позицию, теряют место на уровнях. Их спонсоры
-                могут передать это место более заинтересованным участникам SMART
-                PROFIT, если те не активировали свою учетную запись в течении
-                недели.
+                <p>{t("faq:TOP_DESCRIPTION_FAQ13")}</p>
               </p>
             </div>
           </div>
         </div>
       </div>
     </div>
-  )
-  }
+  );
+}
