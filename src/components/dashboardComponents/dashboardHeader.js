@@ -19,9 +19,6 @@ function Header() {
     history.push("/");
   };
 
-  const [openLang, setOpenLang] = useState(false)
-  const [openTeam, setOpenTeam] = useState(false)
-
   const [currentLang, setCurrentLang] = useState(i18n.language);
 
   useEffect(() => {
@@ -65,12 +62,11 @@ function Header() {
                     type="button"
                     className="command-dropdown dropdown-toggle"
                     data-bs-toggle="dropdown"
-                    aria-expanded="true"
-                    onClick={() => setOpenTeam(!openTeam)}
+                    aria-expanded="false"
                   >
                     {t("header:TOP_DESCRIPTION_TEAM")}
                   </button>
-                  <ul className={openTeam === false ? "dropdown-menu close" : "dropdown-menu show"}>
+                  <ul className="dropdown-menu">
                     <li>
                       <Link
                         className="dropdown-item"
@@ -108,17 +104,16 @@ function Header() {
                 <div className="btn-group">
                   <button
                     type="button"
-                    className="lang_button dropdown-toggle show"
+                    className="lang_button dropdown-toggle"
                     data-bs-toggle="dropdown"
-                    aria-expanded="true"
-                    onClick={() => setOpenLang(!openLang)}
+                    aria-expanded="false"
                   >
                     <img src={lang} alt="lang_icon" />
                     <p className="lang_text">
                       {currentLang === "ru" ? "Русский" : "English"}
                     </p>
                   </button>
-                  <ul className={openLang === false ? "dropdown-menu close" : "dropdown-menu show"}>
+                  <ul className={"dropdown-menu"}>
                     <li>
                       <a
                         className="dropdown-item"
