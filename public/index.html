@@ -54,7 +54,35 @@
         width: 50px;
         background-color: #666;
       }
+
+      .popover-body {
+        padding: 0rem 1rem !important;
+        color: #fff !important;
+        background: #728ab3 !important;
+        border-radius: 0rem 0rem 0.3rem 0.3rem !important;
+        padding-bottom: 15px !important;
+      }
+
+      .bs-popover-auto[data-popper-placement^="left"] > .popover-arrow,
+      .bs-popover-start > .popover-arrow {
+        display: none !important;
+      }
+
+      .popover-header {
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+        padding-top: 15px !important;
+        margin-bottom: 0 !important;
+        font-size: 1rem !important;
+        color: #fff !important;
+        font-weight: 700 !important;
+        background-color: #728ab3 !important;
+        border-bottom: 1px solid #728ab3 !important;
+        border-top-left-radius: calc(0.3rem - 1px) !important;
+        border-top-right-radius: calc(0.3rem - 1px) !important;
+      }
     </style>
+  
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
@@ -69,5 +97,6 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+   
   </body>
 </html>
