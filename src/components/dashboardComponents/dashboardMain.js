@@ -36,7 +36,7 @@ function DashboardMain() {
   const copyToClipBoard = (text) =>
     navigator.clipboard
       .writeText(text)
-      .then(() => toast("Copied to clipboard!", { type: "success" }))
+      .then(() => toast(t("toast:COPY_CLIPBOARD"), { type: "success" }))
       .catch(() => toast("Could not copy text.", { type: "error" }));
 
   return (
@@ -61,7 +61,7 @@ function DashboardMain() {
                 <p className="id_text">ID: {settings.contract_id}</p>
                 <p className="status_text">
                   {t("dashboard:TOP_DESCRIPTION_CURRENT")}
-                  <a href="#" className="status_link">
+                  <a className="status_link">
                     {settings.status ? settings.status.toUpperCase() : null}
                   </a>
                 </p>

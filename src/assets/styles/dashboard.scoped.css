@@ -325,15 +325,8 @@ header {
   font-size: 16px;
   color: #54cdef;
   font-weight: 700;
-  text-decoration: underline;
   transition-duration: 0.1s;
   transition: 0.1s;
-}
-
-.status_link:hover {
-  opacity: 0.5;
-  color: #54cdef;
-  text-decoration: underline;
 }
 
 .profile_link_block {

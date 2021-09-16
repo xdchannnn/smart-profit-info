@@ -19,6 +19,8 @@ import dashboardEN from "../translations/en/dashboardEN.json";
 import dashboardRU from "../translations/ru/dashboardRU.json";
 import faqEN from "../translations/en/faqEN.json";
 import faqRU from "../translations/ru/faqRU.json";
+import toastEN from "../translations/en/toastEN.json";
+import toastRU from "../translations/ru/toastRU.json";
 
 const resources = {
   en: {
@@ -31,6 +33,7 @@ const resources = {
     header: headerEN,
     dashboard: dashboardEN,
     faq: faqEN,
+    toast: toastEN,
   },
   ru: {
     landing: landingTranslationRU,
@@ -42,6 +45,7 @@ const resources = {
     header: headerRU,
     dashboard: dashboardRU,
     faq: faqRU,
+    toast: toastRU,
   },
 };
 
