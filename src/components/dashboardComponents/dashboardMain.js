@@ -21,7 +21,7 @@ import { useTranslation } from "react-i18next";
 
 import Timer from "react-compound-timer";
 
-import Banner from "../../assets/images/banner.svg";
+import Banner from "../../assets/images/banner.png";
 
 function DashboardMain() {
   const { user, settings } = useContext(AuthContext);
@@ -449,7 +449,7 @@ function DashboardMain() {
             </div>
           </div>
           <div className="banner_block">
-            <img src={Banner} alt="banner" width="100%" />
+            <img src={Banner} alt="banner" width="100%" height="100%" />
           </div>
         </div>
       </div>
