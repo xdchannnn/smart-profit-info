@@ -4,12 +4,14 @@ import Activation from "../pages/activation";
 import MyTeam from "../pages/myTeam";
 import GeneralTeam from "../pages/generalTeam";
 import Profile from "../pages/profile";
-import Finance from '../pages/finance'
-import FAQ from '../pages/faq'
+import Finance from "../pages/finance";
+import FAQ from "../pages/faq";
 
 import { Fragment, useContext } from "react";
 import AuthContext from "../context/auth.context";
 import { Web3ContextProvider } from "../context/web3.context";
+
+import Modal from "../components/homeComponents/copyrightModal";
 
 const Private = () => {
   const { user } = useContext(AuthContext);
@@ -19,6 +21,7 @@ const Private = () => {
 
   return (
     <Web3ContextProvider>
+      <Modal color="#3B5B91" />
       <Switch>
         <Route exact path="/">
           <Dashboard />
