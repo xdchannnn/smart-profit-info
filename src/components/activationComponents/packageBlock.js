@@ -1,20 +1,10 @@
-import { Fragment, useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import "../../assets/styles/activation.scoped.css";
 import Web3Context from "../../context/web3.context";
 
 function PackageBlock() {
-  const {
-    register,
-    connectMetamask,
-    loading,
-    priceLoading,
-    getPrice,
-  } = useContext(Web3Context);
+  const { register, loading, priceLoading, getPrice } = useContext(Web3Context);
   const [prices, setPrices] = useState([]);
-
-  useEffect(() => {
-    connectMetamask();
-  }, []);
 
   useEffect(() => {
     (async () => {
