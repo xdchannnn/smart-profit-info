@@ -14,18 +14,19 @@ import WalletIcon from "../../assets/images/wallet-icon.svg";
 import TeamIcon from "../../assets/images/team-icon.svg";
 import LostIcon from "../../assets/images/lost-icon.svg";
 
-import { Popover } from 'bootstrap/dist/js/bootstrap.esm.min.js'
+import { Popover } from "bootstrap/dist/js/bootstrap.esm.min.js";
 
 import { useTranslation } from "react-i18next";
 
 function DashboardMain() {
   const { user, settings } = useContext(AuthContext);
   const { t } = useTranslation();
-  
+
   useEffect(() => {
-    Array.from(document.querySelectorAll('button[data-bs-toggle="popover"]'))
-    .forEach(tooltipNode => new Popover(tooltipNode))
-    });
+    Array.from(
+      document.querySelectorAll('button[data-bs-toggle="popover"]')
+    ).forEach((tooltipNode) => new Popover(tooltipNode));
+  });
 
   return (
     <div className="main_block">
@@ -77,7 +78,22 @@ function DashboardMain() {
                 className="partner_input"
                 placeholder={t("dashboard:TOP_DESCRIPTION_HELP")}
               />
-              <a href="#">
+
+              <button
+                style={{ marginBottom: 30, marginLeft: 5 }}
+                className="info_icon"
+                type="button"
+                data-bs-container="body"
+                data-bs-toggle="popover"
+                data-bs-placement="left"
+                data-bs-trigger="hover"
+                title={t("dashboard:TOP_DESCRIPTION_ENTERID_TITLE")}
+                data-bs-content={t("dashboard:TOP_DESCRIPTION_ENTERID")}
+              >
+                <img src={InfoIcon} style={{ width: 15, height: 15 }} />
+              </button>
+
+              <a href="#" style={{ marginLeft: 10 }}>
                 <div className="save_button_block">
                   <div className="save_icon" />
                   <p className="save_text">
@@ -106,8 +122,7 @@ function DashboardMain() {
                 data-bs-placement="left"
                 data-bs-trigger="hover"
                 title="Maxi Bonus"
-                data-bs-content="
-                          Распределяется между участниками, достигшими, или активировавшими статус «Maxi Profit». Позволяет получать доход на первых этапах развития."
+                data-bs-content={t("dashboard:TOP_DESCRIPTION_POPUPWINDOW")}
               >
                 <img src={InfoIcon} />
               </button>
@@ -116,7 +131,9 @@ function DashboardMain() {
                   <img src={BonusBlue} />
                 </div>
                 <div className="item_content">
-                  <p className="item_title">Maxi Bonus:</p>
+                  <p className="item_title">
+                    {t("dashboard:TOP_DESCRIPTION_MAXIBONUS")}
+                  </p>
                   <p className="item_description">
                     TRX: 3 450.15 | USD: 223.97
                   </p>
@@ -139,10 +156,9 @@ function DashboardMain() {
                   data-bs-toggle="popover"
                   data-bs-placement="left"
                   data-bs-trigger="hover"
-                  title="Партнерская прибыль"
-                  data-bs-content="
-                          Это статистика ваших доходов за личное привлечение партнеров в вашу команду."
-                > 
+                  title={t("dashboard:TOP_DESCRIPTION_POPUPWINDOW1_TITLE")}
+                  data-bs-content={t("dashboard:TOP_DESCRIPTION_POPUPWINDOW1")}
+                >
                   <img src={InfoIcon} />
                 </button>
                 <div className="two_item_block">
@@ -182,9 +198,8 @@ function DashboardMain() {
                   data-bs-toggle="popover"
                   data-bs-placement="left"
                   data-bs-trigger="hover"
-                  title="Прибыль с уровней"
-                  data-bs-content="
-                          Это статистика ваших доходов с уровней , от вашей, и общей команды."
+                  title={t("dashboard:TOP_DESCRIPTION_POPUPWINDOW2_TITLE")}
+                  data-bs-content={t("dashboard:TOP_DESCRIPTION_POPUPWINDOW2")}
                 >
                   <img src={InfoIcon} />
                 </button>
@@ -227,9 +242,8 @@ function DashboardMain() {
                   data-bs-toggle="popover"
                   data-bs-placement="left"
                   data-bs-trigger="hover"
-                  title="Моя команда"
-                  data-bs-content="
-                         Количество  привлеченных вами партнеров. А  так же статистика общей команды."
+                  title={t("dashboard:TOP_DESCRIPTION_POPUPWINDOW3_TITLE")}
+                  data-bs-content={t("dashboard:TOP_DESCRIPTION_POPUPWINDOW3")}
                 >
                   <img src={InfoIcon} />
                 </button>
@@ -268,10 +282,9 @@ function DashboardMain() {
                   data-bs-container="body"
                   data-bs-toggle="popover"
                   data-bs-placement="left"
-                  title="Упущенная прибыль"
+                  title={t("dashboard:TOP_DESCRIPTION_POPUPWINDOW4_TITLE")}
                   data-bs-trigger="hover"
-                  data-bs-content="
-                          Статистика упущенной прибыли с уровней, за счет не вовремя выполненной квалификации."
+                  data-bs-content={t("dashboard:TOP_DESCRIPTION_POPUPWINDOW4")}
                 >
                   <img src={InfoIcon} />
                 </button>
