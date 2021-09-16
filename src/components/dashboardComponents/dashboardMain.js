@@ -171,8 +171,8 @@ function DashboardMain() {
                         {t("dashboard:TOP_DESCRIPTION_AFFILIATEPROFIT")}
                       </p>
                       <p className="item_description">
-                        BNB: {user.partner_income.BNB} | USD:{" "}
-                        {user.partner_income.USD}
+                        BNB: {parseFloat(user.partner_income.BNB).toFixed(4)} |
+                        USD: {user.partner_income.USD}
                       </p>
                     </div>
                   </div>
@@ -213,8 +213,8 @@ function DashboardMain() {
                         {t("dashboard:TOP_DESCRIPTION_PROFITLEVELS")}
                       </p>
                       <p className="item_description">
-                        BNB: {user.level_income.BNB} | USD:{" "}
-                        {user.level_income.USD}
+                        BNB: {parseFloat(user.level_income.BNB).toFixed(4)} |
+                        USD: {user.level_income.USD}
                       </p>
                     </div>
                   </div>
