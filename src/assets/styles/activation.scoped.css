@@ -18,18 +18,20 @@
 
 .packages_block {
   margin-top: 50px;
-  justify-content: center;
   display: flex;
-  align-items: center;
+  justify-content: center;
+  align-items: stretch;
 }
 
 .package_item {
-  position: relative;
   width: 100%;
-  height: auto;
   border-radius: 10px;
   background-color: rgba(57, 64, 74, 0.5);
   backdrop-filter: blur(20px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
 }
 
 .package_item:nth-child(2) {
@@ -70,6 +72,26 @@
   background-image: url(../images/angle-bottom-green.svg);
   background-size: 120px 120px;
   background-repeat: no-repeat;
+}
+
+.package_price {
+  position: absolute;
+  bottom: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.package_price > img {
+  width: 120px;
+}
+
+.package_price > p {
+  position: absolute;
+  margin: 0px;
+  font-size: 20px;
+  font-weight: 700;
 }
 
 .angle_top_yellow {
@@ -140,7 +162,7 @@
 .package_blue_text,
 .package_green_text,
 .package_yellow_text {
-  margin-bottom: 104px;
+  margin-bottom: 50px;
   font-size: 26px;
   color: #fff;
   line-height: 36px;
@@ -170,6 +192,7 @@
   transition: 0.1s;
   transition-duration: 0.1s;
   background-color: transparent;
+  margin: 0 100px;
 }
 
 .package_item_button:hover {
@@ -186,6 +209,7 @@
   transition: 0.1s;
   transition-duration: 0.1s;
   background-color: transparent;
+  margin: 0 100px;
 }
 
 .package_green_button:hover {
@@ -202,6 +226,7 @@
   transition: 0.1s;
   transition-duration: 0.1s;
   background-color: transparent;
+  margin: 0 100px;
 }
 
 .package_yellow_button:hover {
@@ -322,7 +347,8 @@
   .package_blue_title,
   .package_green_title,
   .package_yellow_title {
-    font-size: 22px;
+    font-size: 18px;
+    margin-top: 10px;
   }
 
   .package_blue_text,
@@ -345,6 +371,12 @@
 }
 
 @media (max-width: 992px) {
+  .package_item_button,
+  .package_green_button,
+  .package_yellow_button {
+    margin: 0 200px;
+  }
+
   .packages_block {
     display: block;
   }
@@ -420,5 +452,11 @@
   .package_green_title,
   .package_yellow_title {
     font-size: 20px;
+  }
+
+  .package_item_button,
+  .package_green_button,
+  .package_yellow_button {
+    margin: 0 20px;
   }
 }
