@@ -1443,6 +1443,10 @@ hr {
 }
 
 @media (max-width: 1390px) {
+  .items_one_row {
+    margin-top: 20px;
+  }
+
   .form_logo_block {
     width: 150px;
     height: 150px;
@@ -1522,9 +1526,17 @@ hr {
   .work_content {
     padding: 100px 80px;
   }
+
+  .items_one_row {
+    margin-top: 70px;
+  }
 }
 
 @media (max-width: 992px) {
+  .items_one_row {
+    margin-top: 0;
+  }
+
   .fade-item {
     margin-left: 80px;
     margin-right: 80px;
