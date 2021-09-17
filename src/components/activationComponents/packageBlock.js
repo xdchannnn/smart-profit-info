@@ -24,10 +24,6 @@ function PackageBlock() {
 
   const handleRegister = (index) => prices[index] && register(prices[index]);
 
-  useEffect(() => {
-    console.log(loading);
-  }, [loading]);
-
   return (
     <div className="package_block">
       <div className="package_top_block">

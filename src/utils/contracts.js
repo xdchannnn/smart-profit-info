@@ -12,7 +12,7 @@ export const contract = new web3.eth.Contract(
   contractAbi.address
 );
 
-export const connectMetamask = async () =>
+export const connectWallet = async () =>
   await new Promise((resolve, reject) => {
     if (window.ethereum) {
       const metamask = new Web3(window.ethereum);
@@ -22,18 +22,41 @@ export const connectMetamask = async () =>
           if (metamask) {
             if (window.ethereum.selectedAddress !== undefined) {
               resolve({
-                metamask,
-                userAddress: window.ethereum.selectedAddress,
+                wallet: metamask,
                 contract: new metamask.eth.Contract(
                   contractAbi.abi,
-                  contractAbi.address
+                  contractAbi.address,
+                  { from: window.ethereum.selectedAddress }
                 ),
               });
             }
           }
         })
         .catch((e) => reject(e));
-    }
+    } else if (window.BinanceChain) {
+      const binanceChain = new Web3(window.BinanceChain);
+      window.BinanceChain.enable()
+        .then(() => {
+          if (binanceChain) {
+            window.BinanceChain.request({ method: "eth_accounts" }).then(
+              (accounts) => {
+                if (accounts.length)
+                  resolve({
+                    wallet: binanceChain,
+                    contract: new binanceChain.eth.Contract(
+                      contractAbi.abi,
+                      contractAbi.address,
+                      {
+                        from: accounts[0],
+                      }
+                    ),
+                  });
+              }
+            );
+          }
+        })
+        .catch((e) => reject(e));
+    } else throw new Error("Нет кошелька!");
   });
 
 // if (window.ethereum) {

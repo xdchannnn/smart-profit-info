@@ -2,7 +2,7 @@ import { useCallback, useContext, useState } from "react";
 import { toast } from "react-toastify";
 import AuthContext from "../../../context/auth.context";
 import useFetch from "../../useFetch.hook";
-import { connectMetamask } from "../../../utils/contracts";
+import { connectWallet } from "../../../utils/contracts";
 
 const useRegister = () => {
   const { settings, token, user } = useContext(AuthContext);
@@ -13,21 +13,21 @@ const useRegister = () => {
   const register = useCallback((value) => {
     setLoading(true);
 
-    connectMetamask()
-      .then(({ metamask, userAddress, contract }) => {
-        firstRegistration(metamask, userAddress, contract, value);
+    connectWallet()
+      .then(({ wallet, contract }) => {
+        firstRegistration(wallet, contract, value);
       })
       .catch((e) => {
+        setLoading(false);
         toast(e.message, { type: "error" });
       });
   }, []);
 
-  const firstRegistration = (metamask, userAddress, contract, value) =>
+  const firstRegistration = (wallet, contract, value) =>
     contract.methods
       ._register(7)
       .send({
-        from: userAddress,
-        value: metamask.utils.toWei(String(value)),
+        value: wallet.utils.toWei(String(value)),
       })
       .on("receipt", (receipt) => {
         request(

@@ -5,7 +5,6 @@ import useRegister from "../hooks/web3/userActions/register.hook";
 const Web3Context = createContext({
   register: () => {},
   loading: false,
-  connectMetamask: () => {},
   priceLoading: false,
   getPrice: async () => {},
 });
