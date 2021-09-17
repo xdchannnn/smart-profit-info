@@ -1,25 +1,38 @@
-import '../../assets/styles/sponsor.scoped.css'
+import { useTranslation } from "react-i18next";
+import "../../assets/styles/sponsor.scoped.css";
+
+import Solution from "../../assets/images/solution.svg";
+import PhotoUser from "../../assets/images/photo-user.jpg";
+import Skype from "../../assets/images/skype.svg";
+import Telegram from "../../assets/images/telegram.svg";
+import Email from "../../assets/images/email.svg";
+import WhatsApp from "../../assets/images/whatsapp.svg";
 
 export default function Screen() {
-    
-    return(
+  const { t } = useTranslation();
+
+  return (
     <div className="screen">
       <div className="content">
         <div className="top_block">
-          <img src="assets/images/solution.svg" />
-          <p className="title">Будьте на связи со спонсором</p>
+          <img src={Solution} alt="solution" />
+          <p className="title" style={{ marginBottom: 0 }}>
+            {t("sponsor:TOP_TITLE")}
+          </p>
         </div>
         <div className="block">
           <div className="img_block">
-            <img src="assets/images/photo-user.jpg" className="img" />
+            <img src={PhotoUser} alt="photo-user" className="img" />
           </div>
           <div className="information">
             <p className="username">Иван Иванов</p>
             <div className="contacts">
               <div className="contact_item">
-                <p className="contact_item_text">Skype</p>
+                <p className="contact_item_text">
+                  {t("sponsor:TOP_DESCRIPTION_SKYPE1")}
+                </p>
                 <div className="contact_input_block">
-                  <img src="assets/images/skype.svg" width={56} height={56} />
+                  <img src={Skype} alt="skype" width={56} height={56} />
                   <input
                     type="text"
                     className="  contact_input"
@@ -29,9 +42,11 @@ export default function Screen() {
                 </div>
               </div>
               <div className="contact_item">
-                <p className="contact_item_text">Telegram</p>
+                <p className="contact_item_text">
+                  {t("sponsor:TOP_DESCRIPTION_TELEGRAM1")}
+                </p>
                 <div className="contact_input_block">
-                  <img src="assets/images/telegram.svg" width={56} height={56} />
+                  <img src={Telegram} alt="telegram" width={56} height={56} />
                   <input
                     type="text"
                     className="  contact_input"
@@ -41,9 +56,11 @@ export default function Screen() {
                 </div>
               </div>
               <div className="contact_item">
-                <p className="contact_item_text">E-mail</p>
+                <p className="contact_item_text">
+                  {t("sponsor:TOP_DESCRIPTION_EMAIL1")}
+                </p>
                 <div className="contact_input_block">
-                  <img src="assets/images/email.svg" width={56} height={56} />
+                  <img src={Email} alt="email" width={56} height={56} />
                   <input
                     type="text"
                     className="  contact_input"
@@ -53,9 +70,11 @@ export default function Screen() {
                 </div>
               </div>
               <div className="contact_item">
-                <p className="contact_item_text">Whatsapp</p>
+                <p className="contact_item_text">
+                  {t("sponsor:TOP_DESCRIPTION_PHONE1")}
+                </p>
                 <div className="contact_input_block">
-                  <img src="assets/images/whatsapp.svg" width={56} height={56} />
+                  <img src={WhatsApp} alt="whatsapp" width={56} height={56} />
                   <input
                     type="text"
                     className="  contact_input"
@@ -69,5 +88,5 @@ export default function Screen() {
         </div>
       </div>
     </div>
-  )
-  }
+  );
+}
