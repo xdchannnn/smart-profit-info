@@ -6,6 +6,7 @@ import GeneralTeam from "../pages/generalTeam";
 import Profile from "../pages/profile";
 import Finance from '../pages/finance'
 import FAQ from '../pages/faq'
+import Sponsor from "../pages/sponsor";
 
 import { Fragment, useContext } from "react";
 import AuthContext from "../context/auth.context";
@@ -40,6 +41,9 @@ const Private = () => {
         </Route>
         <Route exact path="/faq">
           <FAQ />
+        </Route>
+        <Route exact path="/sponsor">
+          <Sponsor />
         </Route>
         <Route render={() => <Redirect to="/" />} />
       </Switch>
