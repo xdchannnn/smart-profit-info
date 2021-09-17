@@ -23,6 +23,8 @@ import toastEN from "../translations/en/toastEN.json";
 import toastRU from "../translations/ru/toastRU.json";
 import activationEN from "../translations/en/activationEN.json";
 import activationRU from "../translations/ru/activationRU.json";
+import profileEN from "../translations/en/profileEN.json";
+import profileRU from "../translations/ru/profileRU.json";
 
 const resources = {
   en: {
@@ -37,6 +39,7 @@ const resources = {
     faq: faqEN,
     toast: toastEN,
     activation: activationEN,
+    profile: profileEN,
   },
   ru: {
     landing: landingTranslationRU,
@@ -50,6 +53,7 @@ const resources = {
     faq: faqRU,
     toast: toastRU,
     activation: activationRU,
+    profile: profileRU,
   },
 };
 

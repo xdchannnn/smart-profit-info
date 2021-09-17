@@ -1,0 +1,14 @@
+{
+  "TOP_TITLE": "Profile settings",
+  "TOP_DESCRIPTION_NAMEANDSURNAME": "Name and surname",
+  "TOP_DESCRIPTION_COUNTRY": "Country",
+  "TOP_DESCRIPTION_NEWPASSWORD": "New password",
+  "TOP_DESCRIPTION_EMAIL": "E-mail",
+  "TOP_DESCRIPTION_TELEGRAM": "Telegram",
+  "TOP_DESCRIPTION_REPEATNEWPASSWORD": "Repeat new password",
+  "TOP_DESCRIPTION_SKYPE": "Skype",
+  "TOP_DESCRIPTION_PHONE": "Phone",
+  "TOP_DESCRIPTION_EXISTINGPASSWORD": "Existing password",
+  "TOP_DESCRIPTION_CHANGE": "Change",
+  "TOP_DESCRIPTION_SAVE": "Save"
+}

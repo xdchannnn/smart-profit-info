@@ -7,8 +7,11 @@ import PhotoUser from "../../assets/images/photo-user.jpg";
 import "../../assets/styles/profile.scoped.css";
 import useFetch from "../../hooks/useFetch.hook";
 import Preloader from "../loaders/Preloader";
+import { useTranslation } from "react-i18next";
 
 function ProfileScreen() {
+  const { t } = useTranslation();
+
   const fetch = useFetch();
   const { user, settings, token, loading } = useContext(AuthContext);
 
@@ -72,7 +75,7 @@ function ProfileScreen() {
         <div className="profile_top_block">
           <img src={SettingsProfile} alt="settings-profile" />
           <p className="profile_top_text" style={{ marginBottom: 0 }}>
-            Настройки профиля
+            {t("profile:TOP_TITLE")}
           </p>
         </div>
         <div className="profile_user_block">
@@ -80,14 +83,18 @@ function ProfileScreen() {
             <div className="profile_img_block">
               <img src={PhotoUser} className="profile_img" />
               <p>
-                <button className="profile_img_edit">Изменить</button>
+                <button className="profile_img_edit">
+                  {t("profile:TOP_DESCRIPTION_CHANGE")}
+                </button>
               </p>
             </div>
             <div className="profile_user_items">
               <div className="profile_items_content">
                 <div className="profile_user_row">
                   <div className="profile_user_item">
-                    <p className="profile_user_text">Имя и Фамилия</p>
+                    <p className="profile_user_text">
+                      {t("profile:TOP_DESCRIPTION_NAMEANDSURNAME")}
+                    </p>
                     <input
                       type="text"
                       className="profile_user_input"
@@ -97,7 +104,9 @@ function ProfileScreen() {
                     />
                   </div>
                   <div className="profile_user_item">
-                    <p className="profile_user_text">Страна</p>
+                    <p className="profile_user_text">
+                      {t("profile:TOP_DESCRIPTION_COUNTRY")}
+                    </p>
                     <input
                       type="text"
                       className="profile_user_input"
@@ -107,7 +116,9 @@ function ProfileScreen() {
                     />
                   </div>
                   <div className="profile_user_item">
-                    <p className="profile_user_text">Новый пароль</p>
+                    <p className="profile_user_text">
+                      {t("profile:TOP_DESCRIPTION_NEWPASSWORD")}
+                    </p>
                     <input
                       type="password"
                       className="profile_user_input"
@@ -119,7 +130,9 @@ function ProfileScreen() {
                 </div>
                 <div className="profile_user_row">
                   <div className="profile_user_item">
-                    <p className="profile_user_text">E-mail</p>
+                    <p className="profile_user_text">
+                      {t("profile:TOP_DESCRIPTION_EMAIL")}
+                    </p>
                     <input
                       type="text"
                       className="profile_user_input"
@@ -129,7 +142,9 @@ function ProfileScreen() {
                     />
                   </div>
                   <div className="profile_user_item">
-                    <p className="profile_user_text">Telegram</p>
+                    <p className="profile_user_text">
+                      {t("profile:TOP_DESCRIPTION_TELEGRAM")}
+                    </p>
                     <input
                       type="text"
                       className="profile_user_input"
@@ -139,7 +154,9 @@ function ProfileScreen() {
                     />
                   </div>
                   <div className="profile_user_item">
-                    <p className="profile_user_text">Повторите новый пароль</p>
+                    <p className="profile_user_text">
+                      {t("profile:TOP_DESCRIPTION_REPEATNEWPASSWORD")}
+                    </p>
                     <input
                       type="password"
                       className="profile_user_input"
@@ -151,7 +168,9 @@ function ProfileScreen() {
                 </div>
                 <div className="profile_user_row">
                   <div className="profile_user_item">
-                    <p className="profile_user_text">Skype</p>
+                    <p className="profile_user_text">
+                      {t("profile:TOP_DESCRIPTION_SKYPE")}
+                    </p>
                     <input
                       type="text"
                       className="profile_user_input"
@@ -161,7 +180,9 @@ function ProfileScreen() {
                     />
                   </div>
                   <div className="profile_user_item">
-                    <p className="profile_user_text">Телефон</p>
+                    <p className="profile_user_text">
+                      {t("profile:TOP_DESCRIPTION_PHONE")}
+                    </p>
                     <input
                       type="text"
                       className="profile_user_input"
@@ -171,7 +192,9 @@ function ProfileScreen() {
                     />
                   </div>
                   <div className="profile_user_item">
-                    <p className="profile_user_text">Существующий пароль</p>
+                    <p className="profile_user_text">
+                      {t("profile:TOP_DESCRIPTION_EXISTINGPASSWORD")}
+                    </p>
                     <input
                       type="text"
                       className="profile_user_input"
@@ -188,7 +211,7 @@ function ProfileScreen() {
                     disabled={fetch.loading}
                     className="profile_user_button"
                   >
-                    Сохранить
+                    {t("profile:TOP_DESCRIPTION_SAVE")}
                   </button>
                 </div>
               </div>
