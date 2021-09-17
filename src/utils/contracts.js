@@ -1,7 +1,14 @@
 import Web3 from "web3";
+import WalletConnectProvider from "@walletconnect/web3-provider";
 import contractAbi from "./contractAbi";
 
 export const TEST_BINANCE = "https://data-seed-prebsc-1-s1.binance.org:8545/";
+
+const provider = new WalletConnectProvider({
+  rpc: {
+    1: TEST_BINANCE,
+  },
+});
 
 const web3 = new Web3(
   Web3.givenProvider || new Web3.providers.HttpProvider(TEST_BINANCE)
@@ -56,7 +63,25 @@ export const connectWallet = async () =>
           }
         })
         .catch((e) => reject(e));
-    } else throw new Error("Нет кошелька!");
+    } else {
+      provider
+        .enable()
+        .then(() => {
+          const trustWallet = new Web3(provider);
+          if (provider.accounts.length) {
+            console.log("connected");
+            resolve({
+              wallet: trustWallet,
+              contract: new trustWallet.eth.Contract(
+                contractAbi.abi,
+                contractAbi.address,
+                { from: provider.accounts[0] }
+              ),
+            });
+          }
+        })
+        .catch((e) => reject(e));
+    }
   });
 
 // if (window.ethereum) {
