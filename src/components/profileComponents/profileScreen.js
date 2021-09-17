@@ -98,9 +98,20 @@ function ProfileScreen() {
                     onChange={handleChange}
                   />
                 </div>
+                <div className="profile_user_item">
+                  <p className="profile_user_text">Новый пароль</p>
+                  <input
+                    type="password"
+                    className="profile_user_input"
+                    name="new_password"
+                    value={form.new_password}
+                    onChange={handleChange}
+                  />
+                </div>
+               
               </div>
               <div className="profile_user_row">
-                <div className="profile_user_item">
+              <div className="profile_user_item">
                   <p className="profile_user_text">E-mail</p>
                   <input
                     type="text"
@@ -119,28 +130,7 @@ function ProfileScreen() {
                     value={form.telegram}
                     onChange={handleChange}
                   />
-                </div>
-                <div className="profile_user_item">
-                  <p className="profile_user_text">Существующий пароль</p>
-                  <input
-                    type="text"
-                    className="profile_user_input"
-                    name="old_password"
-                    value={form.old_password}
-                    onChange={handleChange}
-                    disabled
-                  />
-                </div>
-                <div className="profile_user_item">
-                  <p className="profile_user_text">Новый пароль</p>
-                  <input
-                    type="password"
-                    className="profile_user_input"
-                    name="new_password"
-                    value={form.new_password}
-                    onChange={handleChange}
-                  />
-                </div>
+                </div>      
                 <div className="profile_user_item">
                   <p className="profile_user_text">Повторите новый пароль</p>
                   <input
@@ -153,6 +143,7 @@ function ProfileScreen() {
                 </div>
               </div>
               <div className="profile_user_row">
+          
                 <div className="profile_user_item">
                   <p className="profile_user_text">Skype</p>
                   <input
@@ -164,13 +155,24 @@ function ProfileScreen() {
                   />
                 </div>
                 <div className="profile_user_item">
-                  <p className="profile_user_text">WhatsApp</p>
+                  <p className="profile_user_text">Телефон</p>
                   <input
                     type="text"
                     className="profile_user_input"
                     name="phone"
                     value={form.phone}
                     onChange={handleChange}
+                  />
+                </div>
+                <div className="profile_user_item">
+                  <p className="profile_user_text">Существующий пароль</p>
+                  <input
+                    type="text"
+                    className="profile_user_input"
+                    name="old_password"
+                    value={form.old_password}
+                    onChange={handleChange}
+                    disabled
                   />
                 </div>
               </div>
