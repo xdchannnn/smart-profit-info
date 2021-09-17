@@ -1,7 +1,10 @@
-import '../../assets/styles/faq.scoped.css'
+import "../../assets/styles/faq.scoped.css";
+import { useTranslation } from "react-i18next";
 
 export default function FinanceQuestions() {
-    return(
+  const { t } = useTranslation();
+
+  return (
     <div id="FinanceQuestions" className="tabcontent">
       <div className="accordion" id="accordionExample2">
         <div className="accordion-item">
@@ -14,7 +17,7 @@ export default function FinanceQuestions() {
               aria-expanded="false"
               aria-controls="collapseFifteen"
             >
-              КАК МНЕ ПРОВЕРИТЬ СВОЙ БАЛАНС?
+              {t("faq:TOP_DESCRIPTION_CHECKMYBALANCE")}
             </button>
           </h2>
           <div
@@ -24,13 +27,7 @@ export default function FinanceQuestions() {
             data-bs-parent="#accordionExample2"
           >
             <div className="accordion-body">
-              <p>
-                Вы можете проверить статистику вашего баланса в любое время, войдя
-                в свою учетную запись, но помните, это всего лишь статистика
-                заработанных вами денег в нашей системе. Все средства
-                автоматически отправляются на счета частников согласно условиям
-                смарт-контракта.
-              </p>
+              <p>{t("faq:TOP_DESCRIPTION_FAQ14")}</p>
             </div>
           </div>
         </div>
@@ -44,7 +41,7 @@ export default function FinanceQuestions() {
               aria-expanded="false"
               aria-controls="collapseSixteen"
             >
-              ЕСТЬ ЛИ КОМИССИЯ ЗА УЧАСТИЕ В SMART PROFIT?
+              {t("faq:TOP_DESCRIPTION_ISTHEREACOMMISSION")}
             </button>
           </h2>
           <div
@@ -54,10 +51,7 @@ export default function FinanceQuestions() {
             data-bs-parent="#accordionExample2"
           >
             <div className="accordion-body">
-              <p>
-                Нет, в системе не предусмотрена комиссия. Участник оплачивает
-                только комиссию в сети TRON во время активации учетной записи.
-              </p>
+              <p>{t("faq:TOP_DESCRIPTION_FAQ15")}</p>
             </div>
           </div>
         </div>
@@ -71,7 +65,7 @@ export default function FinanceQuestions() {
               aria-expanded="false"
               aria-controls="collapseSeventeen"
             >
-              КАК ПОПОЛНИТЬ КОШЕЛЕК TRON?
+              {t("faq:TOP_DESCRIPTION_UPMYBNBWALLET")}
             </button>
           </h2>
           <div
@@ -82,26 +76,21 @@ export default function FinanceQuestions() {
           >
             <div className="accordion-body">
               <p>
-                С помощью обменников (рекомендуем):
+                {t("faq:TOP_DESCRIPTION_FAQ16_TITLE")}
                 <br />
-                1) Зайдите на сайт{" "}
-                <a href="https://bestchange.ru" target="_blank">
-                  https://bestchange.ru
+                {t("faq:TOP_DESCRIPTION_FAQ16_1")}{" "}
+                <a href={t("faq:TOP_DESCRIPTION_FAQ16_1_SITE")} target="_blank">
+                  {t("faq:TOP_DESCRIPTION_FAQ16_1_SITE")}
                 </a>{" "}
-                Это мониторинг проверенных обменников с самыми выгодными курсами
-                обмена самых популярных платежных систем и банков большинства
-                стран.
+                {t("faq:TOP_DESCRIPTION_FAQ16_1_DESC")}
                 <br />
-                2) Выберите подходящую платежную систему, с которой вы хотите
-                совершить обмен на TRON.
+                {t("faq:TOP_DESCRIPTION_FAQ16_2")}
                 <br />
-                3) Выберите подходящий обменник с самым выгодным курсом.
+                {t("faq:TOP_DESCRIPTION_FAQ16_3")}
                 <br />
-                4) Перейдите на сайт выбранного обменника и следуйте простой
-                инструкции. Обмен как правило автоматический и совершается
-                моментально.
+                {t("faq:TOP_DESCRIPTION_FAQ16_4")}
                 <br />
-                5) Убедитесь, что на Ваш кошелек TRON поступили средства.
+                {t("faq:TOP_DESCRIPTION_FAQ16_5")}
               </p>
             </div>
           </div>
@@ -116,7 +105,7 @@ export default function FinanceQuestions() {
               aria-expanded="false"
               aria-controls="collapseEighteen"
             >
-              ПОЧЕМУ ТРАНЗАКЦИЯ МОЖЕТ БЫТЬ ОТКЛОНЕНА?
+              {t("faq:TOP_DESCRIPTION_TRANSACTIONBEREJECTED")}
             </button>
           </h2>
           <div
@@ -126,10 +115,7 @@ export default function FinanceQuestions() {
             data-bs-parent="#accordionExample2"
           >
             <div className="accordion-body">
-              <p>
-                Наиболее вероятная причина – это маленькое значение энергии.
-                Увеличьте количество энергии в кошельке TRON.
-              </p>
+              <p>{t("faq:TOP_DESCRIPTION_FAQ17")}</p>
             </div>
           </div>
         </div>
@@ -143,7 +129,7 @@ export default function FinanceQuestions() {
               aria-expanded="false"
               aria-controls="collapseNineteen"
             >
-              У МЕНЯ ОСТАЛИСЬ ВОПРОСЫ, КУДА МНЕ ОБРАТИТЬСЯ?
+              {t("faq:TOP_DESCRIPTION_ISTILLHAVEQUESTIONS")}
             </button>
           </h2>
           <div
@@ -153,14 +139,11 @@ export default function FinanceQuestions() {
             data-bs-parent="#accordionExample2"
           >
             <div className="accordion-body">
-              <p>
-                Если вы не нашли ответа на вопрос в списке часто задаваемых,
-                напишите в службу поддержки.
-              </p>
+              <p>{t("faq:TOP_DESCRIPTION_FAQ18")}</p>
             </div>
           </div>
         </div>
       </div>
     </div>
-  )
-  }
+  );
+}

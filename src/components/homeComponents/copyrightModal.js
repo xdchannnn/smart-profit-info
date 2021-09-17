@@ -1,8 +1,7 @@
 import "../../assets/styles/styles.scoped.css";
 import { useTranslation } from "react-i18next";
-import { useEffect, useState } from "react";
 
-function CopyrightModal() {
+function CopyrightModal({ color = "#f2ca6b" }) {
   const { t } = useTranslation();
 
   return (
@@ -15,7 +14,7 @@ function CopyrightModal() {
     >
       <div className="modal-dialog modal-dialog-scrollable">
         <div className="modal-content">
-          <div className="modal-header" style={{ backgroundColor: "#f2ca6b" }}>
+          <div className="modal-header" style={{ backgroundColor: color }}>
             <h5 className="modal-title" id="copyright_modalLabel">
               {t("footer:TOP_DESCRIPTION_RULESANDAGREEMENTS")}
             </h5>

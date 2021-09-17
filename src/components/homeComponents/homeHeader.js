@@ -31,9 +31,9 @@ function HomeHeader() {
         </a>
         <ul className="menu_list">
           <li className="nav-item">
-            <a className="nav-link" href="#">
+            <Link className="nav-link" to="/faq">
               FAQ
-            </a>
+            </Link>
           </li>
           <li className="nav-item-one">
             <div className="btn-group">

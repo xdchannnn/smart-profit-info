@@ -54,7 +54,6 @@ header {
   width: 100%;
   position: fixed;
   background-color: rgba(57, 64, 74, 0.5);
-  backdrop-filter: blur(20px);
   height: 130px;
   z-index: 2050;
 }
@@ -326,15 +325,8 @@ header {
   font-size: 16px;
   color: #54cdef;
   font-weight: 700;
-  text-decoration: underline;
   transition-duration: 0.1s;
   transition: 0.1s;
-}
-
-.status_link:hover {
-  opacity: 0.5;
-  color: #54cdef;
-  text-decoration: underline;
 }
 
 .profile_link_block {
@@ -395,6 +387,14 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.partner_info {
+  display: block;
+}
+
+.partner_info_mob {
+  display: none;
 }
 
 .partner_input {
@@ -686,8 +686,6 @@ header {
   margin-top: 22px;
   width: 100%;
   height: 180px;
-  background-color: rgba(57, 64, 74, 0.5);
-  backdrop-filter: blur(20px);
   border-radius: 10px;
   overflow: hidden;
 }
@@ -1074,6 +1072,14 @@ footer {
 }
 
 @media (max-width: 680px) {
+  .partner_info {
+    display: none;
+  }
+
+  .partner_info_mob {
+    display: block;
+  }
+
   .partner_block {
     display: block;
   }

@@ -1,15 +1,10 @@
 import { useCallback, useState } from "react";
-import Web3 from "web3";
-import { TEST_BINANCE, SmartProfit } from "../../utils/contracts";
 import { toast } from "react-toastify";
 
-const web3 = new Web3(
-  Web3.givenProvider || new Web3.providers.HttpProvider(TEST_BINANCE)
-);
+import { contract } from "../../utils/contracts";
 
 const useContract = () => {
   const [loading, setLoading] = useState(false);
-  const contract = new web3.eth.Contract(SmartProfit.abi, SmartProfit.address);
 
   const getPrice = useCallback(async (place) => {
     setLoading(true);
