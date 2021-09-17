@@ -6,10 +6,11 @@ import PhotoUser from "../../assets/images/photo-user.jpg";
 
 import "../../assets/styles/profile.scoped.css";
 import useFetch from "../../hooks/useFetch.hook";
+import Preloader from "../loaders/Preloader";
 
 function ProfileScreen() {
-  const { request, loading, error } = useFetch();
-  const { user, settings, token } = useContext(AuthContext);
+  const fetch = useFetch();
+  const { user, settings, token, loading } = useContext(AuthContext);
 
   const [form, setForm] = useState({
     full_name: "",
@@ -53,7 +54,7 @@ function ProfileScreen() {
     for (let [key, value] of formData.entries())
       console.log(key + ": " + value);
 
-    const result = await request(
+    const result = await fetch.request(
       "/settings",
       "POST",
       { formData },
@@ -65,134 +66,137 @@ function ProfileScreen() {
   };
 
   return (
-    <div className="profile_screen">
-      <div className="profile_top_block">
-        <img src={SettingsProfile} alt="settings-profile" />
-        <p className="profile_top_text" style={{ marginBottom: 0 }}>
-          Настройки профиля
-        </p>
-      </div>
-      <div className="profile_user_block">
-        <div className="profile_user_content">
-          <div className="profile_img_block">
-            <img src={PhotoUser} className="profile_img" />
-            <p>
-              <button className="profile_img_edit">Изменить</button>
-            </p>
-          </div>
-          <div className="profile_user_items">
-            <div className="profile_items_content">
-              <div className="profile_user_row">
-                <div className="profile_user_item">
-                  <p className="profile_user_text">Имя и Фамилия</p>
-                  <input
-                    type="text"
-                    className="profile_user_input"
-                    name="full_name"
-                    value={form.full_name}
-                    onChange={handleChange}
-                  />
+    <>
+      {loading && <Preloader />}
+      <div className="profile_screen">
+        <div className="profile_top_block">
+          <img src={SettingsProfile} alt="settings-profile" />
+          <p className="profile_top_text" style={{ marginBottom: 0 }}>
+            Настройки профиля
+          </p>
+        </div>
+        <div className="profile_user_block">
+          <div className="profile_user_content">
+            <div className="profile_img_block">
+              <img src={PhotoUser} className="profile_img" />
+              <p>
+                <button className="profile_img_edit">Изменить</button>
+              </p>
+            </div>
+            <div className="profile_user_items">
+              <div className="profile_items_content">
+                <div className="profile_user_row">
+                  <div className="profile_user_item">
+                    <p className="profile_user_text">Имя и Фамилия</p>
+                    <input
+                      type="text"
+                      className="profile_user_input"
+                      name="full_name"
+                      value={form.full_name}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div className="profile_user_item">
+                    <p className="profile_user_text">Страна</p>
+                    <input
+                      type="text"
+                      className="profile_user_input"
+                      name="country"
+                      value={form.country}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div className="profile_user_item">
+                    <p className="profile_user_text">Новый пароль</p>
+                    <input
+                      type="password"
+                      className="profile_user_input"
+                      name="new_password"
+                      value={form.new_password}
+                      onChange={handleChange}
+                    />
+                  </div>
                 </div>
-                <div className="profile_user_item">
-                  <p className="profile_user_text">Страна</p>
-                  <input
-                    type="text"
-                    className="profile_user_input"
-                    name="country"
-                    value={form.country}
-                    onChange={handleChange}
-                  />
+                <div className="profile_user_row">
+                  <div className="profile_user_item">
+                    <p className="profile_user_text">E-mail</p>
+                    <input
+                      type="text"
+                      className="profile_user_input"
+                      name="email"
+                      value={form.email}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div className="profile_user_item">
+                    <p className="profile_user_text">Telegram</p>
+                    <input
+                      type="text"
+                      className="profile_user_input"
+                      name="telegram"
+                      value={form.telegram}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div className="profile_user_item">
+                    <p className="profile_user_text">Повторите новый пароль</p>
+                    <input
+                      type="password"
+                      className="profile_user_input"
+                      name="repeat_password"
+                      value={form.repeat_password}
+                      onChange={handleChange}
+                    />
+                  </div>
                 </div>
-                <div className="profile_user_item">
-                  <p className="profile_user_text">Новый пароль</p>
-                  <input
-                    type="password"
-                    className="profile_user_input"
-                    name="new_password"
-                    value={form.new_password}
-                    onChange={handleChange}
-                  />
+                <div className="profile_user_row">
+                  <div className="profile_user_item">
+                    <p className="profile_user_text">Skype</p>
+                    <input
+                      type="text"
+                      className="profile_user_input"
+                      name="skype"
+                      value={form.skype}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div className="profile_user_item">
+                    <p className="profile_user_text">Телефон</p>
+                    <input
+                      type="text"
+                      className="profile_user_input"
+                      name="phone"
+                      value={form.phone}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div className="profile_user_item">
+                    <p className="profile_user_text">Существующий пароль</p>
+                    <input
+                      type="text"
+                      className="profile_user_input"
+                      name="old_password"
+                      value={form.old_password}
+                      onChange={handleChange}
+                      disabled
+                    />
+                  </div>
                 </div>
-              </div>
-              <div className="profile_user_row">
-                <div className="profile_user_item">
-                  <p className="profile_user_text">E-mail</p>
-                  <input
-                    type="text"
-                    className="profile_user_input"
-                    name="email"
-                    value={form.email}
-                    onChange={handleChange}
-                  />
+                <div className="profile_button_block">
+                  <button
+                    onClick={handleSave}
+                    disabled={fetch.loading}
+                    className="profile_user_button"
+                  >
+                    Сохранить
+                  </button>
                 </div>
-                <div className="profile_user_item">
-                  <p className="profile_user_text">Telegram</p>
-                  <input
-                    type="text"
-                    className="profile_user_input"
-                    name="telegram"
-                    value={form.telegram}
-                    onChange={handleChange}
-                  />
-                </div>
-                <div className="profile_user_item">
-                  <p className="profile_user_text">Повторите новый пароль</p>
-                  <input
-                    type="password"
-                    className="profile_user_input"
-                    name="repeat_password"
-                    value={form.repeat_password}
-                    onChange={handleChange}
-                  />
-                </div>
-              </div>
-              <div className="profile_user_row">
-                <div className="profile_user_item">
-                  <p className="profile_user_text">Skype</p>
-                  <input
-                    type="text"
-                    className="profile_user_input"
-                    name="skype"
-                    value={form.skype}
-                    onChange={handleChange}
-                  />
-                </div>
-                <div className="profile_user_item">
-                  <p className="profile_user_text">Телефон</p>
-                  <input
-                    type="text"
-                    className="profile_user_input"
-                    name="phone"
-                    value={form.phone}
-                    onChange={handleChange}
-                  />
-                </div>
-                <div className="profile_user_item">
-                  <p className="profile_user_text">Существующий пароль</p>
-                  <input
-                    type="text"
-                    className="profile_user_input"
-                    name="old_password"
-                    value={form.old_password}
-                    onChange={handleChange}
-                    disabled
-                  />
-                </div>
-              </div>
-              <div className="profile_button_block">
-                <button
-                  onClick={handleSave}
-                  disabled={loading}
-                  className="profile_user_button"
-                >
-                  Сохранить
-                </button>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

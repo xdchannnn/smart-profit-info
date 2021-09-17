@@ -1,4 +1,5 @@
-import { createContext, useEffect, useState, Fragment } from "react";
+import { createContext, useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import useFetch from "../hooks/useFetch.hook";
 
 const AuthContext = createContext({
@@ -6,49 +7,59 @@ const AuthContext = createContext({
   setToken: () => {},
   user: null,
   settings: null,
+  loading: false,
 });
 
 export const AuthContextProvider = ({ children }) => {
-  const { request, loading } = useFetch();
+  const { request } = useFetch();
 
   const [token, setToken] = useState(null);
   const [user, setUser] = useState(null);
   const [settings, setSettings] = useState(null);
 
-  useEffect(() => {
-    (async () => {
-      if (token) {
-        const result = await request("/user/profile", "GET", null, {
-          Authorization: `Bearer ${token}`,
-        });
-        console.log(result);
-        if (result) setUser(result.profile_info);
-        else setToken(null);
-      } else setUser(null);
-    })();
-  }, [token, request]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    (async () => {
-      if (token) {
-        const result = await request("/settings", "GET", null, {
-          Authorization: `Bearer ${token}`,
+    if (token) {
+      setLoading(true);
+      request("/user/profile", "GET", null, {
+        Authorization: `Bearer ${token}`,
+      })
+        .then((result) => {
+          if (result) {
+            console.log(result);
+            setUser(result.profile_info);
+            request("/settings", "GET", null, {
+              Authorization: `Bearer ${token}`,
+            }).then((result) => {
+              if (result) {
+                console.log(result);
+                setSettings(result.data);
+                setLoading(false);
+              }
+            });
+          }
+        })
+        .catch((e) => {
+          toast(e.message, { type: "error" });
+          setLoading(false);
+          setToken(null);
+          setUser(null);
+          setSettings(null);
         });
-        console.log(result);
-        if (result) setSettings(result.data);
-        else setToken(null);
-      } else setSettings(null);
-    })();
+    } else {
+      setToken(null);
+      setUser(null);
+      setSettings(null);
+    }
   }, [token, request]);
 
   useEffect(() => {
     setToken(localStorage.getItem("token"));
   }, []);
 
-  if (loading) return <Fragment />;
-
   return (
-    <AuthContext.Provider value={{ token, setToken, user, settings }}>
+    <AuthContext.Provider value={{ token, setToken, user, settings, loading }}>
       {children}
     </AuthContext.Provider>
   );
