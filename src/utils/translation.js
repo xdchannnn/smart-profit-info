@@ -21,6 +21,8 @@ import faqEN from "../translations/en/faqEN.json";
 import faqRU from "../translations/ru/faqRU.json";
 import toastEN from "../translations/en/toastEN.json";
 import toastRU from "../translations/ru/toastRU.json";
+import activationEN from "../translations/en/activationEN.json";
+import activationRU from "../translations/ru/activationRU.json";
 
 const resources = {
   en: {
@@ -34,6 +36,7 @@ const resources = {
     dashboard: dashboardEN,
     faq: faqEN,
     toast: toastEN,
+    activation: activationEN,
   },
   ru: {
     landing: landingTranslationRU,
@@ -46,6 +49,7 @@ const resources = {
     dashboard: dashboardRU,
     faq: faqRU,
     toast: toastRU,
+    activation: activationRU,
   },
 };
 

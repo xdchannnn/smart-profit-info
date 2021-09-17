@@ -1,7 +1,10 @@
-import '../../assets/styles/dashboard.scoped.css'
+import { useTranslation } from "react-i18next";
+import "../../assets/styles/dashboard.scoped.css";
 
 function Modals() {
-    return (
+  const { t } = useTranslation();
+
+  return (
     <>
       <div
         className="modal fade"
@@ -14,7 +17,7 @@ function Modals() {
           <div className="modal-content">
             <div className="modal_header">
               <h5 className="modal-title" id="computer_modalLabel">
-                С компьютера
+                {t("activation:TOP_DESCRIPTION_COMPUTER")}
               </h5>
               <button
                 type="button"
@@ -42,7 +45,7 @@ function Modals() {
           <div className="modal-content">
             <div className="modal_header">
               <h5 className="modal-title" id="mobile_modalLabel">
-                С мобильного
+                {t("activation:TOP_DESCRIPTION_MOBILE")}
               </h5>
               <button
                 type="button"
@@ -70,7 +73,7 @@ function Modals() {
           <div className="modal-content">
             <div className="modal_header">
               <h5 className="modal-title" id="hand_modalLabel">
-                Вручную
+                {t("activation:TOP_DESCRIPTION_CONTRACT")}
               </h5>
               <button
                 type="button"
@@ -88,7 +91,7 @@ function Modals() {
         </div>
       </div>
     </>
-  )
+  );
 }
 
 export default Modals;

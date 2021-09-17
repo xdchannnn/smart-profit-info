@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import "../../assets/styles/activation.scoped.css";
 
+import { useTranslation } from "react-i18next";
+
 import SP from "../../assets/images/SP.png";
 import FP from "../../assets/images/FP.png";
 import MP from "../../assets/images/MP.png";
@@ -11,6 +13,8 @@ import Preloader from "../loaders/Preloader";
 import usePackage from "../../hooks/web3/userActions/package.hook";
 
 function PackageBlock() {
+  const { t } = useTranslation();
+
   const { loading, price, getPrice } = usePrice();
   const pack = usePackage();
 
@@ -25,7 +29,7 @@ function PackageBlock() {
         <div className="package_top_block">
           <img src={WebIcon} alt="web-icon" />
           <p className="package_title" style={{ marginBottom: 0 }}>
-            Активируйте один из пакетов
+            {t("activation:TOP_TITLE")}
           </p>
         </div>
         <div className="packages_block">
@@ -37,8 +41,11 @@ function PackageBlock() {
               </p>
               <div className="rectangle_blue" />
               <p className="package_blue_text">
-                Получайте доход с <span>3 уровней</span> на протяжении{" "}
-                <span>60 дней</span>. Откройте новые уровни для дохода
+                {t("activation:TOP_DESCRIPTION_LEVELS3_1")}{" "}
+                <span>{t("activation:TOP_DESCRIPTION_LEVELS3_2")}</span>{" "}
+                {t("activation:TOP_DESCRIPTION_LEVELS3_3")}{" "}
+                <span>{t("activation:TOP_DESCRIPTION_LEVELS3_4")}</span>
+                {t("activation:TOP_DESCRIPTION_LEVELS3_5")}
               </p>
             </div>
             <button
@@ -87,8 +94,11 @@ function PackageBlock() {
               </p>
               <div className="rectangle_green" />
               <p className="package_green_text">
-                Получайте доход с <span>5 уровней</span> на протяжении{" "}
-                <span>180 дней</span>. Откройте новые уровни для дохода
+                {t("activation:TOP_DESCRIPTION_LEVELS5_1")}{" "}
+                <span>{t("activation:TOP_DESCRIPTION_LEVELS5_2")}</span>{" "}
+                {t("activation:TOP_DESCRIPTION_LEVELS5_3")}{" "}
+                <span>{t("activation:TOP_DESCRIPTION_LEVELS5_4")}</span>
+                {t("activation:TOP_DESCRIPTION_LEVELS5_5")}
               </p>
             </div>
             <button
@@ -137,9 +147,13 @@ function PackageBlock() {
               </p>
               <div className="rectangle_yellow" />
               <p className="package_yellow_text">
-                Получайте доход с <span>7 уровней</span> на протяжении{" "}
-                <span>360 дней</span>. А так же <span>«Maxi Bonus»</span>{" "}
-                подтвердите статус
+                {t("activation:TOP_DESCRIPTION_LEVELS7_1")}{" "}
+                <span>{t("activation:TOP_DESCRIPTION_LEVELS7_2")}</span>{" "}
+                {t("activation:TOP_DESCRIPTION_LEVELS7_3")}{" "}
+                <span>{t("activation:TOP_DESCRIPTION_LEVELS7_4")}</span>
+                {t("activation:TOP_DESCRIPTION_LEVELS7_5")}{" "}
+                <span>{t("activation:TOP_DESCRIPTION_LEVELS7_6")}</span>{" "}
+                {t("activation:TOP_DESCRIPTION_LEVELS7_7")}
               </p>
             </div>
             <button
