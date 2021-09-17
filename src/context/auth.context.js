@@ -45,7 +45,7 @@ export const AuthContextProvider = ({ children }) => {
     setToken(localStorage.getItem("token"));
   }, []);
 
-  if (loading) return <Fragment />;
+  if (loading || !user || !settings) return <Fragment />;
 
   return (
     <AuthContext.Provider value={{ token, setToken, user, settings }}>
