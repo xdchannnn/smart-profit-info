@@ -1,6 +1,9 @@
 import { useContext, useEffect, useState } from "react";
 import AuthContext from "../../context/auth.context";
 
+import SettingsProfile from "../../assets/images/settings-profile.svg";
+import PhotoUser from "../../assets/images/photo-user.jpg";
+
 import "../../assets/styles/profile.scoped.css";
 import useFetch from "../../hooks/useFetch.hook";
 
@@ -64,13 +67,15 @@ function ProfileScreen() {
   return (
     <div className="profile_screen">
       <div className="profile_top_block">
-        <img src="assets/images/settings-profile.svg" />
-        <p className="profile_top_text">Настройки профиля</p>
+        <img src={SettingsProfile} alt="settings-profile" />
+        <p className="profile_top_text" style={{ marginBottom: 0 }}>
+          Настройки профиля
+        </p>
       </div>
       <div className="profile_user_block">
         <div className="profile_user_content">
           <div className="profile_img_block">
-            <img src="assets/images/photo-user.jpg" className="profile_img" />
+            <img src={PhotoUser} className="profile_img" />
             <p>
               <button className="profile_img_edit">Изменить</button>
             </p>
@@ -108,10 +113,9 @@ function ProfileScreen() {
                     onChange={handleChange}
                   />
                 </div>
-               
               </div>
               <div className="profile_user_row">
-              <div className="profile_user_item">
+                <div className="profile_user_item">
                   <p className="profile_user_text">E-mail</p>
                   <input
                     type="text"
@@ -130,7 +134,7 @@ function ProfileScreen() {
                     value={form.telegram}
                     onChange={handleChange}
                   />
-                </div>      
+                </div>
                 <div className="profile_user_item">
                   <p className="profile_user_text">Повторите новый пароль</p>
                   <input
@@ -143,7 +147,6 @@ function ProfileScreen() {
                 </div>
               </div>
               <div className="profile_user_row">
-          
                 <div className="profile_user_item">
                   <p className="profile_user_text">Skype</p>
                   <input

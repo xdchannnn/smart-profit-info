@@ -28,7 +28,9 @@ function PackageBlock() {
     <div className="package_block">
       <div className="package_top_block">
         <img src={WebIcon} alt="web-icon" />
-        <p className="package_title">Активируйте один из пакетов</p>
+        <p className="package_title" style={{ marginBottom: 0 }}>
+          Активируйте один из пакетов
+        </p>
       </div>
       <div className="packages_block">
         <div className="package_item">
