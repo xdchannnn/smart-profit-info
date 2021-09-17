@@ -5,6 +5,7 @@ import Web3Context from "../../context/web3.context";
 import SP from "../../assets/images/SP.png";
 import FP from "../../assets/images/FP.png";
 import MP from "../../assets/images/MP.png";
+import WebIcon from "../../assets/images/web-icon.svg";
 
 function PackageBlock() {
   const { register, loading, priceLoading, getPrice } = useContext(Web3Context);
@@ -23,10 +24,14 @@ function PackageBlock() {
 
   const handleRegister = (index) => prices[index] && register(prices[index]);
 
+  useEffect(() => {
+    console.log(loading);
+  }, [loading]);
+
   return (
     <div className="package_block">
       <div className="package_top_block">
-        <img src="assets/images/web-icon.svg" />
+        <img src={WebIcon} alt="web-icon" />
         <p className="package_title">Активируйте один из пакетов</p>
       </div>
       <div className="packages_block">
