@@ -34,6 +34,9 @@ const Private = () => {
           <Route exact path="/general-team">
             <GeneralTeam />
           </Route>
+          <Route exact path="/general-team/:id">
+            <GeneralTeam />
+          </Route>
           <Route exact path="/finance">
             <Finance />
           </Route>

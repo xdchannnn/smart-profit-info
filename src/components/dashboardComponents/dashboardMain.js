@@ -437,7 +437,7 @@ function DashboardMain() {
               </div>
             </div>
             <div className="levels_block">
-              <a href="#" style={{ width: "100%" }}>
+              <Link to="/general-team/1" style={{ width: "100%" }}>
                 <div className="level_item">
                   <div className="level_top_child_border" />
                   <div className="level_bottom_child_border" />
@@ -452,11 +452,15 @@ function DashboardMain() {
                     </div>
                   </div>
                 </div>
-              </a>
+              </Link>
               <div className="bottom_levels_block">
                 {user &&
                   user.levels.slice(1).map((level, index) => (
-                    <a key={index} href="#" style={{ width: "100%" }}>
+                    <Link
+                      key={index}
+                      to={`/general-team/${index + 2}`}
+                      style={{ width: "100%" }}
+                    >
                       <div className="level_item">
                         <div className="level_top_child_border" />
                         <div className="level_bottom_child_border" />
@@ -471,7 +475,7 @@ function DashboardMain() {
                           </div>
                         </div>
                       </div>
-                    </a>
+                    </Link>
                   ))}
               </div>
             </div>
