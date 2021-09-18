@@ -1,5 +1,5 @@
 import "../../assets/styles/dashboard.scoped.css";
-import { Fragment, useContext, useEffect } from "react";
+import { Fragment, useContext, useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
 import AuthContext from "../../context/auth.context";
 import { toast } from "react-toastify";
@@ -24,6 +24,11 @@ import Timer from "react-compound-timer";
 import Banner from "../../assets/images/banner.png";
 import Preloader from "../loaders/Preloader";
 
+import FREE from "../../assets/images/fr_purple.svg";
+import SP from "../../assets/images/sp_blue.svg";
+import FP from "../../assets/images/fp_green.svg";
+import MP from "../../assets/images/mp_yellow.svg";
+
 function DashboardMain() {
   const { user, settings, loading } = useContext(AuthContext);
   const { t } = useTranslation();
@@ -46,7 +51,22 @@ function DashboardMain() {
       <div className="main_block">
         <div className="main_content">
           <div className="left_block">
-            <div className="profile_block">
+            <div
+              className="profile_block"
+              style={{
+                backgroundImage:
+                  settings &&
+                  `url(${
+                    settings.status === "Free"
+                      ? FREE
+                      : settings.status === "Start Profit"
+                      ? SP
+                      : settings.status === "Fixed Profit"
+                      ? FP
+                      : MP
+                  })`,
+              }}
+            >
               <div className="border_start_blue" />
               <div className="border_end_blue" />
               <p style={{ color: "white", marginBottom: 8 }}>LOGIN:</p>
