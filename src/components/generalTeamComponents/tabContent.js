@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import "../../assets/styles/dashboard.scoped.css";
 import "../../assets/styles/general.scoped.css";
@@ -8,39 +9,63 @@ import WhatsApp from "../../assets/images/whatsapp.svg";
 import Telegram from "../../assets/images/telegram-user.svg";
 import CopyIcon from "../../assets/images/copy-icon-link.svg";
 
+import { useParams } from "react-router-dom";
+import useFetch from "../../hooks/useFetch.hook";
+import { useContext } from "react";
+import AuthContext from "../../context/auth.context";
+import Preloader from "../loaders/Preloader";
+
 function Tabcontent() {
   const { t } = useTranslation();
+  const { token, loading } = useContext(AuthContext);
+  const fetch = useFetch();
+
+  const { id } = useParams();
+
+  useEffect(() => {
+    fetch
+      .request(`/get-level-info/${id || 1}`, "GET", null, {
+        Authorization: `Bearer ${token}`,
+      })
+      .then((res) => {
+        console.log(res);
+      });
+  }, [id]);
+
   return (
-    <div id="LevelOne" className="tabcontent">
-      <div className="table-responsive">
-        <table className="general_table">
-          <tbody>
-            <tr>
-              <td className="main_row">
-                <p>{t("generalteam:TOP_DESCRIPTION_NAMEANDSURNAME")}</p>
-              </td>
-              <td className="main_row">
-                <p>ID</p>
-              </td>
-              <td className="main_row">
-                <p>{t("generalteam:TOP_DESCRIPTION_SPONSORTEAM")}</p>
-              </td>
-              <td className="main_row">
-                <p>{t("generalteam:TOP_DESCRIPTION_TEAM2")}</p>
-              </td>
-              <td className="main_row">
-                <p>{t("generalteam:TOP_DESCRIPTION_DATEOFPAYMENT")}</p>
-              </td>
-            </tr>
-            {Array(25)
-              .fill()
-              .map((item, index) => (
-                <TableItem item={item} t={t} key={index} />
-              ))}
-          </tbody>
-        </table>
+    <>
+      {(loading || fetch.loading) && <Preloader />}
+      <div id="LevelOne" className="tabcontent">
+        <div className="table-responsive">
+          <table className="general_table">
+            <tbody>
+              <tr>
+                <td className="main_row">
+                  <p>{t("generalteam:TOP_DESCRIPTION_NAMEANDSURNAME")}</p>
+                </td>
+                <td className="main_row">
+                  <p>ID</p>
+                </td>
+                <td className="main_row">
+                  <p>{t("generalteam:TOP_DESCRIPTION_SPONSORTEAM")}</p>
+                </td>
+                <td className="main_row">
+                  <p>{t("generalteam:TOP_DESCRIPTION_TEAM2")}</p>
+                </td>
+                <td className="main_row">
+                  <p>{t("generalteam:TOP_DESCRIPTION_DATEOFPAYMENT")}</p>
+                </td>
+              </tr>
+              {Array(25)
+                .fill()
+                .map((item, index) => (
+                  <TableItem item={item} t={t} key={index} />
+                ))}
+            </tbody>
+          </table>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 
