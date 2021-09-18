@@ -27,6 +27,8 @@ import profileEN from "../translations/en/profileEN.json";
 import profileRU from "../translations/ru/profileRU.json";
 import sponsorEN from "../translations/en/sponsorEN.json";
 import sponsorRU from "../translations/ru/sponsorRU.json";
+import myteamEN from "../translations/en/myteamEN.json";
+import myteamRU from "../translations/ru/myteamRU.json";
 
 const resources = {
   en: {
@@ -43,6 +45,7 @@ const resources = {
     activation: activationEN,
     profile: profileEN,
     sponsor: sponsorEN,
+    myteam: myteamEN,
   },
   ru: {
     landing: landingTranslationRU,
@@ -58,6 +61,7 @@ const resources = {
     activation: activationRU,
     profile: profileRU,
     sponsor: sponsorRU,
+    myteam: myteamRU,
   },
 };
 
