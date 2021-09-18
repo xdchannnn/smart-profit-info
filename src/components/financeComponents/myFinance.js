@@ -36,13 +36,10 @@ function MyFinance() {
               <p>{t("finance:TOP_DESCRIPTION_LEVEL3")}</p>
             </td>
             <td className="main_row">
-              <p>{t("finance:TOP_DESCRIPTION_BNB2")}</p>
+              <p>USD - {t("finance:TOP_DESCRIPTION_BNB2")}</p>
             </td>
             <td className="main_row">
               <p>{t("finance:TOP_DESCRIPTION_DATE3")}</p>
-            </td>
-            <td className="main_row">
-              <p>{t("finance:TOP_DESCRIPTION_STATUS3")}</p>
             </td>
           </tr>
           {Array(25)
@@ -70,9 +67,6 @@ const TableItem = ({ item, t }) => (
     <td className="child_row">{item && <p>3500</p>}</td>
     <td className="child_row">
       {item && <p className="date_text">02.07.2021</p>}
-    </td>
-    <td className="child_row">
-      {item && <p className="success_text">Выполнен</p>}
     </td>
   </tr>
 );
