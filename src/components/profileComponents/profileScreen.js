@@ -90,119 +90,121 @@ function ProfileScreen() {
             </div>
             <div className="profile_user_items">
               <div className="profile_items_content">
-                <div className="profile_user_row">
-                  <div className="profile_user_item">
-                    <p className="profile_user_text">
-                      {t("profile:TOP_DESCRIPTION_NAMEANDSURNAME")}
-                    </p>
-                    <input
-                      type="text"
-                      className="profile_user_input"
-                      name="full_name"
-                      value={form.full_name}
-                      onChange={handleChange}
-                    />
+                <div className="profile_inputs">
+                  <div>
+                    <div className="profile_user_item" style={{ padding: 5 }}>
+                      <p className="profile_user_text">
+                        {t("profile:TOP_DESCRIPTION_NAMEANDSURNAME")}
+                      </p>
+                      <input
+                        type="text"
+                        className="profile_user_input"
+                        name="full_name"
+                        value={form.full_name}
+                        onChange={handleChange}
+                      />
+                    </div>
+                    <div className="profile_user_item" style={{ padding: 5 }}>
+                      <p className="profile_user_text">
+                        {t("profile:TOP_DESCRIPTION_EMAIL")}
+                      </p>
+                      <input
+                        type="text"
+                        className="profile_user_input"
+                        name="email"
+                        value={form.email}
+                        onChange={handleChange}
+                      />
+                    </div>
+                    <div className="profile_user_item" style={{ padding: 5 }}>
+                      <p className="profile_user_text">
+                        {t("profile:TOP_DESCRIPTION_SKYPE")}
+                      </p>
+                      <input
+                        type="text"
+                        className="profile_user_input"
+                        name="skype"
+                        value={form.skype}
+                        onChange={handleChange}
+                      />
+                    </div>
                   </div>
-                  <div className="profile_user_item">
-                    <p className="profile_user_text">
-                      {t("profile:TOP_DESCRIPTION_COUNTRY")}
-                    </p>
-                    <input
-                      type="text"
-                      className="profile_user_input"
-                      name="country"
-                      value={form.country}
-                      onChange={handleChange}
-                    />
+                  <div>
+                    <div className="profile_user_item" style={{ padding: 5 }}>
+                      <p className="profile_user_text">
+                        {t("profile:TOP_DESCRIPTION_COUNTRY")}
+                      </p>
+                      <input
+                        type="text"
+                        className="profile_user_input"
+                        name="country"
+                        value={form.country}
+                        onChange={handleChange}
+                      />
+                    </div>
+                    <div className="profile_user_item" style={{ padding: 5 }}>
+                      <p className="profile_user_text">
+                        {t("profile:TOP_DESCRIPTION_TELEGRAM")}
+                      </p>
+                      <input
+                        type="text"
+                        className="profile_user_input"
+                        name="telegram"
+                        value={form.telegram}
+                        onChange={handleChange}
+                      />
+                    </div>
+                    <div className="profile_user_item" style={{ padding: 5 }}>
+                      <p className="profile_user_text">
+                        {t("profile:TOP_DESCRIPTION_PHONE")}
+                      </p>
+                      <input
+                        type="text"
+                        className="profile_user_input"
+                        name="phone"
+                        value={form.phone}
+                        onChange={handleChange}
+                      />
+                    </div>
                   </div>
-                  <div className="profile_user_item">
-                    <p className="profile_user_text">
-                      {t("profile:TOP_DESCRIPTION_NEWPASSWORD")}
-                    </p>
-                    <input
-                      type="password"
-                      className="profile_user_input"
-                      name="new_password"
-                      value={form.new_password}
-                      onChange={handleChange}
-                    />
-                  </div>
-                </div>
-                <div className="profile_user_row">
-                  <div className="profile_user_item">
-                    <p className="profile_user_text">
-                      {t("profile:TOP_DESCRIPTION_EMAIL")}
-                    </p>
-                    <input
-                      type="text"
-                      className="profile_user_input"
-                      name="email"
-                      value={form.email}
-                      onChange={handleChange}
-                    />
-                  </div>
-                  <div className="profile_user_item">
-                    <p className="profile_user_text">
-                      {t("profile:TOP_DESCRIPTION_TELEGRAM")}
-                    </p>
-                    <input
-                      type="text"
-                      className="profile_user_input"
-                      name="telegram"
-                      value={form.telegram}
-                      onChange={handleChange}
-                    />
-                  </div>
-                  <div className="profile_user_item">
-                    <p className="profile_user_text">
-                      {t("profile:TOP_DESCRIPTION_REPEATNEWPASSWORD")}
-                    </p>
-                    <input
-                      type="password"
-                      className="profile_user_input"
-                      name="repeat_password"
-                      value={form.repeat_password}
-                      onChange={handleChange}
-                    />
-                  </div>
-                </div>
-                <div className="profile_user_row">
-                  <div className="profile_user_item">
-                    <p className="profile_user_text">
-                      {t("profile:TOP_DESCRIPTION_SKYPE")}
-                    </p>
-                    <input
-                      type="text"
-                      className="profile_user_input"
-                      name="skype"
-                      value={form.skype}
-                      onChange={handleChange}
-                    />
-                  </div>
-                  <div className="profile_user_item">
-                    <p className="profile_user_text">
-                      {t("profile:TOP_DESCRIPTION_PHONE")}
-                    </p>
-                    <input
-                      type="text"
-                      className="profile_user_input"
-                      name="phone"
-                      value={form.phone}
-                      onChange={handleChange}
-                    />
-                  </div>
-                  <div className="profile_user_item">
-                    <p className="profile_user_text">
-                      {t("profile:TOP_DESCRIPTION_EXISTINGPASSWORD")}
-                    </p>
-                    <input
-                      type="text"
-                      className="profile_user_input"
-                      name="old_password"
-                      value={form.old_password}
-                      onChange={handleChange}
-                      disabled
-                    />
+                  <div>
+                    <div className="profile_user_item" style={{ padding: 5 }}>
+                      <p className="profile_user_text">
+                        {t("profile:TOP_DESCRIPTION_NEWPASSWORD")}
+                      </p>
+                      <input
+                        type="password"
+                        className="profile_user_input"
+                        name="new_password"
+                        value={form.new_password}
+                        onChange={handleChange}
+                      />
+                    </div>
+                    <div className="profile_user_item" style={{ padding: 5 }}>
+                      <p className="profile_user_text">
+                        {t("profile:TOP_DESCRIPTION_REPEATNEWPASSWORD")}
+                      </p>
+                      <input
+                        type="password"
+                        className="profile_user_input"
+                        name="repeat_password"
+                        value={form.repeat_password}
+                        onChange={handleChange}
+                      />
+                    </div>
+                    <div className="profile_user_item" style={{ padding: 5 }}>
+                      <p className="profile_user_text">
+                        {t("profile:TOP_DESCRIPTION_EXISTINGPASSWORD")}
+                      </p>
+                      <input
+                        type="text"
+                        className="profile_user_input"
+                        name="old_password"
+                        value={form.old_password}
+                        onChange={handleChange}
+                        disabled
+                      />
+                    </div>
                   </div>
                 </div>
                 <div className="profile_button_block">
