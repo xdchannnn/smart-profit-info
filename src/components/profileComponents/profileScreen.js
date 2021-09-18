@@ -38,7 +38,7 @@ function ProfileScreen() {
         phone: settings.phone,
         full_name: user.full_name,
         country: settings.country,
-        old_password: settings.passwd,
+        old_password: "",
       });
   }, [user, settings]);
 
@@ -202,7 +202,6 @@ function ProfileScreen() {
                         name="old_password"
                         value={form.old_password}
                         onChange={handleChange}
-                        disabled
                       />
                     </div>
                   </div>
