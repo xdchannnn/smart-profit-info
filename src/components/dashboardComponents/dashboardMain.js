@@ -1,7 +1,8 @@
 import "../../assets/styles/dashboard.scoped.css";
-import { useContext, useEffect } from "react";
+import { Fragment, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import AuthContext from "../../context/auth.context";
+import { toast } from "react-toastify";
 
 import SettingsIcon from "../../assets/images/settings-icon.svg";
 import ProfileImg from "../../assets/images/profile-img.jpg";
@@ -14,18 +15,29 @@ import WalletIcon from "../../assets/images/wallet-icon.svg";
 import TeamIcon from "../../assets/images/team-icon.svg";
 import LostIcon from "../../assets/images/lost-icon.svg";
 
-import { Popover } from 'bootstrap/dist/js/bootstrap.esm.min.js'
+import { Popover } from "bootstrap/dist/js/bootstrap.esm.min.js";
 
 import { useTranslation } from "react-i18next";
+
+import Timer from "react-compound-timer";
+
+import Banner from "../../assets/images/banner.png";
 
 function DashboardMain() {
   const { user, settings } = useContext(AuthContext);
   const { t } = useTranslation();
-  
+
   useEffect(() => {
-    Array.from(document.querySelectorAll('button[data-bs-toggle="popover"]'))
-    .forEach(tooltipNode => new Popover(tooltipNode))
-    });
+    Array.from(
+      document.querySelectorAll('button[data-bs-toggle="popover"]')
+    ).forEach((tooltipNode) => new Popover(tooltipNode));
+  });
+
+  const copyToClipBoard = (text) =>
+    navigator.clipboard
+      .writeText(text)
+      .then(() => toast(t("toast:COPY_CLIPBOARD"), { type: "success" }))
+      .catch(() => toast("Could not copy text.", { type: "error" }));
 
   return (
     <div className="main_block">
@@ -49,13 +61,21 @@ function DashboardMain() {
                 <p className="id_text">ID: {settings.contract_id}</p>
                 <p className="status_text">
                   {t("dashboard:TOP_DESCRIPTION_CURRENT")}
-                  <a href="#" className="status_link">
-                    {settings.status ? settings.status : null}
+                  <a className="status_link">
+                    {settings.status ? settings.status.toUpperCase() : null}
                   </a>
                 </p>
                 <div className="profile_link_block">
                   <img src={CopyIcon} />
-                  <a href="#" className="profile_link">
+                  <a
+                    href="#"
+                    className="profile_link"
+                    onClick={() =>
+                      copyToClipBoard(
+                        `http://smartprofit.com/${settings.contract_id}`
+                      )
+                    }
+                  >
                     http://smartprofit.com/{settings.contract_id}
                   </a>
                 </div>
@@ -69,15 +89,111 @@ function DashboardMain() {
               </div>
             </Link>
             <div className="time_block">
-              <div className="eTimer" />
+              <div className="eTimer">
+                <Timer initialTime={"30000000000"} direction="backward">
+                  {() => (
+                    <Fragment>
+                      <div
+                        style={{
+                          color: "white",
+                          paddingTop: 20,
+                          display: "flex",
+                          fontSize: 24,
+                        }}
+                      >
+                        <div
+                          style={{
+                            paddingLeft: 10,
+                            paddingRight: 10,
+                            fontSize: 24,
+                          }}
+                        >
+                          <Timer.Days />
+                          <p style={{ fontSize: 14 }}>
+                            {t("dashboard:TOP_DESCRIPTION_DAYS")}
+                          </p>
+                        </div>
+                        {" : "}
+                        <div
+                          style={{
+                            paddingLeft: 10,
+                            paddingRight: 10,
+                            fontSize: 24,
+                          }}
+                        >
+                          <Timer.Hours />
+                          <p style={{ fontSize: 14 }}>
+                            {t("dashboard:TOP_DESCRIPTION_HOURS")}
+                          </p>
+                        </div>
+                        {" : "}
+                        <div
+                          style={{
+                            paddingLeft: 10,
+                            paddingRight: 10,
+                            fontSize: 24,
+                          }}
+                        >
+                          <Timer.Minutes />
+                          <p style={{ fontSize: 14 }}>
+                            {t("dashboard:TOP_DESCRIPTION_MINUTES")}
+                          </p>
+                        </div>
+                        {" : "}
+                        <div
+                          style={{
+                            paddingLeft: 10,
+                            paddingRight: 10,
+                            fontSize: 24,
+                          }}
+                        >
+                          <Timer.Seconds />
+                          <p style={{ fontSize: 14 }}>
+                            {t("dashboard:TOP_DESCRIPTION_SECONDS")}
+                          </p>
+                        </div>
+                      </div>
+                    </Fragment>
+                  )}
+                </Timer>
+              </div>
             </div>
             <div className="partner_block">
+              <button
+                style={{ marginBottom: 0, marginLeft: 5 }}
+                className="info_icon partner_info_mob"
+                type="button"
+                data-bs-container="body"
+                data-bs-toggle="popover"
+                data-bs-placement="left"
+                data-bs-trigger="hover"
+                title={t("dashboard:TOP_DESCRIPTION_ENTERID_TITLE")}
+                data-bs-content={t("dashboard:TOP_DESCRIPTION_ENTERID")}
+              >
+                <img src={InfoIcon} style={{ width: 15, height: 15 }} />
+              </button>
+
               <input
                 type="text"
                 className="partner_input"
                 placeholder={t("dashboard:TOP_DESCRIPTION_HELP")}
               />
-              <a href="#">
+
+              <button
+                style={{ marginBottom: 30, marginLeft: 5 }}
+                className="info_icon partner_info"
+                type="button"
+                data-bs-container="body"
+                data-bs-toggle="popover"
+                data-bs-placement="left"
+                data-bs-trigger="hover"
+                title={t("dashboard:TOP_DESCRIPTION_ENTERID_TITLE")}
+                data-bs-content={t("dashboard:TOP_DESCRIPTION_ENTERID")}
+              >
+                <img src={InfoIcon} style={{ width: 15, height: 15 }} />
+              </button>
+
+              <a href="#" style={{ marginLeft: 10 }}>
                 <div className="save_button_block">
                   <div className="save_icon" />
                   <p className="save_text">
@@ -106,8 +222,7 @@ function DashboardMain() {
                 data-bs-placement="left"
                 data-bs-trigger="hover"
                 title="Maxi Bonus"
-                data-bs-content="
-                          Распределяется между участниками, достигшими, или активировавшими статус «Maxi Profit». Позволяет получать доход на первых этапах развития."
+                data-bs-content={t("dashboard:TOP_DESCRIPTION_POPUPWINDOW")}
               >
                 <img src={InfoIcon} />
               </button>
@@ -116,7 +231,9 @@ function DashboardMain() {
                   <img src={BonusBlue} />
                 </div>
                 <div className="item_content">
-                  <p className="item_title">Maxi Bonus:</p>
+                  <p className="item_title">
+                    {t("dashboard:TOP_DESCRIPTION_MAXIBONUS")}
+                  </p>
                   <p className="item_description">
                     TRX: 3 450.15 | USD: 223.97
                   </p>
@@ -139,10 +256,9 @@ function DashboardMain() {
                   data-bs-toggle="popover"
                   data-bs-placement="left"
                   data-bs-trigger="hover"
-                  title="Партнерская прибыль"
-                  data-bs-content="
-                          Это статистика ваших доходов за личное привлечение партнеров в вашу команду."
-                > 
+                  title={t("dashboard:TOP_DESCRIPTION_POPUPWINDOW1_TITLE")}
+                  data-bs-content={t("dashboard:TOP_DESCRIPTION_POPUPWINDOW1")}
+                >
                   <img src={InfoIcon} />
                 </button>
                 <div className="two_item_block">
@@ -155,8 +271,8 @@ function DashboardMain() {
                         {t("dashboard:TOP_DESCRIPTION_AFFILIATEPROFIT")}
                       </p>
                       <p className="item_description">
-                        BNB: {user.partner_income.BNB} | USD:{" "}
-                        {user.partner_income.USD}
+                        BNB: {parseFloat(user.partner_income.BNB).toFixed(4)} |
+                        USD: {user.partner_income.USD}
                       </p>
                     </div>
                   </div>
@@ -182,9 +298,8 @@ function DashboardMain() {
                   data-bs-toggle="popover"
                   data-bs-placement="left"
                   data-bs-trigger="hover"
-                  title="Прибыль с уровней"
-                  data-bs-content="
-                          Это статистика ваших доходов с уровней , от вашей, и общей команды."
+                  title={t("dashboard:TOP_DESCRIPTION_POPUPWINDOW2_TITLE")}
+                  data-bs-content={t("dashboard:TOP_DESCRIPTION_POPUPWINDOW2")}
                 >
                   <img src={InfoIcon} />
                 </button>
@@ -198,8 +313,8 @@ function DashboardMain() {
                         {t("dashboard:TOP_DESCRIPTION_PROFITLEVELS")}
                       </p>
                       <p className="item_description">
-                        BNB: {user.level_income.BNB} | USD:{" "}
-                        {user.level_income.USD}
+                        BNB: {parseFloat(user.level_income.BNB).toFixed(4)} |
+                        USD: {user.level_income.USD}
                       </p>
                     </div>
                   </div>
@@ -227,9 +342,8 @@ function DashboardMain() {
                   data-bs-toggle="popover"
                   data-bs-placement="left"
                   data-bs-trigger="hover"
-                  title="Моя команда"
-                  data-bs-content="
-                         Количество  привлеченных вами партнеров. А  так же статистика общей команды."
+                  title={t("dashboard:TOP_DESCRIPTION_POPUPWINDOW3_TITLE")}
+                  data-bs-content={t("dashboard:TOP_DESCRIPTION_POPUPWINDOW3")}
                 >
                   <img src={InfoIcon} />
                 </button>
@@ -268,10 +382,9 @@ function DashboardMain() {
                   data-bs-container="body"
                   data-bs-toggle="popover"
                   data-bs-placement="left"
-                  title="Упущенная прибыль"
+                  title={t("dashboard:TOP_DESCRIPTION_POPUPWINDOW4_TITLE")}
                   data-bs-trigger="hover"
-                  data-bs-content="
-                          Статистика упущенной прибыли с уровней, за счет не вовремя выполненной квалификации."
+                  data-bs-content={t("dashboard:TOP_DESCRIPTION_POPUPWINDOW4")}
                 >
                   <img src={InfoIcon} />
                 </button>
@@ -336,9 +449,7 @@ function DashboardMain() {
             </div>
           </div>
           <div className="banner_block">
-            <div className="border_start_amount_blue" />
-            <div className="border_end_amount_blue" />
-            {/* content or image */}
+            <img src={Banner} alt="banner" width="100%" height="100%" />
           </div>
         </div>
       </div>

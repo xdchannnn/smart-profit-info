@@ -1,64 +1,61 @@
 import { useCallback, useContext, useState } from "react";
 import { toast } from "react-toastify";
-import { SmartProfit } from "../../../utils/contracts";
 import AuthContext from "../../../context/auth.context";
 import useFetch from "../../useFetch.hook";
+import { connectWallet } from "../../../utils/contracts";
 
-const useRegister = ({ metamask, userAddress }) => {
+const useRegister = () => {
   const { settings, token, user } = useContext(AuthContext);
   const { request } = useFetch();
 
   const [loading, setLoading] = useState(false);
 
-  const register = useCallback(
-    (value) => {
-      if (!metamask)
-        return toast("Вы не подключенны к кошельку!", { type: "warning" });
-      if (!userAddress)
-        return toast("Вы не вошли в кошелек!", { type: "warning" });
-      if (settings.wallet && settings.wallet.toLowerCase() !== userAddress)
-        return toast("Не верный аккаунт кошелька!", { type: "warning" });
+  const register = useCallback((value) => {
+    setLoading(true);
 
-      setLoading(true);
+    connectWallet()
+      .then(({ wallet, contract }) => {
+        firstRegistration(wallet, contract, value);
+      })
+      .catch((e) => {
+        setLoading(false);
+        toast(e.message, { type: "error" });
+      });
+  }, []);
 
-      const contract = new metamask.eth.Contract(
-        SmartProfit.abi,
-        SmartProfit.address
-      );
-      contract.methods
-        ._register(7)
-        .send({
-          from: userAddress,
-          value: metamask.utils.toWei(String(value)),
-        })
-        .on("receipt", (receipt) => {
-          request(
-            "/save-tx",
-            "POST",
-            {
-              user_id: user.id,
-              tx_hash: receipt.transactionHash,
-            },
-            { Authorization: `Bearer ${token}` }
-          )
-            .then((res) => {
-              if (res) {
-                setLoading(false);
-                toast("Success transaction!", { type: "success" });
-              }
-            })
-            .catch((err) => {
+  const firstRegistration = (wallet, contract, value) =>
+    contract.methods
+      ._register(7)
+      .send({
+        value: wallet.utils.toWei(String(value)),
+      })
+      .on("receipt", (receipt) => {
+        request(
+          "/save-tx",
+          "POST",
+          {
+            user_id: user.id,
+            tx_hash: receipt.transactionHash,
+          },
+          { Authorization: `Bearer ${token}` }
+        )
+          .then((res) => {
+            if (res) {
               setLoading(false);
-              toast(err.message, { type: "error" });
-            });
-        })
-        .on("error", (err) => {
-          setLoading(false);
-          toast(err.message, { type: "error" });
-        });
-    },
-    [metamask, userAddress]
-  );
+              toast("Success transaction!", {
+                type: "success",
+              });
+            }
+          })
+          .catch((err) => {
+            setLoading(false);
+            toast(err.message, { type: "error" });
+          });
+      })
+      .on("error", (err) => {
+        setLoading(false);
+        toast(err.message, { type: "error" });
+      });
 
   return { loading, register };
 };
