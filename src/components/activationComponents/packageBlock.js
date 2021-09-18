@@ -48,12 +48,11 @@ function PackageBlock() {
                 {t("activation:TOP_DESCRIPTION_LEVELS3_5")}
               </p>
             </div>
-            <button
-              className="package_item_button"
-              onClick={() => price[0] && pack.registrate(price[0])}
-            >
-              {price[0] && price[0].toFixed(4)} BNB
-            </button>
+            <div className="package_item_button">
+              <button onClick={() => price[0] && pack.registrate(price[0])}>
+                {price[0] && price[0].toFixed(4)} BNB
+              </button>
+            </div>
             <div className="angle_bottom_blue" />
             <div className="package_price">
               <img src={SP} alt="fp" />
@@ -65,25 +64,6 @@ function PackageBlock() {
                 30$
               </p>
             </div>
-            {/* 
-          <div className="package_content">
-            <p className="package_blue_title">
-              <span>Start</span> Profit
-            </p>
-            <div className="rectangle_blue" />
-            <p className="package_blue_text">
-              Получайте доход с <span>3 уровней</span> на протяжении{" "}
-              <span>60 дней</span>. Откройте новые уровни для дохода
-            </p>
-            <button
-              onClick={() => handleRegister(0)}
-              disabled={loading}
-              className="package_item_button"
-            >
-              {prices[0] && prices[0].toFixed(5)} BNB
-            </button>
-          </div>
-          <div className="angle_bottom_blue" /> */}
           </div>
 
           <div className="package_item">
@@ -101,12 +81,11 @@ function PackageBlock() {
                 {t("activation:TOP_DESCRIPTION_LEVELS5_5")}
               </p>
             </div>
-            <button
-              className="package_green_button"
-              onClick={() => price[1] && pack.registrate(price[1])}
-            >
-              {price[1] && price[1].toFixed(4)} BNB
-            </button>
+            <div className="package_green_button">
+              <button onClick={() => price[1] && pack.registrate(price[1])}>
+                {price[1] && price[1].toFixed(4)} BNB
+              </button>
+            </div>
             <div className="angle_bottom_green" />
             <div className="package_price">
               <img src={FP} alt="fp" />
@@ -118,25 +97,6 @@ function PackageBlock() {
                 90$
               </p>
             </div>
-            {/* <div className="angle_top_green position-absolute top-0 end-0" />
-          <div className="package_content">
-            <p className="package_green_title">
-              <span>Fixed</span> Profit
-            </p>
-            <div className="rectangle_green" />
-            <p className="package_green_text">
-              Получайте доход с <span>5 уровней</span> на протяжении{" "}
-              <span>180 дней</span>. Откройте новые уровни для дохода
-            </p>
-            <button
-              onClick={() => handleRegister(1)}
-              disabled={loading}
-              className="package_green_button"
-            >
-              {prices[1] && prices[1].toFixed(5)} BNB
-            </button>
-          </div>
-          <div className="angle_bottom_green" /> */}
           </div>
 
           <div className="package_item">
@@ -156,12 +116,11 @@ function PackageBlock() {
                 {t("activation:TOP_DESCRIPTION_LEVELS7_7")}
               </p>
             </div>
-            <button
-              className="package_yellow_button"
-              onClick={() => price[2] && pack.registrate(price[2])}
-            >
-              {price[2] && price[2].toFixed(4)} BNB
-            </button>
+            <div className="package_yellow_button">
+              <button onClick={() => price[2] && pack.registrate(price[2])}>
+                {price[2] && price[2].toFixed(4)} BNB
+              </button>
+            </div>
             <div className="angle_bottom_yellow" />
             <div className="package_price">
               <img src={MP} alt="fp" />
@@ -173,26 +132,6 @@ function PackageBlock() {
                 180$
               </p>
             </div>
-            {/* <div className="angle_top_yellow position-absolute top-0 end-0" />
-          <div className="package_content">
-            <p className="package_yellow_title">
-              <span>Maxi</span> Profit
-            </p>
-            <div className="rectangle_yellow" />
-            <p className="package_yellow_text">
-              Получайте доход с <span>7 уровней</span> на протяжении{" "}
-              <span>360 дней</span>. А так же <span>«Maxi Bonus»</span>{" "}
-              подтвердите статус
-            </p>
-            <button
-              onClick={() => handleRegister(2)}
-              disabled={loading}
-              className="package_yellow_button"
-            >
-              {prices[2] && prices[2].toFixed(5)} BNB
-            </button>
-          </div>
-          <div className="angle_bottom_yellow" /> */}
           </div>
         </div>
       </div>

@@ -49,6 +49,7 @@ function DashboardMain() {
             <div className="profile_block">
               <div className="border_start_blue" />
               <div className="border_end_blue" />
+              <p style={{ color: "white", marginBottom: 8 }}>LOGIN:</p>
               <Link to="/profile">
                 <div className="settings_item">
                   <img src={SettingsIcon} />
@@ -84,7 +85,8 @@ function DashboardMain() {
                         )
                       }
                     >
-                      http://smartprofit.com/{settings && settings.contract_id}
+                      http://smartprofit.com/
+                      {settings && settings.contract_id}
                     </a>
                   </div>
                 </div>
