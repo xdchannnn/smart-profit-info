@@ -11,7 +11,7 @@ const AuthContext = createContext({
 });
 
 export const AuthContextProvider = ({ children }) => {
-  const { request } = useFetch();
+  const { request, error, clearError } = useFetch();
 
   const [token, setToken] = useState(null);
   const [user, setUser] = useState(null);
@@ -53,6 +53,15 @@ export const AuthContextProvider = ({ children }) => {
       setSettings(null);
     }
   }, [token, request]);
+
+  useEffect(() => {
+    if (error) {
+      localStorage.removeItem("token");
+      setLoading(false);
+      setToken(null);
+      clearError();
+    }
+  }, [error]);
 
   useEffect(() => {
     setToken(localStorage.getItem("token"));
