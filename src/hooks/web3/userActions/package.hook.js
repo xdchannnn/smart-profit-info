@@ -2,11 +2,11 @@ import { useCallback, useContext, useState } from "react";
 import { toast } from "react-toastify";
 import AuthContext from "../../../context/auth.context";
 import { connectWallet } from "../../../utils/contract";
-import useSavetx from "../../savetx.hook";
+import useFetch from "../../useFetch.hook";
 
 const usePackage = () => {
   const { settings, token } = useContext(AuthContext);
-  const { savetx } = useSavetx();
+  const { request } = useFetch();
 
   const [loading, setLoading] = useState(false);
 
@@ -17,12 +17,20 @@ const usePackage = () => {
         connectWallet(settings.wallet)
           .then(({ wallet, contract }) => {
             contract.methods
-              ._register(Number(settings.contract_id || 1))
+              ._register(Number(settings.ref_id || 1))
               .send({
                 value: wallet.utils.toWei(String(price)),
               })
               .on("receipt", (receipt) => {
-                savetx(receipt.transactionHash)
+                request(
+                  "/save-tx",
+                  "POST",
+                  {
+                    user_id: settings.id,
+                    tx_hash: receipt.transactionHash,
+                  },
+                  { Authorization: `Bearer ${token}` }
+                )
                   .then((res) => {
                     if (res) {
                       setLoading(false);
@@ -31,9 +39,9 @@ const usePackage = () => {
                       });
                     }
                   })
-                  .catch((err) => {
+                  .catch((e) => {
                     setLoading(false);
-                    toast(err.message, { type: "error" });
+                    toast(e.message, { type: "error" });
                   });
               })
               .on("error", (err) => {
