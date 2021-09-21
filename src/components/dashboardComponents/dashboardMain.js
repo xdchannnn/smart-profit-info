@@ -69,7 +69,9 @@ function DashboardMain() {
             >
               <div className="border_start_blue" />
               <div className="border_end_blue" />
-              <p style={{ color: "white", marginBottom: 8 }}>LOGIN:</p>
+              <p style={{ color: "white", marginBottom: 8 }}>
+                LOGIN: {settings && settings.login}
+              </p>
               <Link to="/profile">
                 <div className="settings_item">
                   <img src={SettingsIcon} />
@@ -82,9 +84,9 @@ function DashboardMain() {
                 </div>
                 <div className="profile_content_block">
                   <p className="username_text">{user && user.full_name}</p>
-                  <p className="id_text">
-                    ID: {settings && settings.contract_id}
-                  </p>
+                  {settings && settings.contract_id && (
+                    <p className="id_text">ID: {settings.contract_id}</p>
+                  )}
                   <p className="status_text">
                     {t("dashboard:TOP_DESCRIPTION_CURRENT")}
                     <a className="status_link">
@@ -93,22 +95,23 @@ function DashboardMain() {
                         : null}
                     </a>
                   </p>
-                  <div className="profile_link_block">
-                    <img src={CopyIcon} />
-                    <a
-                      href="#"
-                      className="profile_link"
-                      onClick={() =>
-                        copyToClipBoard(
-                          `http://smartprofit.com/${settings &&
-                            settings.contract_id}`
-                        )
-                      }
-                    >
-                      http://smartprofit.com/
-                      {settings && settings.contract_id}
-                    </a>
-                  </div>
+                  {settings && settings.contract_id && (
+                    <div className="profile_link_block">
+                      <img src={CopyIcon} />
+                      <a
+                        href="#"
+                        className="profile_link"
+                        onClick={() =>
+                          copyToClipBoard(
+                            `http://smartprofit.com/${settings.contract_id}`
+                          )
+                        }
+                      >
+                        http://smartprofit.com/
+                        {settings.contract_id}
+                      </a>
+                    </div>
+                  )}
                 </div>
               </div>
               <Link to="/activation">
@@ -267,9 +270,7 @@ function DashboardMain() {
                     <p className="item_title">
                       {t("dashboard:TOP_DESCRIPTION_MAXIBONUS")}
                     </p>
-                    <p className="item_description">
-                      TRX: 3 450.15 | USD: 223.97
-                    </p>
+                    <p className="item_description">TRX: 0 | USD: 0</p>
                   </div>
                 </div>
               </div>
@@ -442,7 +443,9 @@ function DashboardMain() {
                           {t("dashboard:TOP_DESCRIPTION_LOSTPROFIT")}
                         </p>
                         <p className="item_description">
-                          TRX: 452 | USD: 29.21
+                          TRX:{" "}
+                          {user && parseFloat(user.lost_income.BNB).toFixed(4)}{" "}
+                          | USD: {user && user.lost_income.USD}
                         </p>
                       </div>
                     </div>
