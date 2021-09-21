@@ -117,79 +117,83 @@ function DashboardMain() {
               <Link to="/activation">
                 <div className="activation_block">
                   <p className="activation_text">
-                    {t("dashboard:TOP_DESCRIPTION_ACTIVE")}
+                    {settings && settings.status === "Free"
+                      ? t("dashboard:TOP_DESCRIPTION_ACTIVATE")
+                      : t("dashboard:TOP_DESCRIPTION_ACTIVE")}
                   </p>
                 </div>
               </Link>
               <div className="time_block">
-                <div className="eTimer">
-                  <Timer initialTime={"30000000000"} direction="backward">
-                    {() => (
-                      <Fragment>
-                        <div
-                          style={{
-                            color: "white",
-                            paddingTop: 20,
-                            display: "flex",
-                            fontSize: 24,
-                          }}
-                        >
+                {user && user.end_plan_time && (
+                  <div className="eTimer">
+                    <Timer initialTime={"30000000000"} direction="backward">
+                      {() => (
+                        <Fragment>
                           <div
                             style={{
-                              paddingLeft: 10,
-                              paddingRight: 10,
+                              color: "white",
+                              paddingTop: 20,
+                              display: "flex",
                               fontSize: 24,
                             }}
                           >
-                            <Timer.Days />
-                            <p style={{ fontSize: 14 }}>
-                              {t("dashboard:TOP_DESCRIPTION_DAYS")}
-                            </p>
+                            <div
+                              style={{
+                                paddingLeft: 10,
+                                paddingRight: 10,
+                                fontSize: 24,
+                              }}
+                            >
+                              <Timer.Days />
+                              <p style={{ fontSize: 14 }}>
+                                {t("dashboard:TOP_DESCRIPTION_DAYS")}
+                              </p>
+                            </div>
+                            {" : "}
+                            <div
+                              style={{
+                                paddingLeft: 10,
+                                paddingRight: 10,
+                                fontSize: 24,
+                              }}
+                            >
+                              <Timer.Hours />
+                              <p style={{ fontSize: 14 }}>
+                                {t("dashboard:TOP_DESCRIPTION_HOURS")}
+                              </p>
+                            </div>
+                            {" : "}
+                            <div
+                              style={{
+                                paddingLeft: 10,
+                                paddingRight: 10,
+                                fontSize: 24,
+                              }}
+                            >
+                              <Timer.Minutes />
+                              <p style={{ fontSize: 14 }}>
+                                {t("dashboard:TOP_DESCRIPTION_MINUTES")}
+                              </p>
+                            </div>
+                            {" : "}
+                            <div
+                              style={{
+                                paddingLeft: 10,
+                                paddingRight: 10,
+                                fontSize: 24,
+                              }}
+                            >
+                              <Timer.Seconds />
+                              <p style={{ fontSize: 14 }}>
+                                {t("dashboard:TOP_DESCRIPTION_SECONDS")}
+                              </p>
+                            </div>
                           </div>
-                          {" : "}
-                          <div
-                            style={{
-                              paddingLeft: 10,
-                              paddingRight: 10,
-                              fontSize: 24,
-                            }}
-                          >
-                            <Timer.Hours />
-                            <p style={{ fontSize: 14 }}>
-                              {t("dashboard:TOP_DESCRIPTION_HOURS")}
-                            </p>
-                          </div>
-                          {" : "}
-                          <div
-                            style={{
-                              paddingLeft: 10,
-                              paddingRight: 10,
-                              fontSize: 24,
-                            }}
-                          >
-                            <Timer.Minutes />
-                            <p style={{ fontSize: 14 }}>
-                              {t("dashboard:TOP_DESCRIPTION_MINUTES")}
-                            </p>
-                          </div>
-                          {" : "}
-                          <div
-                            style={{
-                              paddingLeft: 10,
-                              paddingRight: 10,
-                              fontSize: 24,
-                            }}
-                          >
-                            <Timer.Seconds />
-                            <p style={{ fontSize: 14 }}>
-                              {t("dashboard:TOP_DESCRIPTION_SECONDS")}
-                            </p>
-                          </div>
-                        </div>
-                      </Fragment>
-                    )}
-                  </Timer>
-                </div>
+                        </Fragment>
+                      )}
+                    </Timer>
+                  </div>
+                )}
               </div>
               <div className="partner_block">
                 <button
