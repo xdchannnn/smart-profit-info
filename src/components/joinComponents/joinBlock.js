@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "../../assets/styles/login.scoped.css";
 import AuthContext from "../../context/auth.context";
 import useFetch from "../../hooks/useFetch.hook";
@@ -11,6 +11,7 @@ import Preloader from "../loaders/Preloader";
 
 function JoinBlock() {
   const { t } = useTranslation();
+  const { id } = useParams();
 
   const { setToken } = useContext(AuthContext);
   const { request, loading, error, clearError } = useFetch();
@@ -20,6 +21,7 @@ function JoinBlock() {
     email: "",
     phone: "",
     password: "",
+    ref_id: Number(id),
   });
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -58,9 +60,11 @@ function JoinBlock() {
               </div>
               <div className="top_block">
                 <img src={Logo} className="logo_form" />
-                <p className="top_text">
-                  {t("join:TOP_DESCRIPTION_SPONSOR")} (server123)
-                </p>
+                {id && (
+                  <p className="top_text">
+                    {t("join:TOP_DESCRIPTION_SPONSOR")} {id}
+                  </p>
+                )}
               </div>
               <div className="wallet_input_block">
                 <p>
@@ -138,7 +142,7 @@ function JoinBlock() {
                 <p className="account_prompt">
                   {t("join:TOP_DESCRIPTION_ALREADY")}
                 </p>
-                <Link to="/login" className="create_link">
+                <Link to={`/login/${id ? id : ""}`} className="create_link">
                   {t("join:TOP_DESCRIPTION_LOGIN1")}
                 </Link>
               </div>

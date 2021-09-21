@@ -4,13 +4,14 @@ import AuthContext from "../../context/auth.context";
 
 import "../../assets/styles/login.scoped.css";
 import logo from "../../assets/images/logo.svg";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
 import Preloader from "../loaders/Preloader";
 
 function LoginBlock() {
   const { t } = useTranslation();
+  const { id } = useParams();
 
   const { setToken } = useContext(AuthContext);
   const { request, loading, error, clearError } = useFetch();
@@ -80,7 +81,7 @@ function LoginBlock() {
               </div>
               <div className="form_footer">
                 <p>
-                  <Link to="/forgot" className="forgot_link">
+                  <Link to={`/forgot/${id ? id : ""}`} className="forgot_link">
                     {t("login:TOP_DESCRIPTION_FORGOT")}
                   </Link>
                 </p>
@@ -96,7 +97,7 @@ function LoginBlock() {
                 <p className="account_prompt">
                   {t("login:TOP_DESCRIPTION_HAVE")}
                 </p>
-                <Link to="/join" className="create_link">
+                <Link to={`/join/${id ? id : ""}`} className="create_link">
                   {t("login:TOP_DESCRIPTION_GREATE")}
                 </Link>
               </div>

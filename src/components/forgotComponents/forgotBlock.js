@@ -1,6 +1,6 @@
 import "../../assets/styles/forgot.scoped.css";
 import logo from "../../assets/images/logo.svg";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import useFetch from "../../hooks/useFetch.hook";
 import { toast } from "react-toastify";
@@ -9,6 +9,7 @@ import Preloader from "../loaders/Preloader";
 
 function Forgot() {
   const { t } = useTranslation();
+  const { id } = useParams();
 
   const { request, loading, error, clearError } = useFetch();
 
@@ -71,7 +72,10 @@ function Forgot() {
                 <p className="forgot_footer_title">
                   {t("forgot:TOP_DESCRIPTION_ACCOUNT")}
                 </p>
-                <Link to="/login" className="forgot_footer_link">
+                <Link
+                  to={`/login/${id ? id : ""}`}
+                  className="forgot_footer_link"
+                >
                   {t("forgot:TOP_DESCRIPTION_SIGNIN")}
                 </Link>
               </div>
