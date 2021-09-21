@@ -115,7 +115,11 @@ function DashboardMain() {
                 </div>
               </div>
               <Link to="/activation">
-                <div className="activation_block">
+                <div
+                  className={`activation_block ${
+                    settings && settings.status === "Free" ? "blinking" : ""
+                  }`}
+                >
                   <p className="activation_text">
                     {settings && settings.status === "Free"
                       ? t("dashboard:TOP_DESCRIPTION_ACTIVATE")
@@ -124,9 +128,9 @@ function DashboardMain() {
                 </div>
               </Link>
               <div className="time_block">
-                {user && user.end_plan_time && (
+                {
                   <div className="eTimer">
-                    <Timer initialTime={"30000000000"} direction="backward">
+                    <Timer initialTime={"0"} direction="backward">
                       {() => (
                         <Fragment>
                           <div
@@ -193,7 +197,7 @@ function DashboardMain() {
                       )}
                     </Timer>
                   </div>
-                )}
+                }
               </div>
               <div className="partner_block">
                 <button
@@ -274,7 +278,7 @@ function DashboardMain() {
                     <p className="item_title">
                       {t("dashboard:TOP_DESCRIPTION_MAXIBONUS")}
                     </p>
-                    <p className="item_description">TRX: 0 | USD: 0</p>
+                    <p className="item_description">BNB: 0 | USD: 0</p>
                   </div>
                 </div>
               </div>
@@ -447,7 +451,7 @@ function DashboardMain() {
                           {t("dashboard:TOP_DESCRIPTION_LOSTPROFIT")}
                         </p>
                         <p className="item_description">
-                          TRX:{" "}
+                          BNB:{" "}
                           {user && parseFloat(user.lost_income.BNB).toFixed(4)}{" "}
                           | USD: {user && user.lost_income.USD}
                         </p>

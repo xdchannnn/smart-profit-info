@@ -362,6 +362,28 @@ header {
   transition: 0.1s;
 }
 
+.blinking {
+  animation: blinking 3s ease infinite;
+}
+
+@keyframes blinking {
+  0% {
+    background: #54cdef;
+  }
+  25% {
+    background: #54cdefbf;
+  }
+  50% {
+    background: #54cdefbf;
+  }
+  75% {
+    background: #54cdefbf;
+  }
+  100% {
+    background: #54cdef;
+  }
+}
+
 .activation_block:hover {
   background: #4ab8d8;
 }
