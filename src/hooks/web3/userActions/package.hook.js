@@ -2,11 +2,11 @@ import { useCallback, useContext, useState } from "react";
 import { toast } from "react-toastify";
 import AuthContext from "../../../context/auth.context";
 import { connectWallet } from "../../../utils/contract";
-import useFetch from "../../useFetch.hook";
+import useSavetx from "../../savetx.hook";
 
 const usePackage = () => {
   const { settings, token } = useContext(AuthContext);
-  const { request } = useFetch();
+  const { savetx } = useSavetx();
 
   const [loading, setLoading] = useState(false);
 
@@ -22,15 +22,7 @@ const usePackage = () => {
                 value: wallet.utils.toWei(String(price)),
               })
               .on("receipt", (receipt) => {
-                request(
-                  "/save-tx",
-                  "POST",
-                  {
-                    user_id: settings.id,
-                    tx_hash: receipt.transactionHash,
-                  },
-                  { Authorization: `Bearer ${token}` }
-                )
+                savetx(receipt.transactionHash)
                   .then((res) => {
                     if (res) {
                       setLoading(false);
