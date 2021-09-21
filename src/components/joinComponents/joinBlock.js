@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
 
 import Logo from "../../assets/images/logo.svg";
+import Preloader from "../loaders/Preloader";
 
 function JoinBlock() {
   const { t } = useTranslation();
@@ -46,103 +47,106 @@ function JoinBlock() {
   }, [error]);
 
   return (
-    <section className="login_block">
-      <div className="login_content">
-        <div className="login_form_block">
-          <form className="login_form" onSubmit={handleJoin}>
-            <div className="form_header">
-              <p className="form_header_title">{t("join:TOP_TITLE")}</p>
-            </div>
-            <div className="top_block">
-              <img src={Logo} className="logo_form" />
-              <p className="top_text">
-                {t("join:TOP_DESCRIPTION_SPONSOR")} (server123)
-              </p>
-            </div>
-            <div className="wallet_input_block">
-              <p>
-                {t("join:TOP_DESCRIPTION_LOGIN")}
-                <span>*</span>
-              </p>
-              <input
-                name="login"
-                value={form.login}
-                onChange={handleChange}
-                type="text"
-                className="wallet_input"
-                placeholder={t("join:TOP_DESCRIPTION_ENTER")}
-                required
-              />
-            </div>
-            <div className="password_input_block">
-              <p>
-                {t("join:TOP_DESCRIPTION_EMAIL")}
-                <span>*</span>
-              </p>
-              <input
-                name="email"
-                value={form.email}
-                onChange={handleChange}
-                type="email"
-                className="password_input"
-                id="password_input"
-                placeholder={t("join:TOP_DESCRIPTION_ENTERMAIL")}
-                required
-              />
-            </div>
-            <div className="password_input_block">
-              <p>
-                {t("join:TOP_DESCRIPTION_PHONE")}
-                <span>*</span>
-              </p>
-              <input
-                name="phone"
-                value={form.phone}
-                onChange={handleChange}
-                type="tel"
-                className="password_input"
-                id="password_input"
-                placeholder={t("join:TOP_DESCRIPTION_PHONE1")}
-                required
-              />
-            </div>
-            <div className="password_input_block">
-              <p>
-                {t("join:TOP_DESCRIPTION_PASSWORD")}
-                <span>*</span>
-              </p>
-              <input
-                name="password"
-                value={form.password}
-                onChange={handleChange}
-                type="password"
-                className="password_input"
-                id="password_input"
-                placeholder={t("join:TOP_DESCRIPTION_ENTERPASSWORD")}
-                required
-              />
-            </div>
-            <div className="form_footer">
-              <p className="data_block">
-                <button
-                  disabled={loading}
-                  className="login_button"
-                  type="submit"
-                >
-                  {t("join:TOP_DESCRIPTION_JOIN")}
-                </button>
-              </p>
-              <p className="account_prompt">
-                {t("join:TOP_DESCRIPTION_ALREADY")}
-              </p>
-              <Link to="/login" className="create_link">
-                {t("join:TOP_DESCRIPTION_LOGIN1")}
-              </Link>
-            </div>
-          </form>
+    <>
+      {loading && <Preloader />}
+      <section className="login_block">
+        <div className="login_content">
+          <div className="login_form_block">
+            <form className="login_form" onSubmit={handleJoin}>
+              <div className="form_header">
+                <p className="form_header_title">{t("join:TOP_TITLE")}</p>
+              </div>
+              <div className="top_block">
+                <img src={Logo} className="logo_form" />
+                <p className="top_text">
+                  {t("join:TOP_DESCRIPTION_SPONSOR")} (server123)
+                </p>
+              </div>
+              <div className="wallet_input_block">
+                <p>
+                  {t("join:TOP_DESCRIPTION_LOGIN")}
+                  <span>*</span>
+                </p>
+                <input
+                  name="login"
+                  value={form.login}
+                  onChange={handleChange}
+                  type="text"
+                  className="wallet_input"
+                  placeholder={t("join:TOP_DESCRIPTION_ENTER")}
+                  required
+                />
+              </div>
+              <div className="password_input_block">
+                <p>
+                  {t("join:TOP_DESCRIPTION_EMAIL")}
+                  <span>*</span>
+                </p>
+                <input
+                  name="email"
+                  value={form.email}
+                  onChange={handleChange}
+                  type="email"
+                  className="password_input"
+                  id="password_input"
+                  placeholder={t("join:TOP_DESCRIPTION_ENTERMAIL")}
+                  required
+                />
+              </div>
+              <div className="password_input_block">
+                <p>
+                  {t("join:TOP_DESCRIPTION_PHONE")}
+                  <span>*</span>
+                </p>
+                <input
+                  name="phone"
+                  value={form.phone}
+                  onChange={handleChange}
+                  type="tel"
+                  className="password_input"
+                  id="password_input"
+                  placeholder={t("join:TOP_DESCRIPTION_PHONE1")}
+                  required
+                />
+              </div>
+              <div className="password_input_block">
+                <p>
+                  {t("join:TOP_DESCRIPTION_PASSWORD")}
+                  <span>*</span>
+                </p>
+                <input
+                  name="password"
+                  value={form.password}
+                  onChange={handleChange}
+                  type="password"
+                  className="password_input"
+                  id="password_input"
+                  placeholder={t("join:TOP_DESCRIPTION_ENTERPASSWORD")}
+                  required
+                />
+              </div>
+              <div className="form_footer">
+                <p className="data_block">
+                  <button
+                    className="login_button"
+                    type="submit"
+                    disabled={loading}
+                  >
+                    {t("join:TOP_DESCRIPTION_JOIN")}
+                  </button>
+                </p>
+                <p className="account_prompt">
+                  {t("join:TOP_DESCRIPTION_ALREADY")}
+                </p>
+                <Link to="/login" className="create_link">
+                  {t("join:TOP_DESCRIPTION_LOGIN1")}
+                </Link>
+              </div>
+            </form>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }
 

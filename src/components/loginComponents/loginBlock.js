@@ -7,12 +7,12 @@ import logo from "../../assets/images/logo.svg";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
+import Preloader from "../loaders/Preloader";
 
 function LoginBlock() {
   const { t } = useTranslation();
 
   const { setToken } = useContext(AuthContext);
-  // Loader and error handler required
   const { request, loading, error, clearError } = useFetch();
 
   const [form, setForm] = useState({ login: "", password: "" });
@@ -36,72 +36,75 @@ function LoginBlock() {
   }, [error]);
 
   return (
-    <section className="login_block">
-      <div className="login_content">
-        <div className="login_form_block">
-          <form className="login_form" onSubmit={handleLogin}>
-            <div className="form_header">
-              <p className="form_header_title">{t("login:TOP_TITLE")}</p>
-            </div>
-            <div className="top_block">
-              <img src={logo} className="logo_form" />
-            </div>
-            <div className="wallet_input_block">
-              <p>
-                {t("login:TOP_DESCRIPTION_LOGIN")}
-                <span>*</span>
-              </p>
-              <input
-                name="login"
-                value={form.login}
-                onChange={handleChange}
-                type="text"
-                className="wallet_input"
-                id="wallet_input"
-                placeholder={t("login:TOP_DESCRIPTION_ENTER")}
-              />
-            </div>
-            <div className="password_input_block">
-              <p>
-                {t("login:TOP_DESCRIPTION_PASSWORD")}
-                <span>*</span>
-              </p>
-              <input
-                name="password"
-                value={form.password}
-                onChange={handleChange}
-                type="password"
-                className="password_input"
-                id="password_input"
-                placeholder={t("login:TOP_DESCRIPTION_ENTERPASSWORD")}
-              />
-            </div>
-            <div className="form_footer">
-              <p>
-                <Link to="/forgot" className="forgot_link">
-                  {t("login:TOP_DESCRIPTION_FORGOT")}
+    <>
+      {loading && <Preloader />}
+      <section className="login_block">
+        <div className="login_content">
+          <div className="login_form_block">
+            <form className="login_form" onSubmit={handleLogin}>
+              <div className="form_header">
+                <p className="form_header_title">{t("login:TOP_TITLE")}</p>
+              </div>
+              <div className="top_block">
+                <img src={logo} className="logo_form" />
+              </div>
+              <div className="wallet_input_block">
+                <p>
+                  {t("login:TOP_DESCRIPTION_LOGIN")}
+                  <span>*</span>
+                </p>
+                <input
+                  name="login"
+                  value={form.login}
+                  onChange={handleChange}
+                  type="text"
+                  className="wallet_input"
+                  id="wallet_input"
+                  placeholder={t("login:TOP_DESCRIPTION_ENTER")}
+                />
+              </div>
+              <div className="password_input_block">
+                <p>
+                  {t("login:TOP_DESCRIPTION_PASSWORD")}
+                  <span>*</span>
+                </p>
+                <input
+                  name="password"
+                  value={form.password}
+                  onChange={handleChange}
+                  type="password"
+                  className="password_input"
+                  id="password_input"
+                  placeholder={t("login:TOP_DESCRIPTION_ENTERPASSWORD")}
+                />
+              </div>
+              <div className="form_footer">
+                <p>
+                  <Link to="/forgot" className="forgot_link">
+                    {t("login:TOP_DESCRIPTION_FORGOT")}
+                  </Link>
+                </p>
+                <p className="data_block">
+                  <button
+                    type="submit"
+                    className="login_button"
+                    disabled={loading}
+                  >
+                    {t("login:TOP_DESCRIPTION_LOGIN1")}
+                  </button>
+                </p>
+                <p className="account_prompt">
+                  {t("login:TOP_DESCRIPTION_HAVE")}
+                </p>
+                <Link to="/join" className="create_link">
+                  {t("login:TOP_DESCRIPTION_GREATE")}
                 </Link>
-              </p>
-              <p className="data_block">
-                <button
-                  type="submit"
-                  className="login_button"
-                  disabled={loading}
-                >
-                  {t("login:TOP_DESCRIPTION_LOGIN1")}
-                </button>
-              </p>
-              <p className="account_prompt">
-                {t("login:TOP_DESCRIPTION_HAVE")}
-              </p>
-              <Link to="/join" className="create_link">
-                {t("login:TOP_DESCRIPTION_GREATE")}
-              </Link>
-            </div>
-          </form>
+              </div>
+            </form>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }
 
