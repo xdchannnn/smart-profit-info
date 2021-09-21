@@ -17,7 +17,7 @@ const usePackage = () => {
         connectWallet(settings.wallet)
           .then(({ wallet, contract }) => {
             contract.methods
-              ._register(Number(settings.ref_id || 1))
+              ._register(Number(settings.ref_id || 0))
               .send({
                 value: wallet.utils.toWei(String(price)),
               })
