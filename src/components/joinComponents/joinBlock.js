@@ -60,11 +60,9 @@ function JoinBlock() {
               </div>
               <div className="top_block">
                 <img src={Logo} className="logo_form" />
-                {id && (
-                  <p className="top_text">
-                    {t("join:TOP_DESCRIPTION_SPONSOR")} {id}
-                  </p>
-                )}
+                <p className="top_text">
+                  {t("join:TOP_DESCRIPTION_SPONSOR")} {id || "1"}
+                </p>
               </div>
               <div className="wallet_input_block">
                 <p>
