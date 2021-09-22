@@ -30,7 +30,11 @@ import { useTranslation } from "react-i18next";
 
 import Timer from "react-compound-timer";
 
-import Banner from "../../assets/images/banner.png";
+import BannerBlue from "../../assets/images/banner-blue.png";
+import BannerPurple from "../../assets/images/banner-purple.png";
+import BannerGreen from "../../assets/images/banner-green.png";
+import BannerYellow from "../../assets/images/banner-yellow.png";
+
 import Preloader from "../loaders/Preloader";
 
 import FREE from "../../assets/images/fr_purple.svg";
@@ -1045,7 +1049,27 @@ function DashboardMain() {
               </div>
             </div>
             <div className="banner_block">
-              <img src={Banner} alt="banner" width="100%" height="100%" />
+              <img
+                src={(() => {
+                  if (settings) {
+                    switch (settings.status) {
+                      case "Free":
+                        return BannerPurple;
+                      case "Start Profit":
+                        return BannerBlue;
+                      case "Fixed Profit":
+                        return BannerGreen;
+                      case "Maxi Profit":
+                        return BannerYellow;
+                      default:
+                        return BannerBlue;
+                    }
+                  }
+                })()}
+                alt="banner"
+                width="100%"
+                height="100%"
+              />
             </div>
           </div>
         </div>

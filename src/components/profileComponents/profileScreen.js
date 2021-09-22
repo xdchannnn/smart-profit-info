@@ -9,6 +9,11 @@ import useFetch from "../../hooks/useFetch.hook";
 import Preloader from "../loaders/Preloader";
 import { useTranslation } from "react-i18next";
 
+import frPurple from "../../assets/images/fr_purple.svg";
+import spBlue from "../../assets/images/sp_blue.svg";
+import fpGreen from "../../assets/images/fp_green.svg";
+import mpYellow from "../../assets/images/mp_yellow.svg";
+
 function ProfileScreen() {
   const { t } = useTranslation();
 
@@ -78,7 +83,27 @@ function ProfileScreen() {
             {t("profile:TOP_TITLE")}
           </p>
         </div>
-        <div className="profile_user_block">
+        <div
+          className="profile_user_block"
+          style={{
+            backgroundImage: `url(${(() => {
+              if (settings) {
+                switch (settings.status) {
+                  case "Free":
+                    return frPurple;
+                  case "Start Profit":
+                    return spBlue;
+                  case "Fixed Profit":
+                    return fpGreen;
+                  case "Maxi Profit":
+                    return mpYellow;
+                  default:
+                    return spBlue;
+                }
+              }
+            })()})`,
+          }}
+        >
           <div className="profile_user_content">
             <div className="profile_img_block">
               <img src={PhotoUser} className="profile_img" />
