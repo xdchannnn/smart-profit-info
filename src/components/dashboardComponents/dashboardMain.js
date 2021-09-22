@@ -1,14 +1,23 @@
 import "../../assets/styles/dashboard.scoped.css";
-import { Fragment, useContext, useEffect, useMemo } from "react";
+import { Fragment, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import AuthContext from "../../context/auth.context";
 import { toast } from "react-toastify";
 
-import SettingsIcon from "../../assets/images/settings-icon.svg";
+import SettingsIconPurple from "../../assets/images/settings-icon-purple.svg";
+import SettingsIconBlue from "../../assets/images/settings-icon-blue.svg";
+import SettingsIconGreen from "../../assets/images/settings-icon-green.svg";
+import SettingsIconYellow from "../../assets/images/settings-icon-yellow.svg";
 import ProfileImg from "../../assets/images/profile-img.jpg";
 import CopyIcon from "../../assets/images/copy-icon.svg";
-import BlueCopy from "../../assets/images/blue-copy.svg";
+import BlueCopy from "../../assets/images/copy-blue.svg";
+import PurpleCopy from "../../assets/images/copy-purple.svg";
+import GreenCopy from "../../assets/images/copy-green.svg";
+import YellowCopy from "../../assets/images/copy-yellow.svg";
 import BonusBlue from "../../assets/images/bonus-blue.svg";
+import BonusPurple from "../../assets/images/bonus-purple.svg";
+import BonusGreen from "../../assets/images/bonus-green.svg";
+import BonusYellow from "../../assets/images/bonus-yellow.svg";
 import InfoIcon from "../../assets/images/info-icon.svg";
 import PartnerScore from "../../assets/images/partner_score.svg";
 import WalletIcon from "../../assets/images/wallet-icon.svg";
@@ -67,14 +76,65 @@ function DashboardMain() {
                   })`,
               }}
             >
-              <div className="border_start_blue" />
-              <div className="border_end_blue" />
+              <div
+                className={`border_start ${(() => {
+                  if (settings) {
+                    switch (settings.status) {
+                      case "Free":
+                        return "border_start_purple";
+                      case "Start Profit":
+                        return "border_start_blue";
+                      case "Fixed Profit":
+                        return "border_start_green";
+                      case "Maxi Profit":
+                        return "border_start_yellow";
+                      default:
+                        return "border_start_blue";
+                    }
+                  }
+                })()}`}
+              />
+              <div
+                className={`border_end ${(() => {
+                  if (settings) {
+                    switch (settings.status) {
+                      case "Free":
+                        return "border_end_purple";
+                      case "Start Profit":
+                        return "border_end_blue";
+                      case "Fixed Profit":
+                        return "border_end_green";
+                      case "Maxi Profit":
+                        return "border_end_yellow";
+                      default:
+                        return "border_end_blue";
+                    }
+                  }
+                })()}`}
+              />
               <p style={{ color: "white", marginBottom: 8 }}>
                 LOGIN: {settings && settings.login}
               </p>
               <Link to="/profile">
                 <div className="settings_item">
-                  <img src={SettingsIcon} />
+                  <img
+                    src={(() => {
+                      if (settings) {
+                        switch (settings.status) {
+                          case "Free":
+                            return SettingsIconPurple;
+                          case "Start Profit":
+                            return SettingsIconBlue;
+                          case "Fixed Profit":
+                            return SettingsIconGreen;
+                          case "Maxi Profit":
+                            return SettingsIconYellow;
+                          default:
+                            return SettingsIconBlue;
+                        }
+                      }
+                    })()}
+                  />
                   <p className="settings_text">{t("dashboard:TOP_TITLE")}</p>
                 </div>
               </Link>
@@ -88,8 +148,28 @@ function DashboardMain() {
                     <p className="id_text">ID: {settings.contract_id}</p>
                   )}
                   <p className="status_text">
-                    {t("dashboard:TOP_DESCRIPTION_CURRENT")}
-                    <a className="status_link">
+                    {t("dashboard:TOP_DESCRIPTION_CURRENT")}:
+                    <a
+                      className="status_link"
+                      style={{
+                        color: (() => {
+                          if (settings) {
+                            switch (settings.status) {
+                              case "Free":
+                                return "#728ab3";
+                              case "Start Profit":
+                                return "#54cdef";
+                              case "Fixed Profit":
+                                return "#5cd58e";
+                              case "Maxi Profit":
+                                return "#f2ca6b";
+                              default:
+                                return "#54cdef";
+                            }
+                          }
+                        })(),
+                      }}
+                    >
                       {settings && settings.status
                         ? settings.status.toUpperCase()
                         : null}
@@ -244,7 +324,24 @@ function DashboardMain() {
                 </a>
               </div>
               <div className="referal_block">
-                <img src={BlueCopy} />
+                <img
+                  src={(() => {
+                    if (settings) {
+                      switch (settings.status) {
+                        case "Free":
+                          return PurpleCopy;
+                        case "Start Profit":
+                          return BlueCopy;
+                        case "Fixed Profit":
+                          return GreenCopy;
+                        case "Maxi Profit":
+                          return YellowCopy;
+                        default:
+                          return BlueCopy;
+                      }
+                    }
+                  })()}
+                />
                 <Link
                   to={`sponsor/${settings && settings.ref_id}`}
                   className="referal_text"
@@ -255,8 +352,42 @@ function DashboardMain() {
             </div>
 
             <div className="bonus_block">
-              <div className="border_start_amount_blue" />
-              <div className="border_end_amount_blue" />
+              <div
+                className={`border_start_amount ${(() => {
+                  if (settings) {
+                    switch (settings.status) {
+                      case "Free":
+                        return "border_start_amount_purple";
+                      case "Start Profit":
+                        return "border_start_amount_blue";
+                      case "Fixed Profit":
+                        return "border_start_amount_green";
+                      case "Maxi Profit":
+                        return "border_start_amount_yellow";
+                      default:
+                        return "border_start_amount_blue";
+                    }
+                  }
+                })()}`}
+              />
+              <div
+                className={`border_end_amount ${(() => {
+                  if (settings) {
+                    switch (settings.status) {
+                      case "Free":
+                        return "border_end_amount_purple";
+                      case "Start Profit":
+                        return "border_end_amount_blue";
+                      case "Fixed Profit":
+                        return "border_end_amount_green";
+                      case "Maxi Profit":
+                        return "border_end_amount_yellow";
+                      default:
+                        return "border_end_amount_blue";
+                    }
+                  }
+                })()}`}
+              />
               <div className="bonus_content">
                 <button
                   className="info_icon"
@@ -272,10 +403,47 @@ function DashboardMain() {
                 </button>
                 <div className="item_block">
                   <div className="item_icon">
-                    <img src={BonusBlue} />
+                    <img
+                      src={(() => {
+                        if (settings) {
+                          switch (settings.status) {
+                            case "Free":
+                              return BonusPurple;
+                            case "Start Profit":
+                              return BonusBlue;
+                            case "Fixed Profit":
+                              return BonusGreen;
+                            case "Maxi Profit":
+                              return BonusYellow;
+                            default:
+                              return BonusBlue;
+                          }
+                        }
+                      })()}
+                    />
                   </div>
                   <div className="item_content">
-                    <p className="item_title">
+                    <p
+                      className="item_title"
+                      style={{
+                        color: (() => {
+                          if (settings) {
+                            switch (settings.status) {
+                              case "Free":
+                                return "#728ab3";
+                              case "Start Profit":
+                                return "#54cdef";
+                              case "Fixed Profit":
+                                return "#5cd58e";
+                              case "Maxi Profit":
+                                return "#f2ca6b";
+                              default:
+                                return "#54cdef";
+                            }
+                          }
+                        })(),
+                      }}
+                    >
                       {t("dashboard:TOP_DESCRIPTION_MAXIBONUS")}
                     </p>
                     <p className="item_description">BNB: 0 | USD: 0</p>
@@ -288,8 +456,42 @@ function DashboardMain() {
           <div className="right_block">
             <div className="one_row">
               <div className="partner_amount_block">
-                <div className="border_start_amount_blue" />
-                <div className="border_end_amount_blue" />
+                <div
+                  className={`border_start_amount ${(() => {
+                    if (settings) {
+                      switch (settings.status) {
+                        case "Free":
+                          return "border_start_amount_purple";
+                        case "Start Profit":
+                          return "border_start_amount_blue";
+                        case "Fixed Profit":
+                          return "border_start_amount_green";
+                        case "Maxi Profit":
+                          return "border_start_amount_yellow";
+                        default:
+                          return "border_start_amount_blue";
+                      }
+                    }
+                  })()}`}
+                />
+                <div
+                  className={`border_end_amount ${(() => {
+                    if (settings) {
+                      switch (settings.status) {
+                        case "Free":
+                          return "border_end_amount_purple";
+                        case "Start Profit":
+                          return "border_end_amount_blue";
+                        case "Fixed Profit":
+                          return "border_end_amount_green";
+                        case "Maxi Profit":
+                          return "border_end_amount_yellow";
+                        default:
+                          return "border_end_amount_blue";
+                      }
+                    }
+                  })()}`}
+                />
                 <div className="partner_amount_content">
                   <button
                     className="info_icon"
@@ -311,7 +513,27 @@ function DashboardMain() {
                         <img src={PartnerScore} />
                       </div>
                       <div className="item_content">
-                        <p className="item_title">
+                        <p
+                          className="item_title"
+                          style={{
+                            color: (() => {
+                              if (settings) {
+                                switch (settings.status) {
+                                  case "Free":
+                                    return "#728ab3";
+                                  case "Start Profit":
+                                    return "#54cdef";
+                                  case "Fixed Profit":
+                                    return "#5cd58e";
+                                  case "Maxi Profit":
+                                    return "#f2ca6b";
+                                  default:
+                                    return "#54cdef";
+                                }
+                              }
+                            })(),
+                          }}
+                        >
                           {t("dashboard:TOP_DESCRIPTION_AFFILIATEPROFIT")}
                         </p>
                         <p className="item_description">
@@ -323,7 +545,27 @@ function DashboardMain() {
                       </div>
                     </div>
                     <div className="item_link_block">
-                      <p className="item_link_text">
+                      <p
+                        className="item_link_text"
+                        style={{
+                          color: (() => {
+                            if (settings) {
+                              switch (settings.status) {
+                                case "Free":
+                                  return "#728ab3";
+                                case "Start Profit":
+                                  return "#54cdef";
+                                case "Fixed Profit":
+                                  return "#5cd58e";
+                                case "Maxi Profit":
+                                  return "#f2ca6b";
+                                default:
+                                  return "#54cdef";
+                              }
+                            }
+                          })(),
+                        }}
+                      >
                         BNB:
                         <a href="#" className="item_link">
                           {user && user.wallet}
@@ -334,8 +576,42 @@ function DashboardMain() {
                 </div>
               </div>
               <div className="partner_amount_block">
-                <div className="border_start_amount_blue" />
-                <div className="border_end_amount_blue" />
+                <div
+                  className={`border_start_amount ${(() => {
+                    if (settings) {
+                      switch (settings.status) {
+                        case "Free":
+                          return "border_start_amount_purple";
+                        case "Start Profit":
+                          return "border_start_amount_blue";
+                        case "Fixed Profit":
+                          return "border_start_amount_green";
+                        case "Maxi Profit":
+                          return "border_start_amount_yellow";
+                        default:
+                          return "border_start_amount_blue";
+                      }
+                    }
+                  })()}`}
+                />
+                <div
+                  className={`border_end_amount ${(() => {
+                    if (settings) {
+                      switch (settings.status) {
+                        case "Free":
+                          return "border_end_amount_purple";
+                        case "Start Profit":
+                          return "border_end_amount_blue";
+                        case "Fixed Profit":
+                          return "border_end_amount_green";
+                        case "Maxi Profit":
+                          return "border_end_amount_yellow";
+                        default:
+                          return "border_end_amount_blue";
+                      }
+                    }
+                  })()}`}
+                />
                 <div className="partner_amount_content">
                   <button
                     className="info_icon"
@@ -357,7 +633,27 @@ function DashboardMain() {
                         <img src={WalletIcon} />
                       </div>
                       <div className="item_content">
-                        <p className="item_title">
+                        <p
+                          className="item_title"
+                          style={{
+                            color: (() => {
+                              if (settings) {
+                                switch (settings.status) {
+                                  case "Free":
+                                    return "#728ab3";
+                                  case "Start Profit":
+                                    return "#54cdef";
+                                  case "Fixed Profit":
+                                    return "#5cd58e";
+                                  case "Maxi Profit":
+                                    return "#f2ca6b";
+                                  default:
+                                    return "#54cdef";
+                                }
+                              }
+                            })(),
+                          }}
+                        >
                           {t("dashboard:TOP_DESCRIPTION_PROFITLEVELS")}
                         </p>
                         <p className="item_description">
@@ -368,7 +664,27 @@ function DashboardMain() {
                       </div>
                     </div>
                     <div className="item_link_block">
-                      <p className="item_link_text">
+                      <p
+                        className="item_link_text"
+                        style={{
+                          color: (() => {
+                            if (settings) {
+                              switch (settings.status) {
+                                case "Free":
+                                  return "#728ab3";
+                                case "Start Profit":
+                                  return "#54cdef";
+                                case "Fixed Profit":
+                                  return "#5cd58e";
+                                case "Maxi Profit":
+                                  return "#f2ca6b";
+                                default:
+                                  return "#54cdef";
+                              }
+                            }
+                          })(),
+                        }}
+                      >
                         BNB:
                         <a href="#" className="item_link">
                           {user && user.wallet}
@@ -381,8 +697,42 @@ function DashboardMain() {
             </div>
             <div className="two_row">
               <div className="partner_amount_block">
-                <div className="border_start_amount_blue" />
-                <div className="border_end_amount_blue" />
+                <div
+                  className={`border_start_amount ${(() => {
+                    if (settings) {
+                      switch (settings.status) {
+                        case "Free":
+                          return "border_start_amount_purple";
+                        case "Start Profit":
+                          return "border_start_amount_blue";
+                        case "Fixed Profit":
+                          return "border_start_amount_green";
+                        case "Maxi Profit":
+                          return "border_start_amount_yellow";
+                        default:
+                          return "border_start_amount_blue";
+                      }
+                    }
+                  })()}`}
+                />
+                <div
+                  className={`border_end_amount ${(() => {
+                    if (settings) {
+                      switch (settings.status) {
+                        case "Free":
+                          return "border_end_amount_purple";
+                        case "Start Profit":
+                          return "border_end_amount_blue";
+                        case "Fixed Profit":
+                          return "border_end_amount_green";
+                        case "Maxi Profit":
+                          return "border_end_amount_yellow";
+                        default:
+                          return "border_end_amount_blue";
+                      }
+                    }
+                  })()}`}
+                />
                 <div className="partner_amount_content">
                   <button
                     className="info_icon"
@@ -404,7 +754,27 @@ function DashboardMain() {
                         <img src={TeamIcon} />
                       </div>
                       <div className="item_content">
-                        <p className="item_title">
+                        <p
+                          className="item_title"
+                          style={{
+                            color: (() => {
+                              if (settings) {
+                                switch (settings.status) {
+                                  case "Free":
+                                    return "#728ab3";
+                                  case "Start Profit":
+                                    return "#54cdef";
+                                  case "Fixed Profit":
+                                    return "#5cd58e";
+                                  case "Maxi Profit":
+                                    return "#f2ca6b";
+                                  default:
+                                    return "#54cdef";
+                                }
+                              }
+                            })(),
+                          }}
+                        >
                           {t("dashboard:TOP_DESCRIPTION_MYTEAM")}
                         </p>
                         <p className="item_description">
@@ -413,7 +783,27 @@ function DashboardMain() {
                       </div>
                     </div>
                     <div className="item_link_block">
-                      <p className="item_link_text">
+                      <p
+                        className="item_link_text"
+                        style={{
+                          color: (() => {
+                            if (settings) {
+                              switch (settings.status) {
+                                case "Free":
+                                  return "#728ab3";
+                                case "Start Profit":
+                                  return "#54cdef";
+                                case "Fixed Profit":
+                                  return "#5cd58e";
+                                case "Maxi Profit":
+                                  return "#f2ca6b";
+                                default:
+                                  return "#54cdef";
+                              }
+                            }
+                          })(),
+                        }}
+                      >
                         {t("dashboard:TOP_DESCRIPTION_GENERALTEAM1")}
                         <a href="#" className="item_link">
                           {user && user.my_team.team_count}
@@ -424,8 +814,42 @@ function DashboardMain() {
                 </div>
               </div>
               <div className="partner_amount_block">
-                <div className="border_start_amount_blue" />
-                <div className="border_end_amount_blue" />
+                <div
+                  className={`border_start_amount ${(() => {
+                    if (settings) {
+                      switch (settings.status) {
+                        case "Free":
+                          return "border_start_amount_purple";
+                        case "Start Profit":
+                          return "border_start_amount_blue";
+                        case "Fixed Profit":
+                          return "border_start_amount_green";
+                        case "Maxi Profit":
+                          return "border_start_amount_yellow";
+                        default:
+                          return "border_start_amount_blue";
+                      }
+                    }
+                  })()}`}
+                />
+                <div
+                  className={`border_end_amount ${(() => {
+                    if (settings) {
+                      switch (settings.status) {
+                        case "Free":
+                          return "border_end_amount_purple";
+                        case "Start Profit":
+                          return "border_end_amount_blue";
+                        case "Fixed Profit":
+                          return "border_end_amount_green";
+                        case "Maxi Profit":
+                          return "border_end_amount_yellow";
+                        default:
+                          return "border_end_amount_blue";
+                      }
+                    }
+                  })()}`}
+                />
                 <div className="partner_amount_content">
                   <button
                     className="info_icon"
@@ -447,7 +871,27 @@ function DashboardMain() {
                         <img src={LostIcon} />
                       </div>
                       <div className="item_content">
-                        <p className="item_title">
+                        <p
+                          className="item_title"
+                          style={{
+                            color: (() => {
+                              if (settings) {
+                                switch (settings.status) {
+                                  case "Free":
+                                    return "#728ab3";
+                                  case "Start Profit":
+                                    return "#54cdef";
+                                  case "Fixed Profit":
+                                    return "#5cd58e";
+                                  case "Maxi Profit":
+                                    return "#f2ca6b";
+                                  default:
+                                    return "#54cdef";
+                                }
+                              }
+                            })(),
+                          }}
+                        >
                           {t("dashboard:TOP_DESCRIPTION_LOSTPROFIT")}
                         </p>
                         <p className="item_description">
@@ -458,7 +902,27 @@ function DashboardMain() {
                       </div>
                     </div>
                     <div className="item_link_block">
-                      <p className="item_link_text">
+                      <p
+                        className="item_link_text"
+                        style={{
+                          color: (() => {
+                            if (settings) {
+                              switch (settings.status) {
+                                case "Free":
+                                  return "#728ab3";
+                                case "Start Profit":
+                                  return "#54cdef";
+                                case "Fixed Profit":
+                                  return "#5cd58e";
+                                case "Maxi Profit":
+                                  return "#f2ca6b";
+                                default:
+                                  return "#54cdef";
+                              }
+                            }
+                          })(),
+                        }}
+                      >
                         BNB:
                         <a href="#" className="item_link">
                           {user && user.wallet}
@@ -472,8 +936,42 @@ function DashboardMain() {
             <div className="levels_block">
               <Link to="/general-team/1" style={{ width: "100%" }}>
                 <div className="level_item">
-                  <div className="level_top_child_border" />
-                  <div className="level_bottom_child_border" />
+                  <div
+                    className={`level_top_child_border ${(() => {
+                      if (settings) {
+                        switch (settings.status) {
+                          case "Free":
+                            return "level_top_child_border-purple";
+                          case "Start Profit":
+                            return "level_top_child_border-blue";
+                          case "Fixed Profit":
+                            return "level_top_child_border-green";
+                          case "Maxi Profit":
+                            return "level_top_child_border-yellow";
+                          default:
+                            return "level_top_child_border-blue";
+                        }
+                      }
+                    })()}`}
+                  />
+                  <div
+                    className={`level_bottom_child_border ${(() => {
+                      if (settings) {
+                        switch (settings.status) {
+                          case "Free":
+                            return "level_bottom_child_border-purple";
+                          case "Start Profit":
+                            return "level_bottom_child_border-blue";
+                          case "Fixed Profit":
+                            return "level_bottom_child_border-green";
+                          case "Maxi Profit":
+                            return "level_bottom_child_border-yellow";
+                          default:
+                            return "level_bottom_child_border-blue";
+                        }
+                      }
+                    })()}`}
+                  />
                   <div className="level_content">
                     <p className="level_title">
                       {t("dashboard:TOP_DESCRIPTION_LEVEL")} 1
@@ -495,8 +993,42 @@ function DashboardMain() {
                       style={{ width: "100%" }}
                     >
                       <div className="level_item">
-                        <div className="level_top_child_border" />
-                        <div className="level_bottom_child_border" />
+                        <div
+                          className={`level_top_child_border ${(() => {
+                            if (settings) {
+                              switch (settings.status) {
+                                case "Free":
+                                  return "level_top_child_border-purple";
+                                case "Start Profit":
+                                  return "level_top_child_border-blue";
+                                case "Fixed Profit":
+                                  return "level_top_child_border-green";
+                                case "Maxi Profit":
+                                  return "level_top_child_border-yellow";
+                                default:
+                                  return "level_top_child_border-blue";
+                              }
+                            }
+                          })()}`}
+                        />
+                        <div
+                          className={`level_bottom_child_border ${(() => {
+                            if (settings) {
+                              switch (settings.status) {
+                                case "Free":
+                                  return "level_bottom_child_border-purple";
+                                case "Start Profit":
+                                  return "level_bottom_child_border-blue";
+                                case "Fixed Profit":
+                                  return "level_bottom_child_border-green";
+                                case "Maxi Profit":
+                                  return "level_bottom_child_border-yellow";
+                                default:
+                                  return "level_bottom_child_border-blue";
+                              }
+                            }
+                          })()}`}
+                        />
                         <div className="level_content">
                           <p className="level_title">
                             {t("dashboard:TOP_DESCRIPTION_LEVEL")} {index + 2}
