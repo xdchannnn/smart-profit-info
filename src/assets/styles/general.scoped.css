@@ -70,10 +70,6 @@
   align-items: center;
 }
 
-.table-responsive {
-  overflow: hidden !important;
-}
-
 .general_table {
   overflow-y: hidden;
   width: 100%;
