@@ -21,7 +21,7 @@ function JoinBlock() {
     email: "",
     phone: "",
     password: "",
-    ref_id: id ? Number(id) : 1,
+    ref_id: id ? String(id) : "1",
   });
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
