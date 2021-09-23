@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import "../../assets/styles/sponsor.scoped.css";
 
@@ -19,12 +19,14 @@ export default function Screen() {
   const { request, loading, error, clearError } = useFetch();
   const { token } = useContext(AuthContext);
 
+  const [sponsor, setSponsor] = useState({});
+
   useEffect(() => {
     if (token)
       request("/get-sponsor", "GET", null, {
         Authorization: `Bearer ${token}`,
       }).then((res) => {
-        console.log(res);
+        if (res) setSponsor(res.data);
       });
   }, [token]);
 
@@ -46,12 +48,27 @@ export default function Screen() {
               {t("sponsor:TOP_TITLE")}
             </p>
           </div>
-          <div className="block">
+          <div
+            className={`block ${(() => {
+              switch (sponsor.status) {
+                case "Free":
+                  return "block-purple";
+                case "Start Profit":
+                  return "block-blue";
+                case "Fixed Profit":
+                  return "block-green";
+                case "Maxi Profit":
+                  return "block-yellow";
+                default:
+                  return "block-purple";
+              }
+            })()}`}
+          >
             <div className="img_block">
-              <img src={PhotoUser} alt="photo-user" className="img" />
+              <img src={sponsor.photo} alt="photo-user" className="img" />
             </div>
             <div className="information">
-              <p className="username">Иван Иванов</p>
+              <p className="username">{sponsor.full_name}</p>
               <div className="contacts">
                 <div className="contact_item">
                   <p className="contact_item_text">
@@ -61,8 +78,8 @@ export default function Screen() {
                     <img src={Skype} alt="skype" width={56} height={56} />
                     <input
                       type="text"
-                      className="  contact_input"
-                      defaultValue="@sanekk000"
+                      className="contact_input"
+                      value={sponsor.skype}
                       readOnly
                     />
                   </div>
@@ -76,7 +93,7 @@ export default function Screen() {
                     <input
                       type="text"
                       className="  contact_input"
-                      defaultValue="strannik0004"
+                      value={sponsor.telegram}
                       readOnly
                     />
                   </div>
@@ -90,7 +107,7 @@ export default function Screen() {
                     <input
                       type="text"
                       className="  contact_input"
-                      defaultValue="ivanivanov@mail.ru"
+                      value={sponsor.email}
                       readOnly
                     />
                   </div>
@@ -104,7 +121,7 @@ export default function Screen() {
                     <input
                       type="text"
                       className="  contact_input"
-                      defaultValue={+380996938560}
+                      value={sponsor.phone}
                       readOnly
                     />
                   </div>
