@@ -13,12 +13,15 @@ import frPurple from "../../assets/images/fr_purple.svg";
 import spBlue from "../../assets/images/sp_blue.svg";
 import fpGreen from "../../assets/images/fp_green.svg";
 import mpYellow from "../../assets/images/mp_yellow.svg";
+import { toast } from "react-toastify";
 
 function ProfileScreen() {
   const { t } = useTranslation();
 
   const fetch = useFetch();
   const { user, settings, token, loading } = useContext(AuthContext);
+
+  const [avatar, setAvatar] = useState();
 
   const [form, setForm] = useState({
     full_name: "",
@@ -54,10 +57,29 @@ function ProfileScreen() {
     e.preventDefault();
     const formData = new FormData();
 
-    for (let [key, value] of Object.entries(
-      (({ repeat_password, ...rest }) => rest)(form)
-    ))
-      formData.append(key, value);
+    if (
+      form.new_password &&
+      form.new_password.length !== 0 &&
+      form.new_password !== form.repeat_password
+    )
+      return toast(t("toast:NEW_PASSWORD_ERROR"), {
+        type: "error",
+      });
+
+    if (form.old_password.length === 0)
+      return toast(t("toast:OLD_PASSWORD_ERROR"), {
+        type: "error",
+      });
+
+    if (avatar) formData.append("image", avatar);
+
+    for (let [key, value] of Object.entries(form)) {
+      if (value && value.length !== 0) {
+        if (key !== "repeat_password") {
+          formData.append(key, value);
+        }
+      }
+    }
 
     for (let [key, value] of formData.entries())
       console.log(key + ": " + value);
@@ -71,6 +93,10 @@ function ProfileScreen() {
       }
     );
     console.log(result);
+  };
+
+  const handleChangeAvatar = (e) => {
+    setAvatar(e.target.files[0]);
   };
 
   return (
@@ -106,11 +132,35 @@ function ProfileScreen() {
         >
           <div className="profile_user_content">
             <div className="profile_img_block">
-              <img src={PhotoUser} className="profile_img" />
+              <img
+                src={avatar && URL.createObjectURL(avatar)}
+                className="profile_img"
+                style={{ maxWidth: 300, maxHeight: 400 }}
+              />
               <p>
-                <button className="profile_img_edit">
+                <button
+                  className="profile_img_edit"
+                  style={{ position: "relative" }}
+                >
+                  <label
+                    for="imagePicker"
+                    class="custom-file-upload"
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      position: "absolute",
+                    }}
+                  />
                   {t("profile:TOP_DESCRIPTION_CHANGE")}
                 </button>
+                <input
+                  onChange={handleChangeAvatar}
+                  id="imagePicker"
+                  type="file"
+                  accept="image/*"
+                  style={{ display: "none" }}
+                  multiple={false}
+                />
               </p>
             </div>
             <div className="profile_user_items">
@@ -222,7 +272,7 @@ function ProfileScreen() {
                         {t("profile:TOP_DESCRIPTION_EXISTINGPASSWORD")}
                       </p>
                       <input
-                        type="text"
+                        type="password"
                         className="profile_user_input"
                         name="old_password"
                         value={form.old_password}
