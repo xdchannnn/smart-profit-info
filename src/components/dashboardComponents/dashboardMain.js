@@ -71,7 +71,11 @@ function DashboardMain() {
   const ETimer = useCallback(() => {
     return (
       <Timer
-        initialTime={user ? String(user.end_plan_time || 0) : "0"}
+        initialTime={
+          user && user.end_plan_time
+            ? String(user.end_plan_time * 1000 - Date.now())
+            : "0"
+        }
         direction="backward"
       >
         {() => (
