@@ -71,7 +71,7 @@ function DashboardMain() {
   const ETimer = useCallback(() => {
     return (
       <Timer
-        initialTime={user ? String(user.end_plan_time) : "0"}
+        initialTime={user ? String(user.end_plan_time || 0) : "0"}
         direction="backward"
       >
         {() => (
@@ -284,9 +284,22 @@ function DashboardMain() {
               </div>
               <Link to="/activation">
                 <div
-                  className={`activation_block ${
-                    settings && settings.status === "Free" ? "blinking" : ""
-                  }`}
+                  className={`activation_block ${(() => {
+                    if (settings && !settings.expire) {
+                      switch (settings.status) {
+                        case "Free":
+                          return "blinking";
+                        case "Start Profit":
+                          return "blinking-blue";
+                        case "Fixed Profit":
+                          return "blinking-green";
+                        case "Maxi Profit":
+                          return "blinking-yellow";
+                        default:
+                          return "blinking";
+                      }
+                    }
+                  })()}`}
                   style={{
                     background: (() => {
                       if (settings) {

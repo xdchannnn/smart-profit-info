@@ -432,6 +432,18 @@ header {
   animation: blinking 2s ease infinite;
 }
 
+.blinking-blue {
+  animation: blinking-blue 2s ease infinite;
+}
+
+.blinking-green {
+  animation: blinking-green 2s ease infinite;
+}
+
+.blinking-yellow {
+  animation: blinking-yellow 2s ease infinite;
+}
+
 @keyframes blinking {
   0% {
     background: #728ab3;
@@ -443,6 +455,48 @@ header {
 
   100% {
     background: #728ab3;
+  }
+}
+
+@keyframes blinking-blue {
+  0% {
+    background: #54cdef;
+  }
+
+  50% {
+    background: #54cdef99;
+  }
+
+  100% {
+    background: #54cdef;
+  }
+}
+
+@keyframes blinking-green {
+  0% {
+    background: #5cd58e;
+  }
+
+  50% {
+    background: #5cd58e99;
+  }
+
+  100% {
+    background: #5cd58e;
+  }
+}
+
+@keyframes blinking-yellow {
+  0% {
+    background: #f2ca6b;
+  }
+
+  50% {
+    background: #f2ca6b99;
+  }
+
+  100% {
+    background: #f2ca6b;
   }
 }
 
