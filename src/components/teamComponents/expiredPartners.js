@@ -12,12 +12,13 @@ import WhatsApp from "../../assets/images/whatsapp.svg";
 import Telegram from "../../assets/images/telegram-user.svg";
 import Copy from "../../assets/images/green-copy.svg";
 import Preloader from "../loaders/Preloader";
+import { toast } from "react-toastify";
 
 function ExpiredPartners() {
   const { t } = useTranslation();
 
   const { token } = useContext(AuthContext);
-  const { request, loading, error } = useFetch();
+  const { request, loading, error, clearError } = useFetch();
 
   const [data, setData] = useState([]);
 
@@ -37,6 +38,13 @@ function ExpiredPartners() {
       }
     })();
   }, [request, token]);
+
+  useEffect(() => {
+    if (error) {
+      toast(error.message, { type: "error" });
+      clearError();
+    }
+  }, [error]);
 
   return (
     <>

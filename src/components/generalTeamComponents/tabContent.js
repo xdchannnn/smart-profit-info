@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import "../../assets/styles/dashboard.scoped.css";
 import "../../assets/styles/general.scoped.css";
@@ -14,6 +14,7 @@ import useFetch from "../../hooks/useFetch.hook";
 import { useContext } from "react";
 import AuthContext from "../../context/auth.context";
 import Preloader from "../loaders/Preloader";
+import { toast } from "react-toastify";
 
 function Tabcontent() {
   const { t } = useTranslation();
@@ -22,6 +23,8 @@ function Tabcontent() {
 
   const { id } = useParams();
 
+  const [data, setData] = useState([]);
+
   useEffect(() => {
     fetch
       .request(`/get-level-info/${id || 1}`, "GET", null, {
@@ -29,8 +32,21 @@ function Tabcontent() {
       })
       .then((res) => {
         console.log(res);
+        if (res.data.length < 25) {
+          Array(25 - res.data.length)
+            .fill()
+            .map((item) => res.data.push(item));
+          setData(res.data);
+        } else setData(res.data);
       });
   }, [id]);
+
+  useEffect(() => {
+    if (fetch.error) {
+      toast(fetch.error.message, { type: "error" });
+      fetch.clearError();
+    }
+  }, [fetch.error]);
 
   return (
     <>
@@ -56,11 +72,9 @@ function Tabcontent() {
                   <p>{t("generalteam:TOP_DESCRIPTION_DATEOFPAYMENT")}</p>
                 </td>
               </tr>
-              {Array(25)
-                .fill()
-                .map((item, index) => (
-                  <TableItem item={item} t={t} key={index} />
-                ))}
+              {data.map((item, index) => (
+                <TableItem item={item} t={t} key={index} />
+              ))}
             </tbody>
           </table>
         </div>
@@ -72,14 +86,14 @@ function Tabcontent() {
 const TableItem = ({ item, t }) => (
   <tr className="child_one">
     <td className="child_row">
-      <p>{item && "Иван Иванов"}</p>
+      <p>{item && item.full_name}</p>
     </td>
     <td className="child_row">
       <div className="child_content">
         {item && (
           <>
             <p>
-              <span className="yellow_text">MP:</span> ID 56908
+              <span className={`purple_text`}>MP:</span> ID 56908
             </p>
             <div className="popover__wrapper">
               <a href="#">

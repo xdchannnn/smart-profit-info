@@ -11,12 +11,13 @@ import Skype from "../../assets/images/skype.svg";
 import WhatsApp from "../../assets/images/whatsapp.svg";
 import Telegram from "../../assets/images/telegram-user.svg";
 import Preloader from "../loaders/Preloader";
+import { toast } from "react-toastify";
 
 function NewRegistrations() {
   const { t } = useTranslation();
 
   const { token } = useContext(AuthContext);
-  const { request, loading, error } = useFetch();
+  const { request, loading, error, clearError } = useFetch();
 
   const [data, setData] = useState([]);
 
@@ -37,34 +38,43 @@ function NewRegistrations() {
     })();
   }, [request, token]);
 
+  useEffect(() => {
+    if (error) {
+      toast(error.message, { type: "error" });
+      clearError();
+    }
+  }, [error]);
+
   return (
     <>
       {loading && <Preloader />}
       <div id="NewRegister" className="tabcontent">
-        <table className="general_table">
-          <tbody>
-            <tr>
-              <td className="main_row">
-                <p>{t("myteam:TOP_DESCRIPTION_NAMEANDSURNAME1")}</p>
-              </td>
-              <td className="main_row">
-                <p>{t("myteam:TOP_DESCRIPTION_ID1")}</p>
-              </td>
-              <td className="main_row">
-                <p>{t("myteam:TOP_DESCRIPTION_EMAIL2")}</p>
-              </td>
-              <td className="main_row">
-                <p>{t("myteam:TOP_DESCRIPTION_PHONE1")}</p>
-              </td>
-              <td className="main_row">
-                <p>{t("myteam:TOP_DESCRIPTION_REGISTRATIONDATE")}</p>
-              </td>
-            </tr>
-            {data.map((item, index) => (
-              <TableItem item={item} key={index} t={t} />
-            ))}
-          </tbody>
-        </table>
+        <div className="table-responsive">
+          <table className="general_table">
+            <tbody>
+              <tr>
+                <td className="main_row">
+                  <p>{t("myteam:TOP_DESCRIPTION_NAMEANDSURNAME1")}</p>
+                </td>
+                <td className="main_row">
+                  <p>{t("myteam:TOP_DESCRIPTION_ID1")}</p>
+                </td>
+                <td className="main_row">
+                  <p>{t("myteam:TOP_DESCRIPTION_EMAIL2")}</p>
+                </td>
+                <td className="main_row">
+                  <p>{t("myteam:TOP_DESCRIPTION_PHONE1")}</p>
+                </td>
+                <td className="main_row">
+                  <p>{t("myteam:TOP_DESCRIPTION_REGISTRATIONDATE")}</p>
+                </td>
+              </tr>
+              {data.map((item, index) => (
+                <TableItem item={item} key={index} t={t} />
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </>
   );

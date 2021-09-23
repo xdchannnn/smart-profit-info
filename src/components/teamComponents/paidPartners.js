@@ -11,12 +11,13 @@ import info_icon from "../../assets/images/info-icon.svg";
 import Skype from "../../assets/images/skype.svg";
 import WhatsApp from "../../assets/images/whatsapp.svg";
 import Telegram from "../../assets/images/telegram-user.svg";
+import { toast } from "react-toastify";
 
 function PaidPartners() {
   const { t } = useTranslation();
 
   const { token } = useContext(AuthContext);
-  const { request, loading, error } = useFetch();
+  const { request, loading, error, clearError } = useFetch();
 
   const [data, setData] = useState([]);
 
@@ -37,35 +38,44 @@ function PaidPartners() {
     })();
   }, [request, token]);
 
+  useEffect(() => {
+    if (error) {
+      toast(error.message, { type: "error" });
+      clearError();
+    }
+  }, [error]);
+
   return (
     <>
       {loading && <Preloader />}
       <div id="PaidPartner" className="tabcontent">
-        <table className="general_table">
-          <tbody>
-            <tr>
-              <td className="main_row">
-                <p>{t("myteam:TOP_DESCRIPTION_NAMEANDSURNAME1")}</p>
-              </td>
-              <td className="main_row">
-                <p>ID</p>
-              </td>
-              <td className="main_row">
-                <p>{t("myteam:TOP_DESCRIPTION_SPONSOR1")}</p>
-              </td>
-              <td className="main_row">
-                <p>{t("myteam:TOP_DESCRIPTION_TEAM1")}</p>
-              </td>
-              <td className="main_row">
-                <p>{t("myteam:TOP_DESCRIPTION_DATEOFPAYMENT")}</p>
-              </td>
-            </tr>
+        <div className="table-responsive">
+          <table className="general_table">
+            <tbody>
+              <tr>
+                <td className="main_row">
+                  <p>{t("myteam:TOP_DESCRIPTION_NAMEANDSURNAME1")}</p>
+                </td>
+                <td className="main_row">
+                  <p>ID</p>
+                </td>
+                <td className="main_row">
+                  <p>{t("myteam:TOP_DESCRIPTION_SPONSOR1")}</p>
+                </td>
+                <td className="main_row">
+                  <p>{t("myteam:TOP_DESCRIPTION_TEAM1")}</p>
+                </td>
+                <td className="main_row">
+                  <p>{t("myteam:TOP_DESCRIPTION_DATEOFPAYMENT")}</p>
+                </td>
+              </tr>
 
-            {data.map((row, index) => (
-              <Table item={row} t={t} key={index} />
-            ))}
-          </tbody>
-        </table>
+              {data.map((row, index) => (
+                <Table item={row} t={t} key={index} />
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </>
   );
