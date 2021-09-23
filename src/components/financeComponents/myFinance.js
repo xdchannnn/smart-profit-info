@@ -1,23 +1,39 @@
-import { useContext, useEffect } from "react";
-import { useTranslation } from "react-i18next";
+import { useContext, useEffect, useState } from "react";
+import { useSSR, useTranslation } from "react-i18next";
 import "../../assets/styles/finance.scoped.css";
 import "../../assets/styles/general.scoped.css";
 import AuthContext from "../../context/auth.context";
 
 import useFetch from "../../hooks/useFetch.hook";
+import usePrice from "../../hooks/web3/price.hook";
 
 function MyFinance() {
   const { t } = useTranslation();
 
   const { token } = useContext(AuthContext);
   const { request, error } = useFetch();
+  const { getLatestPrice, latestPrice } = usePrice();
+
+  const [data, setData] = useState();
+
+  useEffect(() => {
+    getLatestPrice();
+  }, []);
 
   useEffect(() => {
     (async () => {
       const result = await request("/get-income", "GET", null, {
         Authorization: `Bearer ${token}`,
       });
-      console.log(result);
+      if (result) {
+        console.log(result);
+        if (result.data.length < 25) {
+          Array(25 - result.data.length)
+            .fill()
+            .map((item) => result.data.push(item));
+          setData(result.data);
+        } else setData(result.data);
+      }
     })();
   }, [request]);
 
@@ -42,10 +58,9 @@ function MyFinance() {
               <p>{t("finance:TOP_DESCRIPTION_DATE3")}</p>
             </td>
           </tr>
-          {Array(25)
-            .fill()
-            .map((item, index) => (
-              <TableItem item={item} t={t} key={index} />
+          {data &&
+            data.map((item, index) => (
+              <TableItem item={item} latestPrice={latestPrice} key={index} />
             ))}
         </tbody>
       </table>
@@ -53,20 +68,24 @@ function MyFinance() {
   );
 }
 
-const TableItem = ({ item, t }) => (
+const TableItem = ({ item, latestPrice }) => (
   <tr className="child_one">
-    <td className="child_row">{item && <p>1500</p>}</td>
+    <td className="child_row">{item && <p>{item.transaction_number}</p>}</td>
+    <td className="child_row">{item && <p>ID {item.from}</p>}</td>
+    <td className="child_row">{item && <p>{item.level}</p>}</td>
     <td className="child_row">
       {item && (
         <p>
-          <span className="green_text">FP:</span> ID 56908
+          {(latestPrice * item.trx).toFixed(2)} - {item.trx}
         </p>
       )}
     </td>
-    <td className="child_row">{item && <p>Реферальный</p>}</td>
-    <td className="child_row">{item && <p>3500</p>}</td>
     <td className="child_row">
-      {item && <p className="date_text">02.07.2021</p>}
+      {item && (
+        <p className="date_text">
+          {new Date(item.date * 1000).toLocaleDateString()}
+        </p>
+      )}
     </td>
   </tr>
 );

@@ -44,7 +44,9 @@ function MainPage() {
             <p className="main_banner_title">
               {t("landing:TOP_DESCRIPTION_MAXI")}
             </p>
-            <p className="main_banner_description">{maxiBonus} BNB</p>
+            <p className="main_banner_description">
+              {maxiBonus / Math.pow(10, 18)} BNB
+            </p>
           </div>
         </div>
       </section>

@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
+import contract from "../../utils/contract";
 
 const usePrice = () => {
   const [loading, setLoading] = useState(false);
   const [price, setPrice] = useState([]);
+  const [latestPrice, setLatestPrice] = useState(0);
 
   const getPrice = () => {
     setLoading(true);
@@ -23,7 +25,27 @@ const usePrice = () => {
       });
   };
 
-  return { loading, price, getPrice };
+  const getLatestPrice = () => {
+    setLoading(true);
+    contract.methods
+      .getLatestPrice()
+      .call()
+      .then((res) => {
+        setLoading(false);
+        res =
+          res.substring(0, res.length - 8) +
+          "." +
+          res.substring(res.length - 8, res.length);
+        console.log(parseFloat(res));
+        setLatestPrice(res);
+      })
+      .catch((e) => {
+        toast(e.message, { type: "error" });
+        setLoading(false);
+      });
+  };
+
+  return { loading, price, getPrice, getLatestPrice, latestPrice };
 };
 
 export default usePrice;

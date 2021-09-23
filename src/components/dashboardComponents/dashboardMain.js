@@ -1,5 +1,5 @@
 import "../../assets/styles/dashboard.scoped.css";
-import { Fragment, useContext, useEffect } from "react";
+import { Fragment, useCallback, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import AuthContext from "../../context/auth.context";
 import { toast } from "react-toastify";
@@ -41,10 +41,20 @@ import FREE from "../../assets/images/fr_purple.svg";
 import SP from "../../assets/images/sp_blue.svg";
 import FP from "../../assets/images/fp_green.svg";
 import MP from "../../assets/images/mp_yellow.svg";
+import useBonus from "../../hooks/web3/bonus.hook";
+import usePrice from "../../hooks/web3/price.hook";
 
 function DashboardMain() {
   const { user, settings, loading } = useContext(AuthContext);
   const { t } = useTranslation();
+
+  const { getMaxiBonus, maxiBonus } = useBonus();
+  const { getLatestPrice, latestPrice } = usePrice();
+
+  useEffect(() => {
+    getMaxiBonus();
+    getLatestPrice();
+  }, []);
 
   useEffect(() => {
     Array.from(
@@ -57,6 +67,80 @@ function DashboardMain() {
       .writeText(text)
       .then(() => toast(t("toast:COPY_CLIPBOARD"), { type: "success" }))
       .catch(() => toast("Could not copy text.", { type: "error" }));
+
+  const ETimer = useCallback(() => {
+    return (
+      <Timer
+        initialTime={user ? String(user.end_plan_time) : "0"}
+        direction="backward"
+      >
+        {() => (
+          <Fragment>
+            <div
+              style={{
+                color: "white",
+                paddingTop: 20,
+                display: "flex",
+                fontSize: 24,
+              }}
+            >
+              <div
+                style={{
+                  paddingLeft: 10,
+                  paddingRight: 10,
+                  fontSize: 24,
+                }}
+              >
+                <Timer.Days />
+                <p style={{ fontSize: 14 }}>
+                  {t("dashboard:TOP_DESCRIPTION_DAYS")}
+                </p>
+              </div>
+              {" : "}
+              <div
+                style={{
+                  paddingLeft: 10,
+                  paddingRight: 10,
+                  fontSize: 24,
+                }}
+              >
+                <Timer.Hours />
+                <p style={{ fontSize: 14 }}>
+                  {t("dashboard:TOP_DESCRIPTION_HOURS")}
+                </p>
+              </div>
+              {" : "}
+              <div
+                style={{
+                  paddingLeft: 10,
+                  paddingRight: 10,
+                  fontSize: 24,
+                }}
+              >
+                <Timer.Minutes />
+                <p style={{ fontSize: 14 }}>
+                  {t("dashboard:TOP_DESCRIPTION_MINUTES")}
+                </p>
+              </div>
+              {" : "}
+              <div
+                style={{
+                  paddingLeft: 10,
+                  paddingRight: 10,
+                  fontSize: 24,
+                }}
+              >
+                <Timer.Seconds />
+                <p style={{ fontSize: 14 }}>
+                  {t("dashboard:TOP_DESCRIPTION_SECONDS")}
+                </p>
+              </div>
+            </div>
+          </Fragment>
+        )}
+      </Timer>
+    );
+  }, [user]);
 
   return (
     <>
@@ -232,72 +316,7 @@ function DashboardMain() {
               <div className="time_block">
                 {
                   <div className="eTimer">
-                    <Timer initialTime={"0"} direction="backward">
-                      {() => (
-                        <Fragment>
-                          <div
-                            style={{
-                              color: "white",
-                              paddingTop: 20,
-                              display: "flex",
-                              fontSize: 24,
-                            }}
-                          >
-                            <div
-                              style={{
-                                paddingLeft: 10,
-                                paddingRight: 10,
-                                fontSize: 24,
-                              }}
-                            >
-                              <Timer.Days />
-                              <p style={{ fontSize: 14 }}>
-                                {t("dashboard:TOP_DESCRIPTION_DAYS")}
-                              </p>
-                            </div>
-                            {" : "}
-                            <div
-                              style={{
-                                paddingLeft: 10,
-                                paddingRight: 10,
-                                fontSize: 24,
-                              }}
-                            >
-                              <Timer.Hours />
-                              <p style={{ fontSize: 14 }}>
-                                {t("dashboard:TOP_DESCRIPTION_HOURS")}
-                              </p>
-                            </div>
-                            {" : "}
-                            <div
-                              style={{
-                                paddingLeft: 10,
-                                paddingRight: 10,
-                                fontSize: 24,
-                              }}
-                            >
-                              <Timer.Minutes />
-                              <p style={{ fontSize: 14 }}>
-                                {t("dashboard:TOP_DESCRIPTION_MINUTES")}
-                              </p>
-                            </div>
-                            {" : "}
-                            <div
-                              style={{
-                                paddingLeft: 10,
-                                paddingRight: 10,
-                                fontSize: 24,
-                              }}
-                            >
-                              <Timer.Seconds />
-                              <p style={{ fontSize: 14 }}>
-                                {t("dashboard:TOP_DESCRIPTION_SECONDS")}
-                              </p>
-                            </div>
-                          </div>
-                        </Fragment>
-                      )}
-                    </Timer>
+                    <ETimer />
                   </div>
                 }
               </div>
@@ -468,7 +487,12 @@ function DashboardMain() {
                     >
                       {t("dashboard:TOP_DESCRIPTION_MAXIBONUS")}
                     </p>
-                    <p className="item_description">BNB: 0 | USD: 0</p>
+                    <p className="item_description">
+                      BNB: {(maxiBonus / Math.pow(10, 18)).toFixed(4)} | USD:{" "}
+                      {((maxiBonus / Math.pow(10, 18)) * latestPrice).toFixed(
+                        2
+                      )}
+                    </p>
                   </div>
                 </div>
               </div>
