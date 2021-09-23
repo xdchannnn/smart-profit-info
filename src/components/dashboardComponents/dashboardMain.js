@@ -203,6 +203,24 @@ function DashboardMain() {
                   className={`activation_block ${
                     settings && settings.status === "Free" ? "blinking" : ""
                   }`}
+                  style={{
+                    background: (() => {
+                      if (settings) {
+                        switch (settings.status) {
+                          case "Free":
+                            return "#728ab3";
+                          case "Start Profit":
+                            return "#54cdef";
+                          case "Fixed Profit":
+                            return "#5cd58e";
+                          case "Maxi Profit":
+                            return "#f2ca6b";
+                          default:
+                            return "#54cdef";
+                        }
+                      }
+                    })(),
+                  }}
                 >
                   <p className="activation_text">
                     {settings && settings.status === "Free"
