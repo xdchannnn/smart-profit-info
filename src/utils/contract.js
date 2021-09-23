@@ -3,6 +3,7 @@ import contractAbi from "./contractAbi";
 import WalletConnectProvider from "@walletconnect/web3-provider";
 
 export const BINANCE_RPC = "https://data-seed-prebsc-1-s1.binance.org:8545/";
+export const HASH_LINK = "https://testnet.bscscan.com/tx/";
 
 const web3 = new Web3(new Web3.providers.HttpProvider(BINANCE_RPC));
 

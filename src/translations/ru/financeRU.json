@@ -10,5 +10,6 @@
   "TOP_DESCRIPTION_COMPLRTED1": "Выполнен",
   "TOP_DESCRIPTION_PREVIOUS2": "Предыдущая",
   "TOP_DESCRIPTION_NEXT1": "Следующая",
-  "TOP_DESCRIPTION_MAXIBONUS1": "Maxi Bonus"
+  "TOP_DESCRIPTION_MAXIBONUS1": "Maxi Bonus",
+  "TRANSACTION_HASH": "Хеш транзакции"
 }

@@ -7,6 +7,7 @@ import AuthContext from "../../context/auth.context";
 
 import useFetch from "../../hooks/useFetch.hook";
 import usePrice from "../../hooks/web3/price.hook";
+import { HASH_LINK } from "../../utils/contract";
 import Preloader from "../loaders/Preloader";
 
 function MyFinance() {
@@ -71,7 +72,12 @@ function MyFinance() {
             </tr>
             {data &&
               data.map((item, index) => (
-                <TableItem item={item} latestPrice={latestPrice} key={index} />
+                <TableItem
+                  item={item}
+                  latestPrice={latestPrice}
+                  t={t}
+                  key={index}
+                />
               ))}
           </tbody>
         </table>
@@ -80,15 +86,34 @@ function MyFinance() {
   );
 }
 
-const TableItem = ({ item, latestPrice }) => (
+const TableItem = ({ item, latestPrice, t }) => (
   <tr className="child_one">
-    <td className="child_row">{item && <p>{item.transaction_number}</p>}</td>
+    <td className="child_row">
+      {item && (
+        <a
+          href={HASH_LINK + item.transaction_number}
+          style={{ color: "white" }}
+          target="_blank"
+          referrerPolicy="no-referrer"
+        >
+          {t("finance:TRANSACTION_HASH")}
+        </a>
+      )}
+    </td>
     <td className="child_row">{item && <p>ID {item.from}</p>}</td>
-    <td className="child_row">{item && <p>{item.level}</p>}</td>
     <td className="child_row">
       {item && (
         <p>
-          {(latestPrice * item.trx).toFixed(2)} - {item.trx}
+          {item.level === "0"
+            ? t("finance:TOP_DESCRIPTION_REFERRAL1")
+            : item.level}
+        </p>
+      )}
+    </td>
+    <td className="child_row">
+      {item && (
+        <p>
+          $ {(latestPrice * item.trx).toFixed(2)} - BNB {item.trx}
         </p>
       )}
     </td>
