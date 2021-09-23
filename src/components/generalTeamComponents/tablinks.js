@@ -24,26 +24,48 @@ function Tablinks() {
           >
             <div class="level_item">
               <div
-                class={`level_top_child_border ${
-                  settings.status === "Free"
-                    ? "level_top_child_border-purple"
-                    : settings.status === "Start Profit"
-                    ? "level_top_child_border-blue"
-                    : settings.status === "Fixed Profit"
-                    ? "level_top_child_border-green"
-                    : "level_top_child_border-yellow"
-                }`}
+                class={`level_top_child_border ${(() => {
+                  if (settings) {
+                    switch (settings.status) {
+                      case "Free":
+                        return "level_top_child_border-purple";
+                      case "Start Profit":
+                        return index < 3
+                          ? "level_top_child_border-blue"
+                          : "level_top_child_border-purple";
+                      case "Fixed Profit":
+                        return index < 5
+                          ? "level_top_child_border-green"
+                          : "level_top_child_border-purple";
+                      case "Maxi Profit":
+                        return "level_top_child_border-yellow";
+                      default:
+                        return "level_top_child_border-blue";
+                    }
+                  }
+                })()}`}
               />
               <div
-                class={`level_bottom_child_border ${
-                  settings.status === "Free"
-                    ? "level_bottom_child_border-purple"
-                    : settings.status === "Start Profit"
-                    ? "level_bottom_child_border-blue"
-                    : settings.status === "Fixed Profit"
-                    ? "level_bottom_child_border-green"
-                    : "level_bottom_child_border-yellow"
-                }`}
+                class={`level_bottom_child_border ${(() => {
+                  if (settings) {
+                    switch (settings.status) {
+                      case "Free":
+                        return "level_bottom_child_border-purple";
+                      case "Start Profit":
+                        return index < 3
+                          ? "level_bottom_child_border-blue"
+                          : "level_bottom_child_border-purple";
+                      case "Fixed Profit":
+                        return index < 5
+                          ? "level_bottom_child_border-green"
+                          : "level_bottom_child_border-purple";
+                      case "Maxi Profit":
+                        return "level_bottom_child_border-yellow";
+                      default:
+                        return "level_bottom_child_border-blue";
+                    }
+                  }
+                })()}`}
               />
               <div class="level_content">
                 <p class="level_title">

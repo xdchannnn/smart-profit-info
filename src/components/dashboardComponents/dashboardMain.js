@@ -1063,9 +1063,13 @@ function DashboardMain() {
                                 case "Free":
                                   return "level_top_child_border-purple";
                                 case "Start Profit":
-                                  return "level_top_child_border-blue";
+                                  return index < 2
+                                    ? "level_top_child_border-blue"
+                                    : "level_top_child_border-purple";
                                 case "Fixed Profit":
-                                  return "level_top_child_border-green";
+                                  return index < 4
+                                    ? "level_top_child_border-green"
+                                    : "level_top_child_border-purple";
                                 case "Maxi Profit":
                                   return "level_top_child_border-yellow";
                                 default:
@@ -1081,9 +1085,13 @@ function DashboardMain() {
                                 case "Free":
                                   return "level_bottom_child_border-purple";
                                 case "Start Profit":
-                                  return "level_bottom_child_border-blue";
+                                  return index < 2
+                                    ? "level_bottom_child_border-blue"
+                                    : "level_bottom_child_border-purple";
                                 case "Fixed Profit":
-                                  return "level_bottom_child_border-green";
+                                  return index < 4
+                                    ? "level_bottom_child_border-green"
+                                    : "level_bottom_child_border-purple";
                                 case "Maxi Profit":
                                   return "level_bottom_child_border-yellow";
                                 default:
