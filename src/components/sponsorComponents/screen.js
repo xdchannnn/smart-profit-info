@@ -17,9 +17,24 @@ import AuthContext from "../../context/auth.context";
 export default function Screen() {
   const { t } = useTranslation();
   const { request, loading, error, clearError } = useFetch();
+  const [loadingAvatar, setLoadingAvatar] = useState(false);
   const { token } = useContext(AuthContext);
 
   const [sponsor, setSponsor] = useState({});
+  const [avatar, setAvatar] = useState();
+
+  useEffect(() => {
+    if (sponsor && token) {
+      setLoadingAvatar(true);
+      fetch(sponsor.photo, { headers: { Authorization: `Bearer ${token}` } })
+        .then((res) => res.blob())
+        .then((res) => {
+          setAvatar(res);
+          setLoadingAvatar(false);
+        })
+        .catch(() => setLoadingAvatar(false));
+    }
+  }, [sponsor, token]);
 
   useEffect(() => {
     if (token)
@@ -39,7 +54,7 @@ export default function Screen() {
 
   return (
     <>
-      {loading && <Preloader />}
+      {(loading || loadingAvatar) && <Preloader />}
       <div className="screen">
         <div className="content">
           <div className="top_block">
@@ -65,7 +80,11 @@ export default function Screen() {
             })()}`}
           >
             <div className="img_block">
-              <img src={sponsor.photo} alt="photo-user" className="img" />
+              <img
+                src={avatar && URL.createObjectURL(avatar)}
+                alt="photo-user"
+                className="img"
+              />
             </div>
             <div className="information">
               <p className="username">{sponsor.full_name}</p>
