@@ -1,5 +1,5 @@
 import "../../assets/styles/dashboard.scoped.css";
-import { Fragment, useCallback, useContext, useEffect } from "react";
+import { Fragment, useCallback, useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import AuthContext from "../../context/auth.context";
 import { toast } from "react-toastify";
@@ -45,11 +45,30 @@ import useBonus from "../../hooks/web3/bonus.hook";
 import usePrice from "../../hooks/web3/price.hook";
 
 function DashboardMain() {
-  const { user, settings, loading } = useContext(AuthContext);
+  const { user, settings, loading, token } = useContext(AuthContext);
+  const [avatarLoading, setAvatarLoading] = useState(false);
+
   const { t } = useTranslation();
 
   const { getMaxiBonus, maxiBonus } = useBonus();
   const { getLatestPrice, latestPrice } = usePrice();
+
+  const [avatar, setAvatar] = useState();
+
+  useEffect(() => {
+    if (settings && settings.photo && token) {
+      setAvatarLoading(true);
+      fetch(settings.photo, { headers: { Authorization: `Bearer ${token}` } })
+        .then((res) => res.blob())
+        .then((res) => {
+          setAvatar(res);
+          setAvatarLoading(false);
+        })
+        .catch((e) => {
+          setAvatarLoading(false);
+        });
+    }
+  }, [settings, token]);
 
   useEffect(() => {
     getMaxiBonus();
@@ -148,7 +167,7 @@ function DashboardMain() {
 
   return (
     <>
-      {loading && <Preloader />}
+      {(loading || avatarLoading) && <Preloader />}
       <div className="main_block">
         <div className="main_content">
           <div className="left_block">
@@ -232,7 +251,11 @@ function DashboardMain() {
               </Link>
               <div className="profile_settings">
                 <div className="profile_image_block">
-                  <img src={ProfileImg} />
+                  <img
+                    src={avatar && URL.createObjectURL(avatar)}
+                    alt="avatar"
+                    style={{ maxWidth: 150, maxHeight: 250 }}
+                  />
                 </div>
                 <div className="profile_content_block">
                   <p className="username_text">{user && user.full_name}</p>
