@@ -254,7 +254,7 @@ function DashboardMain() {
                   <img
                     src={avatar && URL.createObjectURL(avatar)}
                     alt="avatar"
-                    style={{ maxWidth: 150, maxHeight: 250 }}
+                    style={{ maxWidth: 200, maxHeight: 150 }}
                   />
                 </div>
                 <div className="profile_content_block">
