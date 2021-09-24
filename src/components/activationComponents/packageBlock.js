@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import "../../assets/styles/activation.scoped.css";
 
 import { useTranslation } from "react-i18next";
@@ -11,16 +11,41 @@ import usePrice from "../../hooks/web3/price.hook";
 
 import Preloader from "../loaders/Preloader";
 import usePackage from "../../hooks/web3/userActions/package.hook";
+import AuthContext from "../../context/auth.context";
 
 function PackageBlock() {
   const { t } = useTranslation();
 
-  const { loading, price, getPrice } = usePrice();
+  const { settings } = useContext(AuthContext);
+
+  const { loading, getLatestPrice, packagePrices } = usePrice();
   const pack = usePackage();
 
   useEffect(() => {
-    getPrice();
+    getLatestPrice();
   }, []);
+
+  const setDisabled = (packNumber) => {
+    if (settings) {
+      if (settings.status === "Free" || !settings.expire) return false;
+
+      if (settings.status === "Start Profit") {
+        if (packNumber === 0) return true;
+        else return false;
+      }
+
+      if (settings.status === "Fixed Profit") {
+        if (packNumber === 0 || packNumber === 1) return true;
+        else return false;
+      }
+
+      if (settings.status === "Maxi Profit") {
+        if (packNumber === 0 || packNumber === 1 || packNumber === 2)
+          return true;
+        else return false;
+      }
+    } else return true;
+  };
 
   return (
     <>
@@ -49,8 +74,13 @@ function PackageBlock() {
               </p>
             </div>
             <div className="package_item_button">
-              <button onClick={() => price[0] && pack.registrate(price[0])}>
-                {price[0] && price[0].toFixed(4)} BNB
+              <button
+                disabled={setDisabled(0)}
+                onClick={() =>
+                  packagePrices[0] && pack.registrate(packagePrices[0])
+                }
+              >
+                {packagePrices[0] && packagePrices[0].toFixed(4)} BNB
               </button>
             </div>
             <div className="angle_bottom_blue" />
@@ -82,8 +112,13 @@ function PackageBlock() {
               </p>
             </div>
             <div className="package_green_button">
-              <button onClick={() => price[1] && pack.registrate(price[1])}>
-                {price[1] && price[1].toFixed(4)} BNB
+              <button
+                disabled={setDisabled(1)}
+                onClick={() =>
+                  packagePrices[1] && pack.registrate(packagePrices[1])
+                }
+              >
+                {packagePrices[1] && packagePrices[1].toFixed(4)} BNB
               </button>
             </div>
             <div className="angle_bottom_green" />
@@ -117,8 +152,13 @@ function PackageBlock() {
               </p>
             </div>
             <div className="package_yellow_button">
-              <button onClick={() => price[2] && pack.registrate(price[2])}>
-                {price[2] && price[2].toFixed(4)} BNB
+              <button
+                disabled={setDisabled(2)}
+                onClick={() =>
+                  packagePrices[2] && pack.registrate(packagePrices[2])
+                }
+              >
+                {packagePrices[2] && packagePrices[2].toFixed(4)} BNB
               </button>
             </div>
             <div className="angle_bottom_yellow" />
