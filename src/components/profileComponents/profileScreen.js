@@ -18,10 +18,27 @@ import { toast } from "react-toastify";
 function ProfileScreen() {
   const { t } = useTranslation();
 
-  const fetch = useFetch();
   const { user, settings, token, loading } = useContext(AuthContext);
+  const [fetchLoading, setFetchLoading] = useState(false);
+  const [avatarLoading, setAvatarLoading] = useState(false);
 
   const [avatar, setAvatar] = useState();
+
+  useEffect(() => {
+    if (settings && settings.photo && token) {
+      setAvatarLoading(true);
+      fetch(settings.photo, { headers: { Authorization: `Bearer ${token}` } })
+        .then((res) => res.blob())
+        .then((res) => {
+          setAvatar(res);
+          setAvatarLoading(false);
+        })
+        .catch((e) => {
+          toast(e.message, { type: "error" });
+          setAvatarLoading(false);
+        });
+    }
+  }, [settings, token]);
 
   const [form, setForm] = useState({
     full_name: "",
@@ -55,21 +72,26 @@ function ProfileScreen() {
 
   const handleSave = async (e) => {
     e.preventDefault();
+    setFetchLoading(true);
     const formData = new FormData();
 
     if (
       form.new_password &&
       form.new_password.length !== 0 &&
       form.new_password !== form.repeat_password
-    )
+    ) {
+      setFetchLoading(false);
       return toast(t("toast:NEW_PASSWORD_ERROR"), {
         type: "error",
       });
+    }
 
-    if (form.old_password.length === 0)
+    if (form.old_password.length === 0) {
+      setFetchLoading(false);
       return toast(t("toast:OLD_PASSWORD_ERROR"), {
         type: "error",
       });
+    }
 
     if (avatar) formData.append("image", avatar);
 
@@ -84,15 +106,24 @@ function ProfileScreen() {
     for (let [key, value] of formData.entries())
       console.log(key + ": " + value);
 
-    const result = await fetch.request(
-      "/settings",
-      "POST",
-      { formData },
-      {
+    const response = await fetch("https://topmail.net.ua:8443/settings", {
+      method: "POST",
+      headers: {
         Authorization: `Bearer ${token}`,
-      }
-    );
-    console.log(result);
+      },
+      body: formData,
+    });
+
+    const result = await response.json();
+
+    if (!response.ok) {
+      setFetchLoading(false);
+      return toast(response.statusText, { type: "error" });
+    }
+
+    if ("error" in result) toast(result.error, { type: "error" });
+    else if ("success" in result) toast(result.success, { type: "success" });
+    setFetchLoading(false);
   };
 
   const handleChangeAvatar = (e) => {
@@ -101,7 +132,7 @@ function ProfileScreen() {
 
   return (
     <>
-      {loading && <Preloader />}
+      {(loading || fetchLoading || avatarLoading) && <Preloader />}
       <div className="profile_screen">
         <div className="profile_top_block">
           <img src={SettingsProfile} alt="settings-profile" />
