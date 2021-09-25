@@ -149,10 +149,7 @@ const TableItem = ({ item, t }) => {
                       {t("generalteam:TOP_DESCRIPTION_STATUSPOPUP")}{" "}
                       {renderFullStatus}
                     </p>
-                    <p className="sponsor_id">
-                      {t("generalteam:TOP_DESCRIPTION_SPONSOR")}{" "}
-                      <span className="sponsor_text">ID {item.sponsor_id}</span>
-                    </p>
+
                     <p className="country_id">
                       {t("generalteam:TOP_DESCRIPTION_COUNTRY2")}{" "}
                       <span className="country_text">{item.country}</span>
@@ -182,24 +179,18 @@ const TableItem = ({ item, t }) => {
           )}
         </div>
       </td>
-      <td className="child_row">
-        {item && (
-          <>
-            <input type="text" value={item.wallet_address} id="copyInput" />
-            <button className="copy_button">
-              <img
-                src={CopyIcon}
-                alt="copy-icon"
-                onClick={() => copyToClipBoard(item.wallet_address)}
-              />
-            </button>
-          </>
-        )}
-      </td>
+      <td className="child_row">{item && <p>ID: {item.sponsor_id}</p>}</td>
       <td className="child_row">{item && <p>{item.team_count}</p>}</td>
       <td className="child_row">
         {item && (
-          <p>{new Date(item.next_payment_date * 1000).toLocaleDateString()}</p>
+          <p
+            style={{
+              color:
+                Date.now() > item.next_payment_date * 1000 ? "red" : "white",
+            }}
+          >
+            {new Date(item.next_payment_date * 1000).toLocaleDateString()}
+          </p>
         )}
       </td>
     </tr>
