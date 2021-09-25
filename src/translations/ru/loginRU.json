@@ -1,8 +1,8 @@
 {
   "TOP_TITLE": "ДОСТУП К УЧЕТНОЙ ЗАПИСИ",
-  "TOP_DESCRIPTION_LOGIN": "Ваш логин, ID или BNB кошелек",
+  "TOP_DESCRIPTION_LOGIN": "Логин:",
   "TOP_DESCRIPTION_ENTER": "Введите идентификатор",
-  "TOP_DESCRIPTION_PASSWORD": "Пароль",
+  "TOP_DESCRIPTION_PASSWORD": "Пароль:",
   "TOP_DESCRIPTION_ENTERPASSWORD": "Введите пароль",
   "TOP_DESCRIPTION_FORGOT": "Забыли пароль?",
   "TOP_DESCRIPTION_LOGIN1": "Войти",
