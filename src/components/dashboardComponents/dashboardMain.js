@@ -54,6 +54,13 @@ function DashboardMain() {
   const { getLatestPrice, latestPrice } = usePrice();
 
   const [avatar, setAvatar] = useState();
+  const [partner, setPartner] = useState(localStorage.getItem("partner") || "");
+  const handleChangePartner = (e) => setPartner(e.target.value);
+
+  const handleSavePartner = () => {
+    localStorage.setItem("partner", partner);
+    toast(t("toast:PARTNER_SAVE"), { type: "success" });
+  };
 
   useEffect(() => {
     if (settings && settings.photo && token) {
@@ -379,6 +386,8 @@ function DashboardMain() {
                   type="text"
                   className="partner_input"
                   placeholder={t("dashboard:TOP_DESCRIPTION_HELP")}
+                  value={partner}
+                  onChange={handleChangePartner}
                 />
 
                 <button
@@ -395,7 +404,11 @@ function DashboardMain() {
                   <img src={InfoIcon} style={{ width: 15, height: 15 }} />
                 </button>
 
-                <a href="#" style={{ marginLeft: 10 }}>
+                <a
+                  href="#"
+                  style={{ marginLeft: 10 }}
+                  onClick={handleSavePartner}
+                >
                   <div className="save_button_block">
                     <div className="save_icon" />
                     <p className="save_text">
