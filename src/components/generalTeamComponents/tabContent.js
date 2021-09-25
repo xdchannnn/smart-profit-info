@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import "../../assets/styles/dashboard.scoped.css";
 import "../../assets/styles/general.scoped.css";
@@ -83,85 +83,127 @@ function Tabcontent() {
   );
 }
 
-const TableItem = ({ item, t }) => (
-  <tr className="child_one">
-    <td className="child_row">
-      <p>{item && item.full_name}</p>
-    </td>
-    <td className="child_row">
-      <div className="child_content">
-        {item && (
-          <>
-            <p>
-              <span className={`purple_text`}>MP:</span> ID 56908
-            </p>
-            <div className="popover__wrapper">
-              <a href="#">
-                <p className="popover__title">
-                  <img
-                    src={InfoIcon}
-                    alt="info-icon"
-                    className="info_popover_icon"
-                  />
-                </p>
-              </a>
-              <div className="popover__content">
-                <p className="user_id">ID 56908</p>
-                <div className="user_information">
-                  <p className="status_item">
-                    {t("generalteam:TOP_DESCRIPTION_STATUSPOPUP")}{" "}
-                    <span className="status_text">MaxiProfit</span>
+const TableItem = ({ item, t }) => {
+  const renderStatus = useMemo(() => {
+    if (item) {
+      switch (item.status) {
+        case 0:
+          return <span className="blue_text">SP:</span>;
+        case 1:
+          return <span className="green_text">FP:</span>;
+        case 2:
+          return <span className="yellow_text">MP:</span>;
+        case 3:
+          return <span className="purple_text">F:</span>;
+      }
+    } else return <p />;
+  }, []);
+
+  const renderFullStatus = useMemo(() => {
+    if (item) {
+      switch (item.status) {
+        case 0:
+          return <span className="blue_text">Start Profit</span>;
+        case 1:
+          return <span className="green_text">Fixed Profit</span>;
+        case 2:
+          return <span className="yellow_text">Maxi Profit</span>;
+        case 3:
+          return <span className="purple_text">Free</span>;
+      }
+    } else return <p />;
+  }, []);
+
+  const copyToClipBoard = (text) =>
+    navigator.clipboard
+      .writeText(text)
+      .then(() => toast(t("toast:COPY_CLIPBOARD_ADDRESS"), { type: "success" }))
+      .catch(() => toast("Could not copy text.", { type: "error" }));
+
+  return (
+    <tr className="child_one">
+      <td className="child_row">
+        <p>{item && item.full_name}</p>
+      </td>
+      <td className="child_row">
+        <div className="child_content">
+          {item && (
+            <>
+              <p>
+                {renderStatus} ID {item.id}
+              </p>
+              <div className="popover__wrapper">
+                <a href="#">
+                  <p className="popover__title">
+                    <img
+                      src={InfoIcon}
+                      alt="info-icon"
+                      className="info_popover_icon"
+                    />
                   </p>
-                  <p className="sponsor_id">
-                    {t("generalteam:TOP_DESCRIPTION_SPONSOR")}{" "}
-                    <span className="sponsor_text">ID 67890</span>
-                  </p>
-                  <p className="country_id">
-                    {t("generalteam:TOP_DESCRIPTION_COUNTRY2")}{" "}
-                    <span className="country_text">Россия</span>
-                  </p>
-                  <p className="country_id">
-                    {t("generalteam:TOP_DESCRIPTION_LCOMMAND")}{" "}
-                    <span className="country_text">17</span>
-                  </p>
-                </div>
-                <div className="social_media_user">
-                  <div className="social_item">
-                    <img src={Skype} alt="skype" />
-                    <p className="social_text">@sanekk000</p>
+                </a>
+                <div className="popover__content">
+                  <p className="user_id">ID {item.id}</p>
+                  <div className="user_information">
+                    <p className="status_item">
+                      {t("generalteam:TOP_DESCRIPTION_STATUSPOPUP")}{" "}
+                      {renderFullStatus}
+                    </p>
+                    <p className="sponsor_id">
+                      {t("generalteam:TOP_DESCRIPTION_SPONSOR")}{" "}
+                      <span className="sponsor_text">ID {item.sponsor_id}</span>
+                    </p>
+                    <p className="country_id">
+                      {t("generalteam:TOP_DESCRIPTION_COUNTRY2")}{" "}
+                      <span className="country_text">{item.country}</span>
+                    </p>
+                    <p className="country_id">
+                      {t("generalteam:TOP_DESCRIPTION_LCOMMAND")}{" "}
+                      <span className="country_text">{item.team_count}</span>
+                    </p>
                   </div>
-                  <div className="social_item">
-                    <img src={WhatsApp} alt="whatsapp" />
-                    <p className="social_text">+380996938560</p>
-                  </div>
-                  <div className="social_item">
-                    <img src={Telegram} alt="telegram" />
-                    <p className="social_text">strannik0004</p>
+                  <div className="social_media_user">
+                    <div className="social_item">
+                      <img src={Skype} alt="skype" />
+                      <p className="social_text">{item.skype}</p>
+                    </div>
+                    <div className="social_item">
+                      <img src={WhatsApp} alt="whatsapp" />
+                      <p className="social_text">{item.phone}</p>
+                    </div>
+                    <div className="social_item">
+                      <img src={Telegram} alt="telegram" />
+                      <p className="social_text">{item.telegram}</p>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </>
+          )}
+        </div>
+      </td>
+      <td className="child_row">
+        {item && (
+          <>
+            <input type="text" value={item.wallet_address} id="copyInput" />
+            <button className="copy_button">
+              <img
+                src={CopyIcon}
+                alt="copy-icon"
+                onClick={() => copyToClipBoard(item.wallet_address)}
+              />
+            </button>
           </>
         )}
-      </div>
-    </td>
-    <td className="child_row">
-      {item && (
-        <>
-          <input
-            type="text"
-            defaultValue="TMmtUWW5ZvvEzJPiVxFUPdDzLef4…"
-            id="copyInput"
-          />
-          <button onclick="copyFunction()" className="copy_button">
-            <img src={CopyIcon} alt="copy-icon" />
-          </button>
-        </>
-      )}
-    </td>
-    <td className="child_row">{item && <p>7</p>}</td>
-    <td className="child_row">{item && <p>02.07.2021</p>}</td>
-  </tr>
-);
+      </td>
+      <td className="child_row">{item && <p>{item.team_count}</p>}</td>
+      <td className="child_row">
+        {item && (
+          <p>{new Date(item.next_payment_date * 1000).toLocaleDateString()}</p>
+        )}
+      </td>
+    </tr>
+  );
+};
 
 export default Tabcontent;

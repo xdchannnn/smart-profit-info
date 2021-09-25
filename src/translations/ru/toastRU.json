@@ -1,5 +1,6 @@
 {
   "COPY_CLIPBOARD": "Ссылка скопирована",
+  "COPY_CLIPBOARD_ADDRESS": "Адрес скопирован",
   "NEW_PASSWORD_ERROR": "Пароли не совпадают!",
   "OLD_PASSWORD_ERROR": "Введите старый пароль!",
   "PARTNER_SAVE": "Партнер сохранен!"
