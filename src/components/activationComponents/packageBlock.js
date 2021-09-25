@@ -77,7 +77,7 @@ function PackageBlock() {
               <button
                 disabled={setDisabled(0)}
                 onClick={() =>
-                  packagePrices[0] && pack.registrate(packagePrices[0])
+                  packagePrices[0] && pack.buyPackage(packagePrices[0])
                 }
               >
                 {packagePrices[0] && packagePrices[0].toFixed(4)} BNB
@@ -115,7 +115,7 @@ function PackageBlock() {
               <button
                 disabled={setDisabled(1)}
                 onClick={() =>
-                  packagePrices[1] && pack.registrate(packagePrices[1])
+                  packagePrices[1] && pack.buyPackage(packagePrices[1])
                 }
               >
                 {packagePrices[1] && packagePrices[1].toFixed(4)} BNB
@@ -155,7 +155,7 @@ function PackageBlock() {
               <button
                 disabled={setDisabled(2)}
                 onClick={() =>
-                  packagePrices[2] && pack.registrate(packagePrices[2])
+                  packagePrices[2] && pack.buyPackage(packagePrices[2])
                 }
               >
                 {packagePrices[2] && packagePrices[2].toFixed(4)} BNB
