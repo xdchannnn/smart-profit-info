@@ -10,6 +10,34 @@ const usePackage = () => {
 
   const [loading, setLoading] = useState(false);
 
+  const sendTx = useCallback(
+    (receipt) => {
+      if (token && settings)
+        request(
+          "/save-tx",
+          "POST",
+          {
+            user_id: settings.id,
+            tx_hash: receipt.transactionHash,
+          },
+          { Authorization: `Bearer ${token}` }
+        )
+          .then((res) => {
+            if (res) {
+              setLoading(false);
+              toast("Success transaction!", {
+                type: "success",
+              });
+            }
+          })
+          .catch((e) => {
+            setLoading(false);
+            toast(e.message, { type: "error" });
+          });
+    },
+    [token, settings]
+  );
+
   const register = useCallback(
     (wallet, contract, price) => {
       contract.methods
@@ -17,29 +45,42 @@ const usePackage = () => {
         .send({
           value: wallet.utils.toWei(String(price)),
         })
-        .on("receipt", (receipt) => {
-          request(
-            "/save-tx",
-            "POST",
-            {
-              user_id: settings.id,
-              tx_hash: receipt.transactionHash,
-            },
-            { Authorization: `Bearer ${token}` }
-          )
-            .then((res) => {
-              if (res) {
-                setLoading(false);
-                toast("Success transaction!", {
-                  type: "success",
-                });
-              }
-            })
-            .catch((e) => {
-              setLoading(false);
-              toast(e.message, { type: "error" });
-            });
+        .on("receipt", (receipt) => sendTx(receipt))
+        .on("error", (err) => {
+          setLoading(false);
+          toast(err.message, { type: "error" });
+        });
+    },
+    [settings, token]
+  );
+
+  const support = useCallback(
+    (wallet, contract, price) => {
+      contract.methods
+        ._support(
+          Number(settings.ref_id || 0),
+          Number(localStorage.getItem("partner"))
+        )
+        .send({
+          value: wallet.utils.toWei(String(price)),
         })
+        .on("receipt", (receipt) => sendTx(receipt))
+        .on("error", (err) => {
+          setLoading(false);
+          toast(err.message, { type: "error" });
+        });
+    },
+    [settings, token]
+  );
+
+  const update = useCallback(
+    (wallet, contract, price) => {
+      contract.methods
+        ._update(Number(settings.contract_id))
+        .send({
+          value: wallet.utils.toWei(String(price)),
+        })
+        .on("receipt", (receipt) => sendTx(receipt))
         .on("error", (err) => {
           setLoading(false);
           toast(err.message, { type: "error" });
@@ -54,7 +95,13 @@ const usePackage = () => {
         setLoading(true);
         connectWallet(settings.wallet)
           .then(({ wallet, contract }) => {
-            register(wallet, contract, price);
+            if (settings.expire) {
+              update(wallet, contract, price);
+            } else {
+              if (localStorage.getItem("partner"))
+                support(wallet, contract, price);
+              else register(wallet, contract, price);
+            }
           })
           .catch((e) => {
             setLoading(false);
