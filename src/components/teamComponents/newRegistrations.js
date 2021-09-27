@@ -94,15 +94,13 @@ const TableItem = ({ item, t }) => {
                 <span className="free_status">FP:</span> ID {item && item.id}
               </p>
               <div className="popover__wrapper">
-                <a href="#">
-                  <p className="popover__title">
-                    <img
-                      src={InfoIcon}
-                      alt="info-icon"
-                      className="info_popover_icon"
-                    />
-                  </p>
-                </a>
+                <p className="popover__title">
+                  <img
+                    src={InfoIcon}
+                    alt="info-icon"
+                    className="info_popover_icon"
+                  />
+                </p>
                 <div className="popover__content">
                   <p className="user_id">ID {item && item.id}</p>
                   <div className="user_information">

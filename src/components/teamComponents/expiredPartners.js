@@ -101,11 +101,9 @@ function Table({ item, t }) {
                 {item && item.id}
               </p>
               <div className="popover__wrapper">
-                <a href="#">
-                  <p className="popover__title">
-                    <img src={info_icon} className="info_popover_icon" />
-                  </p>
-                </a>
+                <p className="popover__title">
+                  <img src={info_icon} className="info_popover_icon" />
+                </p>
                 <div className="popover__content">
                   <p className="user_id">ID {item && item.id}</p>
                   <div className="user_information">
