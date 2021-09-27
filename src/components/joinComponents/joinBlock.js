@@ -21,10 +21,14 @@ function JoinBlock() {
     email: "",
     phone: "",
     password: "",
-    ref_id: id ? String(id) : "1",
+    ref_id: "",
   });
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
+
+  useEffect(() => {
+    setForm({ ...form, ref_id: id || "1" });
+  }, [id]);
 
   const handleJoin = async (e) => {
     e.preventDefault();
@@ -61,7 +65,14 @@ function JoinBlock() {
               <div className="top_block">
                 <img src={Logo} className="logo_form" />
                 <p className="top_text">
-                  {t("join:TOP_DESCRIPTION_SPONSOR")} {id || "1"}
+                  {t("join:TOP_DESCRIPTION_SPONSOR")}{" "}
+                  <input
+                    name="ref_id"
+                    className="wallet_input"
+                    style={{ width: 50, height: 20, padding: 2 }}
+                    value={form.ref_id}
+                    onChange={handleChange}
+                  />
                 </p>
               </div>
               <div className="wallet_input_block">
