@@ -97,7 +97,7 @@ const TableItem = ({ item, t }) => {
           return <span className="purple_text">F:</span>;
       }
     } else return <p />;
-  }, []);
+  }, [item]);
 
   const renderFullStatus = useMemo(() => {
     if (item) {
@@ -112,13 +112,7 @@ const TableItem = ({ item, t }) => {
           return <span className="purple_text">Free</span>;
       }
     } else return <p />;
-  }, []);
-
-  const copyToClipBoard = (text) =>
-    navigator.clipboard
-      .writeText(text)
-      .then(() => toast(t("toast:COPY_CLIPBOARD_ADDRESS"), { type: "success" }))
-      .catch(() => toast("Could not copy text.", { type: "error" }));
+  }, [item]);
 
   return (
     <tr className="child_one">

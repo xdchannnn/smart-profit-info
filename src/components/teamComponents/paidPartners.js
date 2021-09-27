@@ -95,7 +95,7 @@ function Table({ item, t }) {
           return <span className="purple_text">F:</span>;
       }
     } else return <p />;
-  }, []);
+  }, [item]);
 
   const renderFullStatus = useMemo(() => {
     if (item) {
@@ -110,7 +110,7 @@ function Table({ item, t }) {
           return <span className="purple_text">Free</span>;
       }
     } else return <p />;
-  }, []);
+  }, [item]);
 
   return (
     <tr className="child_one">
