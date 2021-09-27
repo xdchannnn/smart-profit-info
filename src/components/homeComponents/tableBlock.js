@@ -1,7 +1,7 @@
 import "../../assets/styles/styles.scoped.css";
 import decor2 from "../../assets/images/decor2.svg";
-import tableRU from "../../assets/images/RU.svg";
-import tableEN from "../../assets/images/EN.svg";
+import tableRU from "../../assets/images/RU.png";
+import tableEN from "../../assets/images/EN.png";
 import { useTranslation } from "react-i18next";
 
 function TableBlock() {
