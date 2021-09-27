@@ -266,9 +266,13 @@ function DashboardMain() {
                 </div>
                 <div className="profile_content_block">
                   <p className="username_text">
-                    {user && user.full_name && user.full_name.length > 20
-                      ? user.full_name.substring(0, 20) + "..."
-                      : user.full_name}
+                    {(() => {
+                      if (user && user.full_name) {
+                        if (user.full_name.length > 20)
+                          return user.full_name.substring(0, 20) + "...";
+                        else return user.full_name;
+                      }
+                    })()}
                   </p>
                   {settings && settings.contract_id && (
                     <p className="id_text">ID: {settings.contract_id}</p>
