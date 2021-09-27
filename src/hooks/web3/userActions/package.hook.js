@@ -28,6 +28,7 @@ const usePackage = () => {
               toast("Success transaction!", {
                 type: "success",
               });
+              window.location.replace("/");
             }
           })
           .catch((e) => {
