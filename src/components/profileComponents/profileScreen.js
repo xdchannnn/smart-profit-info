@@ -312,6 +312,14 @@ function ProfileScreen() {
                     </div>
                   </div>
                 </div>
+                <div
+                  className="profile_button_block"
+                  style={{ margin: 0, marginTop: 40 }}
+                >
+                  <p className="profile_user_text">
+                    {t("profile:TOP_DESCRIPTION_HELP")}
+                  </p>
+                </div>
                 <div className="profile_button_block">
                   <button
                     onClick={handleSave}

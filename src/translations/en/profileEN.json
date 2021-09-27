@@ -10,5 +10,6 @@
   "TOP_DESCRIPTION_PHONE": "Phone",
   "TOP_DESCRIPTION_EXISTINGPASSWORD": "Existing password",
   "TOP_DESCRIPTION_CHANGE": "Change",
-  "TOP_DESCRIPTION_SAVE": "Save"
+  "TOP_DESCRIPTION_SAVE": "Save",
+  "TOP_DESCRIPTION_HELP": "Enter your existing password to save the settings."
 }

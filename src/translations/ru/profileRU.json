@@ -10,5 +10,6 @@
   "TOP_DESCRIPTION_PHONE": "Телефон",
   "TOP_DESCRIPTION_EXISTINGPASSWORD": "Существующий пароль",
   "TOP_DESCRIPTION_CHANGE": "Изменить",
-  "TOP_DESCRIPTION_SAVE": "Сохранить"
+  "TOP_DESCRIPTION_SAVE": "Сохранить",
+  "TOP_DESCRIPTION_HELP": "Для сохранения настроек введите существующий пароль."
 }
