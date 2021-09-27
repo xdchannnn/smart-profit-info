@@ -373,10 +373,14 @@ header {
 
 .help-icon {
   padding-top: 65px;
+  width: 130px;
+  height: 130px;
 }
 
 .net-icon {
   padding-top: 115px;
+  width: 180px;
+  height: 180px;
 }
 
 .value_title {
