@@ -268,8 +268,8 @@ function DashboardMain() {
                   <p className="username_text">
                     {(() => {
                       if (user && user.full_name) {
-                        if (user.full_name.length > 20)
-                          return user.full_name.substring(0, 20) + "...";
+                        if (user.full_name.length > 15)
+                          return user.full_name.substring(0, 15) + "...";
                         else return user.full_name;
                       }
                     })()}
@@ -1180,6 +1180,7 @@ function DashboardMain() {
                 alt="banner"
                 width="100%"
                 height="100%"
+                style={{ backdropFilter: "blur(20px)" }}
               />
             </div>
           </div>

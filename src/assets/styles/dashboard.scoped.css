@@ -398,6 +398,7 @@ header {
 .profile_link_block {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
 }
 
 .profile_link {
@@ -714,6 +715,7 @@ header {
   width: 49%;
   height: 180px;
   background-color: rgba(57, 64, 74, 0.5);
+  backdrop-filter: blur(20px);
   border-radius: 10px;
   position: relative;
 }
@@ -1047,7 +1049,7 @@ footer {
   }
 
   .username_text {
-    font-size: 20px;
+    font-size: 18px;
   }
 
   .copyright_link,
