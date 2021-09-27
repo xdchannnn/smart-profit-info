@@ -101,13 +101,13 @@ function Table({ item, t }) {
     if (item) {
       switch (item.status) {
         case 0:
-          return <span className="blue_text">Start Profit</span>;
+          return <span className="blue_text">START PROFIT</span>;
         case 1:
-          return <span className="green_text">Fixed Profit</span>;
+          return <span className="green_text">FIXED PROFIT</span>;
         case 2:
-          return <span className="yellow_text">Maxi Profit</span>;
+          return <span className="yellow_text">MAXI PROFIT</span>;
         case 3:
-          return <span className="purple_text">Free</span>;
+          return <span className="purple_text">FREE</span>;
       }
     } else return <p />;
   }, [item]);
