@@ -231,7 +231,6 @@ header {
   height: auto;
   border-radius: 10px;
   background-color: rgba(57, 64, 74, 0.5);
-  backdrop-filter: blur(20px);
   padding-bottom: 50px;
 }
 

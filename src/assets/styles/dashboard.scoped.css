@@ -714,8 +714,8 @@ header {
   width: 49%;
   height: 180px;
   background-color: rgba(57, 64, 74, 0.5);
-  backdrop-filter: blur(20px);
   border-radius: 10px;
+  position: relative;
 }
 
 .one_row,
