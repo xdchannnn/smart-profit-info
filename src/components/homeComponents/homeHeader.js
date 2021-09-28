@@ -5,12 +5,13 @@ import lang from "../../assets/images/lang.svg";
 import "../../assets/styles/styles.scoped.css";
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
 function HomeHeader() {
   const { t, i18n } = useTranslation();
 
   const history = useHistory();
+  const { id } = useParams();
 
   const [currentLang, setCurrentLang] = useState(i18n.language);
 
@@ -26,12 +27,12 @@ function HomeHeader() {
             src={logo}
             alt="logo"
             style={{ cursor: "pointer" }}
-            onClick={() => history.push("/")}
+            onClick={() => history.push(`/${id ? id : ""}`)}
           />
         </a>
         <ul className="menu_list">
           <li className="nav-item">
-            <Link className="nav-link" to="/faq">
+            <Link className="nav-link" to={`/faq/${id ? id : ""}`}>
               FAQ
             </Link>
           </li>
@@ -90,7 +91,7 @@ function HomeHeader() {
             </div>
           </li>
           <li className="nav-item">
-            <Link to="/login">
+            <Link to={`/login/${id ? id : ""}`}>
               <div className="login_button">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -114,7 +115,7 @@ function HomeHeader() {
             </Link>
           </li>
           <li className="nav-item">
-            <Link to="/join">
+            <Link to={`/join/${id ? id : ""}`}>
               <div className="register_button">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

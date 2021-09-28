@@ -2,13 +2,14 @@ import "../../assets/styles/login.scoped.css";
 import logo from "../../assets/images/logo.svg";
 import lang from "../../assets/images/lang.svg";
 import newTurn from "../../assets/images/new-turn.svg";
-import { useHistory, Link } from "react-router-dom";
+import { useHistory, Link, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 
 function LoginHeader() {
   const { i18n } = useTranslation();
   const history = useHistory();
+  const { id } = useParams();
 
   const [currentLang, setCurrentLang] = useState(i18n.language);
 
@@ -25,7 +26,7 @@ function LoginHeader() {
               src={logo}
               alt="logo"
               style={{ cursor: "pointer" }}
-              onClick={() => history.push("/")}
+              onClick={() => history.push(`/${id ? id : ""}`)}
             />
           </a>
           <button
@@ -42,7 +43,7 @@ function LoginHeader() {
           <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <Link to="/FAQ" className="nav-link">
+                <Link to={`/FAQ/${id ? id : ""}`} className="nav-link">
                   FAQ
                 </Link>
                 <div className="rect_border" />
@@ -76,7 +77,7 @@ function LoginHeader() {
                 </div>
               </li>
               <li className="nav-item">
-                <Link to="/login" className="nav-link">
+                <Link to={`/login/${id ? id : ""}`} className="nav-link">
                   <img src={newTurn} alt="turn-off" />
                 </Link>
               </li>

@@ -1,27 +1,20 @@
-import "../../assets/styles/finance.scoped.css"
+import { useTranslation } from "react-i18next";
+import "../../assets/styles/finance.scoped.css";
 
-function FinanceTablinks(props) {
-    return(
-    <>
-      <div className="general_top_block">
-        <div className="general_title_block">
-          <img src="assets/images/finance.svg" />
-          <p className="general_title">Доход и упущенный доход</p>
-        </div>
+import Finance from "../../assets/images/finance.svg";
+
+function FinanceTablinks() {
+  const { t } = useTranslation();
+
+  return (
+    <div className="general_top_block">
+      <div className="general_title_block">
+        <img src={Finance} alt="finance" />
+        <p className="general_title" style={{ marginBottom: 0 }}>
+          {t("finance:TOP_TITLE")}
+        </p>
       </div>
-      <div className="tab">
-        <button
-            className={props.tab === "MyFinance" ? "tablinks active" : "tablinks"} 
-            onClick={() => props.setTab("MyFinance")}
-        >
-          Мой доход
-        </button>
-        <button className={props.tab === "LostFinance" ? "tablinks active" : "tablinks"} 
-            onClick={() => props.setTab("LostFinance")}>
-          Упущенный доход
-        </button>
-      </div>
-    </>
-  )
-  }
+    </div>
+  );
+}
 export default FinanceTablinks;

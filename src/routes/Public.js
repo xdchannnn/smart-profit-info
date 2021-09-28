@@ -15,20 +15,35 @@ const Public = () => {
     <>
       <Modal />
       <Switch>
-        <Route exact path="/">
-          <Home />
+        <Route exact path="/faq/:id">
+          <FAQ />
         </Route>
-        <Route exact path="/login">
-          <Login />
+        <Route exact path="/faq">
+          <FAQ />
         </Route>
-        <Route exact path="/forgot">
-          <Forgot />
+        <Route exact path="/join/:id">
+          <Join />
         </Route>
         <Route exact path="/join">
           <Join />
         </Route>
-        <Route exact path="/faq">
-          <FAQ />
+        <Route exact path="/forgot/:id">
+          <Forgot />
+        </Route>
+        <Route exact path="/forgot">
+          <Forgot />
+        </Route>
+        <Route path="/login/:id">
+          <Login />
+        </Route>
+        <Route path="/login">
+          <Login />
+        </Route>
+        <Route path="/:id">
+          <Home />
+        </Route>
+        <Route exact path="/">
+          <Home />
         </Route>
         <Route exact path="/admin">
           <Admin />

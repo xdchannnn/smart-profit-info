@@ -351,7 +351,7 @@ header {
 
 .values_content {
   text-align: center;
-  padding: 150px 190px;
+  padding: 150px 80px;
 }
 
 .values_title {
@@ -367,16 +367,20 @@ header {
   text-align: center;
   width: 510px;
   height: 510px;
-  background-image: url(../../assets/images/decor1.svg);
+  background-image: url(../../assets/images/decor1.png);
   background-repeat: no-repeat;
 }
 
 .help-icon {
   padding-top: 65px;
+  width: 130px;
+  height: 130px;
 }
 
 .net-icon {
   padding-top: 115px;
+  width: 180px;
+  height: 180px;
 }
 
 .value_title {
@@ -892,6 +896,7 @@ header {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 70px;
 }
 
 .start_items_block {
@@ -2077,6 +2082,10 @@ hr {
 }
 
 @media (max-width: 430px) {
+  .start_two_item {
+    margin-top: 20px;
+  }
+
   .fade-item {
     margin-left: 40px;
     margin-right: 40px;

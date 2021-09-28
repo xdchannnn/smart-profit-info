@@ -1,7 +1,13 @@
 import "../../assets/styles/dashboard.scoped.css";
-import blueLogo from "../../assets/images/blue-logo.svg";
+import purpleLogo from "../../assets/images/logo-purple.svg";
+import blueLogo from "../../assets/images/logo-blue.svg";
+import greenLogo from "../../assets/images/logo-green.svg";
+import yellowLogo from "../../assets/images/logo-yellow.svg";
 import lang from "../../assets/images/lang.svg";
-import turnOff from "../../assets/images/turn-off.svg";
+import turnOffPurple from "../../assets/images/turn-off-purple.svg";
+import turnOffBlue from "../../assets/images/turn-off-blue.svg";
+import turnOffGreen from "../../assets/images/turn-off-green.svg";
+import turnOffYellow from "../../assets/images/turn-off-yellow.svg";
 import { useContext, useEffect, useState } from "react";
 import AuthContext from "../../context/auth.context";
 import { Link, useHistory } from "react-router-dom";
@@ -10,7 +16,7 @@ import { useTranslation } from "react-i18next";
 function Header() {
   const { t, i18n } = useTranslation();
 
-  const { setToken } = useContext(AuthContext);
+  const { setToken, settings } = useContext(AuthContext);
   const history = useHistory();
 
   const logout = () => {
@@ -31,7 +37,22 @@ function Header() {
         <div className="container-fluid">
           <a className="navbar-brand">
             <img
-              src={blueLogo}
+              src={(() => {
+                if (settings) {
+                  switch (settings.status) {
+                    case "Free":
+                      return purpleLogo;
+                    case "Start Profit":
+                      return blueLogo;
+                    case "Fixed Profit":
+                      return greenLogo;
+                    case "Maxi Profit":
+                      return yellowLogo;
+                    default:
+                      return blueLogo;
+                  }
+                }
+              })()}
               alt="logo"
               style={{ cursor: "pointer" }}
               onClick={() => history.push("/")}
@@ -134,7 +155,25 @@ function Header() {
                   className="nav-link"
                   style={{ margin: "0px 0px 0px 15px", cursor: "pointer" }}
                 >
-                  <img src={turnOff} alt="turn-off" />
+                  <img
+                    src={(() => {
+                      if (settings) {
+                        switch (settings.status) {
+                          case "Free":
+                            return turnOffPurple;
+                          case "Start Profit":
+                            return turnOffBlue;
+                          case "Fixed Profit":
+                            return turnOffGreen;
+                          case "Maxi Profit":
+                            return turnOffYellow;
+                          default:
+                            return turnOffBlue;
+                        }
+                      }
+                    })()}
+                    alt="turn-off"
+                  />
                 </a>
               </li>
             </ul>

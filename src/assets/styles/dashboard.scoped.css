@@ -183,55 +183,91 @@ header {
   height: 590px;
   background-color: rgba(6, 10, 56, 0.5);
   border-radius: 10px;
-  background-image: url("../../assets/images/sp_blue.svg");
+  /* background-image: url("../../assets/images/sp_blue.svg"); */
   background-repeat: no-repeat;
   background-size: 120px 120px;
   background-position-x: 100%;
-  padding: 50px 40px;
+  padding: 30px 40px;
 }
 
-.border_start_blue {
+.border_start {
   position: absolute;
   height: 100%;
   left: 0;
   top: 0;
   width: 2px;
-  background-image: url(../../assets/images/Обводка.svg);
   background-repeat: no-repeat;
   background-position: center;
 }
 
-.border_end_blue {
+.border_end {
   position: absolute;
   height: 100%;
   left: 99.6%;
   top: 0;
   width: 2px;
-  background-image: url(../../assets/images/Обводка.svg);
   background-repeat: no-repeat;
   background-position: center;
 }
 
-.border_start_amount_blue {
+.border_start_blue,
+.border_end_blue {
+  background-image: url(../../assets/images/Обводка-blue.svg);
+}
+
+.border_start_purple,
+.border_end_purple {
+  background-image: url(../../assets/images/Обводка-purple.svg);
+}
+
+.border_start_green,
+.border_end_green {
+  background-image: url(../../assets/images/Обводка-green.svg);
+}
+
+.border_start_yellow,
+.border_end_yellow {
+  background-image: url(../../assets/images/Обводка-yellow.svg);
+}
+
+.border_start_amount {
   position: absolute;
   height: 100%;
   left: 0;
   top: 0;
   width: 2px;
-  background-image: url(../../assets/images/Обводка-1.svg);
   background-repeat: no-repeat;
   background-position: center;
 }
 
-.border_end_amount_blue {
+.border_end_amount {
   position: absolute;
   height: 100%;
   left: 99.7%;
   top: 0;
   width: 2px;
-  background-image: url(../../assets/images/Обводка-1.svg);
   background-repeat: no-repeat;
   background-position: center;
+}
+
+.border_end_amount_blue,
+.border_start_amount_blue {
+  background-image: url(../../assets/images/Обводка-1-blue.svg);
+}
+
+.border_end_amount_purple,
+.border_start_amount_purple {
+  background-image: url(../../assets/images/Обводка-1-purple.svg);
+}
+
+.border_end_amount_green,
+.border_start_amount_green {
+  background-image: url(../../assets/images/Обводка-1-green.svg);
+}
+
+.border_end_amount_yellow,
+.border_start_amount_yellow {
+  background-image: url(../../assets/images/Обводка-1-yellow.svg);
 }
 
 .level_top_main_border {
@@ -262,10 +298,25 @@ header {
   left: 0;
   top: 0%;
   width: 100%;
-  background-image: url(../../assets/images/child-top-border.svg);
   background-size: 100% 20px;
   background-repeat: no-repeat;
   background-position: center;
+}
+
+.level_top_child_border-blue {
+  background-image: url(../../assets/images/child-top-border-blue.svg);
+}
+
+.level_top_child_border-green {
+  background-image: url(../../assets/images/child-top-border-green.svg);
+}
+
+.level_top_child_border-yellow {
+  background-image: url(../../assets/images/child-top-border-yellow.svg);
+}
+
+.level_top_child_border-purple {
+  background-image: url(../../assets/images/child-top-border-purple.svg);
 }
 
 .level_bottom_child_border {
@@ -274,10 +325,25 @@ header {
   left: 0;
   top: 97.8%;
   width: 100%;
-  background-image: url(../../assets/images/child-bottom-border.svg);
   background-size: 100% 20px;
   background-repeat: no-repeat;
   background-position: center;
+}
+
+.level_bottom_child_border-blue {
+  background-image: url(../../assets/images/child-bottom-border-blue.svg);
+}
+
+.level_bottom_child_border-green {
+  background-image: url(../../assets/images/child-bottom-border-green.svg);
+}
+
+.level_bottom_child_border-yellow {
+  background-image: url(../../assets/images/child-bottom-border-yellow.svg);
+}
+
+.level_bottom_child_border-purple {
+  background-image: url(../../assets/images/child-bottom-border-purple.svg);
 }
 
 .settings_item {
@@ -332,6 +398,7 @@ header {
 .profile_link_block {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
 }
 
 .profile_link {
@@ -356,10 +423,82 @@ header {
   height: 58px;
   display: inline-flex;
   align-items: center;
-  background: #54cdef;
+  background: #728ab3;
   border-radius: 5px;
   transition-duration: 0.1s;
   transition: 0.1s;
+}
+
+.blinking {
+  animation: blinking 2s ease infinite;
+}
+
+.blinking-blue {
+  animation: blinking-blue 2s ease infinite;
+}
+
+.blinking-green {
+  animation: blinking-green 2s ease infinite;
+}
+
+.blinking-yellow {
+  animation: blinking-yellow 2s ease infinite;
+}
+
+@keyframes blinking {
+  0% {
+    background: #728ab3;
+  }
+
+  50% {
+    background: #728ab399;
+  }
+
+  100% {
+    background: #728ab3;
+  }
+}
+
+@keyframes blinking-blue {
+  0% {
+    background: #54cdef;
+  }
+
+  50% {
+    background: #54cdef99;
+  }
+
+  100% {
+    background: #54cdef;
+  }
+}
+
+@keyframes blinking-green {
+  0% {
+    background: #5cd58e;
+  }
+
+  50% {
+    background: #5cd58e99;
+  }
+
+  100% {
+    background: #5cd58e;
+  }
+}
+
+@keyframes blinking-yellow {
+  0% {
+    background: #f2ca6b;
+  }
+
+  50% {
+    background: #f2ca6b99;
+  }
+
+  100% {
+    background: #f2ca6b;
+  }
 }
 
 .activation_block:hover {
@@ -578,6 +717,7 @@ header {
   background-color: rgba(57, 64, 74, 0.5);
   backdrop-filter: blur(20px);
   border-radius: 10px;
+  position: relative;
 }
 
 .one_row,
@@ -909,7 +1049,7 @@ footer {
   }
 
   .username_text {
-    font-size: 24px;
+    font-size: 18px;
   }
 
   .copyright_link,
@@ -963,7 +1103,7 @@ footer {
 @media (max-width: 1295px) {
   header {
     display: inherit;
-    height: 100px
+    height: 100px;
   }
 
   .navbar-collapse {

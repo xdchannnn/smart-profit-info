@@ -1,12 +1,44 @@
 import { useContext, useEffect, useState } from "react";
 import AuthContext from "../../context/auth.context";
 
+import SettingsProfile from "../../assets/images/settings-profile.svg";
+import PhotoUser from "../../assets/images/photo-user.jpg";
+
 import "../../assets/styles/profile.scoped.css";
 import useFetch from "../../hooks/useFetch.hook";
+import Preloader from "../loaders/Preloader";
+import { useTranslation } from "react-i18next";
+
+import frPurple from "../../assets/images/fr_purple.svg";
+import spBlue from "../../assets/images/sp_blue.svg";
+import fpGreen from "../../assets/images/fp_green.svg";
+import mpYellow from "../../assets/images/mp_yellow.svg";
+import { toast } from "react-toastify";
 
 function ProfileScreen() {
-  const { request, loading, error } = useFetch();
-  const { user, settings, token } = useContext(AuthContext);
+  const { t } = useTranslation();
+
+  const { user, settings, token, loading } = useContext(AuthContext);
+  const [fetchLoading, setFetchLoading] = useState(false);
+  const [avatarLoading, setAvatarLoading] = useState(false);
+
+  const [avatar, setAvatar] = useState();
+
+  useEffect(() => {
+    if (settings && settings.photo && token) {
+      setAvatarLoading(true);
+      fetch(settings.photo, { headers: { Authorization: `Bearer ${token}` } })
+        .then((res) => res.blob())
+        .then((res) => {
+          setAvatar(res);
+          setAvatarLoading(false);
+        })
+        .catch((e) => {
+          toast(e.message, { type: "error" });
+          setAvatarLoading(false);
+        });
+    }
+  }, [settings, token]);
 
   const [form, setForm] = useState({
     full_name: "",
@@ -31,7 +63,7 @@ function ProfileScreen() {
         phone: settings.phone,
         full_name: user.full_name,
         country: settings.country,
-        old_password: settings.passwd,
+        old_password: "",
       });
   }, [user, settings]);
 
@@ -40,156 +72,269 @@ function ProfileScreen() {
 
   const handleSave = async (e) => {
     e.preventDefault();
+    setFetchLoading(true);
     const formData = new FormData();
 
-    for (let [key, value] of Object.entries(
-      (({ repeat_password, ...rest }) => rest)(form)
-    ))
-      formData.append(key, value);
+    if (
+      form.new_password &&
+      form.new_password.length !== 0 &&
+      form.new_password !== form.repeat_password
+    ) {
+      setFetchLoading(false);
+      return toast(t("toast:NEW_PASSWORD_ERROR"), {
+        type: "error",
+      });
+    }
+
+    if (form.old_password.length === 0) {
+      setFetchLoading(false);
+      return toast(t("toast:OLD_PASSWORD_ERROR"), {
+        type: "error",
+      });
+    }
+
+    if (avatar) formData.append("image", avatar);
+
+    for (let [key, value] of Object.entries(form)) {
+      if (value && value.length !== 0) {
+        if (key !== "repeat_password") {
+          formData.append(key, value);
+        }
+      }
+    }
 
     for (let [key, value] of formData.entries())
       console.log(key + ": " + value);
 
-    const result = await request(
-      "/settings",
-      "POST",
-      { formData },
-      {
+    const response = await fetch("https://topmail.net.ua:8443/settings", {
+      method: "POST",
+      headers: {
         Authorization: `Bearer ${token}`,
-      }
-    );
-    console.log(result);
+      },
+      body: formData,
+    });
+
+    const result = await response.json();
+
+    if (!response.ok) {
+      setFetchLoading(false);
+      return toast(response.statusText, { type: "error" });
+    }
+
+    if ("error" in result) toast(result.error, { type: "error" });
+    else if ("success" in result) toast(result.success, { type: "success" });
+    setFetchLoading(false);
+  };
+
+  const handleChangeAvatar = (e) => {
+    setAvatar(e.target.files[0]);
   };
 
   return (
-    <div className="profile_screen">
-      <div className="profile_top_block">
-        <img src="assets/images/settings-profile.svg" />
-        <p className="profile_top_text">Настройки профиля</p>
-      </div>
-      <div className="profile_user_block">
-        <div className="profile_user_content">
-          <div className="profile_img_block">
-            <img src="assets/images/photo-user.jpg" className="profile_img" />
-            <p>
-              <button className="profile_img_edit">Изменить</button>
-            </p>
-          </div>
-          <div className="profile_user_items">
-            <div className="profile_items_content">
-              <div className="profile_user_row">
-                <div className="profile_user_item">
-                  <p className="profile_user_text">Имя и Фамилия</p>
-                  <input
-                    type="text"
-                    className="profile_user_input"
-                    name="full_name"
-                    value={form.full_name}
-                    onChange={handleChange}
-                  />
-                </div>
-                <div className="profile_user_item">
-                  <p className="profile_user_text">Страна</p>
-                  <input
-                    type="text"
-                    className="profile_user_input"
-                    name="country"
-                    value={form.country}
-                    onChange={handleChange}
-                  />
-                </div>
-                <div className="profile_user_item">
-                  <p className="profile_user_text">Новый пароль</p>
-                  <input
-                    type="password"
-                    className="profile_user_input"
-                    name="new_password"
-                    value={form.new_password}
-                    onChange={handleChange}
-                  />
-                </div>
-               
-              </div>
-              <div className="profile_user_row">
-              <div className="profile_user_item">
-                  <p className="profile_user_text">E-mail</p>
-                  <input
-                    type="text"
-                    className="profile_user_input"
-                    name="email"
-                    value={form.email}
-                    onChange={handleChange}
-                  />
-                </div>
-                <div className="profile_user_item">
-                  <p className="profile_user_text">Telegram</p>
-                  <input
-                    type="text"
-                    className="profile_user_input"
-                    name="telegram"
-                    value={form.telegram}
-                    onChange={handleChange}
-                  />
-                </div>      
-                <div className="profile_user_item">
-                  <p className="profile_user_text">Повторите новый пароль</p>
-                  <input
-                    type="password"
-                    className="profile_user_input"
-                    name="repeat_password"
-                    value={form.repeat_password}
-                    onChange={handleChange}
-                  />
-                </div>
-              </div>
-              <div className="profile_user_row">
-          
-                <div className="profile_user_item">
-                  <p className="profile_user_text">Skype</p>
-                  <input
-                    type="text"
-                    className="profile_user_input"
-                    name="skype"
-                    value={form.skype}
-                    onChange={handleChange}
-                  />
-                </div>
-                <div className="profile_user_item">
-                  <p className="profile_user_text">Телефон</p>
-                  <input
-                    type="text"
-                    className="profile_user_input"
-                    name="phone"
-                    value={form.phone}
-                    onChange={handleChange}
-                  />
-                </div>
-                <div className="profile_user_item">
-                  <p className="profile_user_text">Существующий пароль</p>
-                  <input
-                    type="text"
-                    className="profile_user_input"
-                    name="old_password"
-                    value={form.old_password}
-                    onChange={handleChange}
-                    disabled
-                  />
-                </div>
-              </div>
-              <div className="profile_button_block">
+    <>
+      {(loading || fetchLoading || avatarLoading) && <Preloader />}
+      <div className="profile_screen">
+        <div className="profile_top_block">
+          <img src={SettingsProfile} alt="settings-profile" />
+          <p className="profile_top_text" style={{ marginBottom: 0 }}>
+            {t("profile:TOP_TITLE")}
+          </p>
+        </div>
+        <div
+          className="profile_user_block"
+          style={{
+            backgroundImage: `url(${(() => {
+              if (settings) {
+                switch (settings.status) {
+                  case "Free":
+                    return frPurple;
+                  case "Start Profit":
+                    return spBlue;
+                  case "Fixed Profit":
+                    return fpGreen;
+                  case "Maxi Profit":
+                    return mpYellow;
+                  default:
+                    return spBlue;
+                }
+              }
+            })()})`,
+          }}
+        >
+          <div className="profile_user_content">
+            <div className="profile_img_block">
+              <img
+                src={avatar && URL.createObjectURL(avatar)}
+                className="profile_img"
+                style={{ maxWidth: 300, maxHeight: 400 }}
+              />
+              <p>
                 <button
-                  onClick={handleSave}
-                  disabled={loading}
-                  className="profile_user_button"
+                  className="profile_img_edit"
+                  style={{ position: "relative" }}
                 >
-                  Сохранить
+                  <label
+                    for="imagePicker"
+                    class="custom-file-upload"
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      position: "absolute",
+                    }}
+                  />
+                  {t("profile:TOP_DESCRIPTION_CHANGE")}
                 </button>
+                <input
+                  onChange={handleChangeAvatar}
+                  id="imagePicker"
+                  type="file"
+                  accept="image/*"
+                  style={{ display: "none" }}
+                  multiple={false}
+                />
+              </p>
+            </div>
+            <div className="profile_user_items">
+              <div className="profile_items_content">
+                <div className="profile_inputs">
+                  <div>
+                    <div className="profile_user_item" style={{ padding: 5 }}>
+                      <p className="profile_user_text">
+                        {t("profile:TOP_DESCRIPTION_NAMEANDSURNAME")}
+                      </p>
+                      <input
+                        type="text"
+                        className="profile_user_input"
+                        name="full_name"
+                        value={form.full_name}
+                        onChange={handleChange}
+                      />
+                    </div>
+                    <div className="profile_user_item" style={{ padding: 5 }}>
+                      <p className="profile_user_text">
+                        {t("profile:TOP_DESCRIPTION_EMAIL")}
+                      </p>
+                      <input
+                        type="text"
+                        className="profile_user_input"
+                        name="email"
+                        value={form.email}
+                        onChange={handleChange}
+                      />
+                    </div>
+                    <div className="profile_user_item" style={{ padding: 5 }}>
+                      <p className="profile_user_text">
+                        {t("profile:TOP_DESCRIPTION_SKYPE")}
+                      </p>
+                      <input
+                        type="text"
+                        className="profile_user_input"
+                        name="skype"
+                        value={form.skype}
+                        onChange={handleChange}
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <div className="profile_user_item" style={{ padding: 5 }}>
+                      <p className="profile_user_text">
+                        {t("profile:TOP_DESCRIPTION_COUNTRY")}
+                      </p>
+                      <input
+                        type="text"
+                        className="profile_user_input"
+                        name="country"
+                        value={form.country}
+                        onChange={handleChange}
+                      />
+                    </div>
+                    <div className="profile_user_item" style={{ padding: 5 }}>
+                      <p className="profile_user_text">
+                        {t("profile:TOP_DESCRIPTION_TELEGRAM")}
+                      </p>
+                      <input
+                        type="text"
+                        className="profile_user_input"
+                        name="telegram"
+                        value={form.telegram}
+                        onChange={handleChange}
+                      />
+                    </div>
+                    <div className="profile_user_item" style={{ padding: 5 }}>
+                      <p className="profile_user_text">
+                        {t("profile:TOP_DESCRIPTION_PHONE")}
+                      </p>
+                      <input
+                        type="text"
+                        className="profile_user_input"
+                        name="phone"
+                        value={form.phone}
+                        onChange={handleChange}
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <div className="profile_user_item" style={{ padding: 5 }}>
+                      <p className="profile_user_text">
+                        {t("profile:TOP_DESCRIPTION_NEWPASSWORD")}
+                      </p>
+                      <input
+                        type="password"
+                        className="profile_user_input"
+                        name="new_password"
+                        value={form.new_password}
+                        onChange={handleChange}
+                      />
+                    </div>
+                    <div className="profile_user_item" style={{ padding: 5 }}>
+                      <p className="profile_user_text">
+                        {t("profile:TOP_DESCRIPTION_REPEATNEWPASSWORD")}
+                      </p>
+                      <input
+                        type="password"
+                        className="profile_user_input"
+                        name="repeat_password"
+                        value={form.repeat_password}
+                        onChange={handleChange}
+                      />
+                    </div>
+                    <div className="profile_user_item" style={{ padding: 5 }}>
+                      <p className="profile_user_text">
+                        {t("profile:TOP_DESCRIPTION_EXISTINGPASSWORD")}
+                      </p>
+                      <input
+                        type="password"
+                        className="profile_user_input"
+                        name="old_password"
+                        value={form.old_password}
+                        onChange={handleChange}
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div
+                  className="profile_button_block"
+                  style={{ margin: 0, marginTop: 40 }}
+                >
+                  <p className="profile_user_text">
+                    {t("profile:TOP_DESCRIPTION_HELP")}
+                  </p>
+                </div>
+                <div className="profile_button_block">
+                  <button
+                    onClick={handleSave}
+                    disabled={fetch.loading}
+                    className="profile_user_button"
+                  >
+                    {t("profile:TOP_DESCRIPTION_SAVE")}
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

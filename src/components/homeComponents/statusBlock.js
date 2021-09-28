@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import decor from "../../assets/images/decor.png";
 import "../../assets/styles/styles.scoped.css";
 import { useTranslation } from "react-i18next";
@@ -9,6 +9,7 @@ import FP from "../../assets/images/FP.png";
 
 function StatusBlock() {
   const { t } = useTranslation();
+  const { id } = useParams();
 
   return (
     <section className="status_block">
@@ -60,7 +61,7 @@ function StatusBlock() {
           </div>
         </div>
         <div className="over_block">
-          <Link to="/join" className="over_button">
+          <Link to={`/join/${id ? id : ""}`} className="over_button">
             {t("landing:TOP_DESCRIPTION_JOIN")}
           </Link>
         </div>

@@ -13,13 +13,8 @@ const useFetch = () => {
         setLoading(true);
 
         if (body) {
-          if ("formData" in body) {
-            headers["Content-Type"] = "multipart/form-data";
-            body = body.formData;
-          } else {
-            body = JSON.stringify(body);
-            headers["Content-Type"] = "application/json";
-          }
+          body = JSON.stringify(body);
+          headers["Content-Type"] = "application/json";
         }
 
         const response = await fetch(`https://topmail.net.ua:8443${url}`, {

@@ -1,13 +1,17 @@
-import '../../assets/styles/activation.scoped.css'
-
+import { useTranslation } from "react-i18next";
+import "../../assets/styles/activation.scoped.css";
 
 function SystemBlock() {
-    return(
+  const { t } = useTranslation();
+
+  return (
     <div className="system_block">
       <div className="border_start_amount_blue" />
       <div className="border_end_amount_blue" />
       <div className="system_content">
-        <p className="system_title">Инструкция по регистрации</p>
+        <p className="system_title">
+          {t("activation:TOP_DESCRIPTION_INSTRUCTIONS")}
+        </p>
         <div className="system_buttons_group">
           <p>
             <button
@@ -15,7 +19,7 @@ function SystemBlock() {
               data-bs-toggle="modal"
               data-bs-target="#computer_modal"
             >
-              С компьютера
+              {t("activation:TOP_DESCRIPTION_COMPUTER")}
             </button>
           </p>
           <p>
@@ -24,7 +28,7 @@ function SystemBlock() {
               data-bs-toggle="modal"
               data-bs-target="#mobile_modal"
             >
-              С мобильного
+              {t("activation:TOP_DESCRIPTION_MOBILE")}
             </button>
           </p>
           <p>
@@ -33,12 +37,12 @@ function SystemBlock() {
               data-bs-toggle="modal"
               data-bs-target="#hand_modal"
             >
-              Вручную
+              {t("activation:TOP_DESCRIPTION_CONTRACT")}
             </button>
           </p>
         </div>
       </div>
     </div>
-  )
+  );
 }
 export default SystemBlock;

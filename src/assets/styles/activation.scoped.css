@@ -162,7 +162,7 @@
 .package_blue_text,
 .package_green_text,
 .package_yellow_text {
-  margin-bottom: 50px;
+  margin-bottom: 100px;
   font-size: 26px;
   color: #fff;
   line-height: 36px;
@@ -184,7 +184,14 @@
 }
 
 .package_item_button {
-  padding: 18px 60px;
+  position: absolute;
+  bottom: 110px;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.package_item_button button {
   border-radius: 5px;
   border: 1px #54cdef solid;
   font-weight: 700;
@@ -192,15 +199,23 @@
   transition: 0.1s;
   transition-duration: 0.1s;
   background-color: transparent;
-  margin: 0 100px;
+  padding: 18px 60px;
 }
 
-.package_item_button:hover {
+.package_item_button button:hover {
   color: #fff;
   background-color: #54cdef;
 }
 
 .package_green_button {
+  position: absolute;
+  bottom: 110px;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.package_green_button button {
   padding: 18px 60px;
   border-radius: 5px;
   border: 1px #5cd58e solid;
@@ -209,15 +224,22 @@
   transition: 0.1s;
   transition-duration: 0.1s;
   background-color: transparent;
-  margin: 0 100px;
 }
 
-.package_green_button:hover {
+.package_green_button button:hover {
   color: #fff;
   background-color: #5cd58e;
 }
 
 .package_yellow_button {
+  position: absolute;
+  bottom: 110px;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.package_yellow_button button {
   padding: 18px 60px;
   border-radius: 5px;
   border: 1px #f2ca6b solid;
@@ -226,10 +248,9 @@
   transition: 0.1s;
   transition-duration: 0.1s;
   background-color: transparent;
-  margin: 0 100px;
 }
 
-.package_yellow_button:hover {
+.package_yellow_button button:hover {
   color: #fff;
   background-color: #f2ca6b;
 }
@@ -291,7 +312,7 @@
   left: 0px;
   top: 0px;
   width: 5px;
-  background-image: url(../images/Обводка-1.svg);
+  background-image: url(../images/Обводка-1-blue.svg);
   background-repeat: no-repeat;
   background-position: center center;
 }
@@ -302,7 +323,7 @@
   left: 99.7%;
   top: 0px;
   width: 5px;
-  background-image: url(../images/Обводка-1.svg);
+  background-image: url(../images/Обводка-1-blue.svg);
   background-repeat: no-repeat;
   background-position: center center;
 }
@@ -371,10 +392,10 @@
 }
 
 @media (max-width: 992px) {
-  .package_item_button,
-  .package_green_button,
-  .package_yellow_button {
-    margin: 0 200px;
+  .package_item_button button,
+  .package_green_button button,
+  .package_yellow_button button {
+    padding: 18px 200px;
   }
 
   .packages_block {
@@ -454,9 +475,9 @@
     font-size: 20px;
   }
 
-  .package_item_button,
-  .package_green_button,
-  .package_yellow_button {
-    margin: 0 20px;
+  .package_item_button button,
+  .package_green_button button,
+  .package_yellow_button button {
+    padding: 18px 80px;
   }
 }

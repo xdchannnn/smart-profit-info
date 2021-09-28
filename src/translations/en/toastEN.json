@@ -1,3 +1,7 @@
 {
-  "COPY_CLIPBOARD": "Link copied"
+  "COPY_CLIPBOARD": "Link copied",
+  "COPY_CLIPBOARD_ADDRESS": "Address copied",
+  "NEW_PASSWORD_ERROR": "Password mismatch!",
+  "OLD_PASSWORD_ERROR": "Enter your old password!",
+  "PARTNER_SAVE": "Partner saved!"
 }

@@ -79,7 +79,11 @@ export default function FinanceQuestions() {
                 {t("faq:TOP_DESCRIPTION_FAQ16_TITLE")}
                 <br />
                 {t("faq:TOP_DESCRIPTION_FAQ16_1")}{" "}
-                <a href={t("faq:TOP_DESCRIPTION_FAQ16_1_SITE")} target="_blank">
+                <a
+                  href={t("faq:TOP_DESCRIPTION_FAQ16_1_SITE")}
+                  target="_blank"
+                  style={{ color: "#54cdef" }}
+                >
                   {t("faq:TOP_DESCRIPTION_FAQ16_1_SITE")}
                 </a>{" "}
                 {t("faq:TOP_DESCRIPTION_FAQ16_1_DESC")}

@@ -6,11 +6,12 @@ import support from "../../assets/images/support.svg";
 import settings from "../../assets/images/settings.svg";
 import bonus from "../../assets/images/bonus.svg";
 import medal from "../../assets/images/medal.svg";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 function StartBlock() {
   const { t } = useTranslation();
+  const { id } = useParams();
 
   return (
     <section className="start_block">
@@ -90,7 +91,7 @@ function StartBlock() {
           </div>
         </div>
         <div className="over_block">
-          <Link to="/join" className="over_button yellow">
+          <Link to={`/join/${id ? id : ""}`} className="over_button yellow">
             {t("landing:TOP_DESCRIPTION_PARTICIPATE")}
           </Link>
         </div>
