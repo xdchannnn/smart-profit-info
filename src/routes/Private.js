@@ -8,7 +8,6 @@ import Finance from '../pages/finance'
 import FAQ from '../pages/faq'
 import Sponsor from "../pages/sponsor";
 
-
 import { Fragment, useContext } from "react";
 import AuthContext from "../context/auth.context";
 import { Web3ContextProvider } from "../context/web3.context";

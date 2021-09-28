@@ -1,0 +1,7 @@
+.navItem {
+    background-color: rgba(0, 0, 0, .2);
+}
+
+.collapsed {
+    background-color: rgba(0, 0, 0, .0) !important;
+}
