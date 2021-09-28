@@ -6,15 +6,16 @@ import Join from "../pages/join";
 import FAQ from "../pages/faq";
 import Modal from "../components/homeComponents/copyrightModal";
 
-
-
-import Admin from '../pages/admin'; //REMOVE AFTER DEVELOPMENT
+import Admin from "../pages/admin"; //REMOVE AFTER DEVELOPMENT
 
 const Public = () => {
   return (
     <>
       <Modal />
       <Switch>
+        <Route exact path="/admin">
+          <Admin />
+        </Route>
         <Route exact path="/faq/:id">
           <FAQ />
         </Route>
@@ -44,9 +45,6 @@ const Public = () => {
         </Route>
         <Route exact path="/">
           <Home />
-        </Route>
-        <Route exact path="/admin">
-          <Admin />
         </Route>
         <Route path="*">404 Not Found</Route>
       </Switch>
