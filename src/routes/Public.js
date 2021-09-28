@@ -6,6 +6,10 @@ import Join from "../pages/join";
 import FAQ from "../pages/faq";
 import Modal from "../components/homeComponents/copyrightModal";
 
+
+
+import Admin from '../pages/admin'; //REMOVE AFTER DEVELOPMENT
+
 const Public = () => {
   return (
     <>
@@ -40,6 +44,9 @@ const Public = () => {
         </Route>
         <Route exact path="/">
           <Home />
+        </Route>
+        <Route exact path="/admin">
+          <Admin />
         </Route>
         <Route path="*">404 Not Found</Route>
       </Switch>
