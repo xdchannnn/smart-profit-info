@@ -68,6 +68,7 @@ header {
   width: 100%;
   position: fixed;
   background-color: rgba(57, 64, 74, 0.5);
+  backdrop-filter: blur(20px);
   height: 130px;
   z-index: 2050;
 }
@@ -438,12 +439,6 @@ footer {
 
   .navbar-expand-lg {
     padding: 10px 10px;
-    background-color: rgba(57, 64, 74, 0.5);
-    backdrop-filter: blur(20px);
-  }
-
-  header {
-    background-color: transparent;
   }
 
   .navbar-brand {
